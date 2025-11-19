@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camper Van Gogh | Premium VW T6.1 Hire in Hampshire</title>
+    <meta name="description" content="Hire Vincent, a premium 2022 VW T6.1 Campervan in Hampshire. Automatic, sleeps 4, pet friendly. Your adventure starts here.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vangogh-blue': '#1a365d', /* Starry Night deep blue */
+                        'vangogh-sky': '#2c5282',
+                        'vangogh-yellow': '#f6ad55', /* Starry Night moon yellow */
+                        'vangogh-gold': '#d69e2e',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles */
+        .hero-bg {
+            background-image: linear-gradient(rgba(26, 54, 93, 0.6), rgba(26, 54, 93, 0.5)), url('https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_1080,q_auto,w_1920/ce2qm9hxq9v4eazoptfr.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .gallery-img {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* Mobile menu transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+        }
+        
+        /* Ensure the body doesn't jump when the modal opens on mobile */
+        .modal-open {
+            overflow: hidden;
+        }
+        /* Style for the Lightbox Image to maximize space use */
+        #lightbox-img {
+            /* Max width/height of the actual image element */
+            max-width: 100%;
+            max-height: 100vh; /* Allow it to touch the top/bottom edges of the viewport */
+            /* Ensure it scales down if needed, but contains the whole image */
+            object-fit: contain; 
+            /* Added transition for smooth image change */
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <!-- Logo / Brand Name -->
+                        <span class="font-serif text-2xl md:text-3xl font-bold text-vangogh-blue">
+                            <i class="fa-solid fa-van-shuttle mr-2 text-vangogh-yellow"></i>
+                            Camper Van Gogh
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-vangogh-blue font-medium transition">The Van</a>
+                    <a href="#features" class="text-gray-600 hover:text-vangogh-blue font-medium transition">Features</a>
+                    <a href="#gallery" class="text-gray-600 hover:text-vangogh-blue font-medium transition">Gallery</a>
+                    <a href="#rates" class="text-gray-600 hover:text-vangogh-blue font-medium transition">Rates</a>
+                    <a href="#contact" class="bg-vangogh-yellow hover:bg-vangogh-gold text-white px-6 py-2 rounded-full font-bold transition shadow-md transform hover:-translate-y-0.5">
+                        Book Now
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-vangogh-blue focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-vangogh-blue hover:bg-gray-50 rounded-md">The Van</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-vangogh-blue hover:bg-gray-50 rounded-md">Features</a>
+                <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-vangogh-blue hover:bg-gray-50 rounded-md">Gallery</a>
+                <a href="#rates" class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-vangogh-blue hover:bg-gray-50 rounded-md">Rates</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-bold text-vangogh-yellow hover:text-vangogh-gold">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center hero-bg text-white overflow-hidden">
+        
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black opacity-40 z-10"></div> 
+        
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-lg">
+                Masterpiece in Motion
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 font-light drop-shadow-md max-w-2xl mx-auto">
+                Explore the UK and beyond in "Vincent", our premium 2022 VW T6.1 Campervan.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-vangogh-yellow hover:bg-vangogh-gold text-white text-lg px-8 py-4 rounded-full font-bold transition shadow-lg transform hover:-translate-y-1">
+                    Start Your Journey
+                </a>
+                <a href="#about" class="bg-transparent border-2 border-white hover:bg-white hover:text-vangogh-blue text-white text-lg px-8 py-4 rounded-full font-bold transition shadow-lg">
+                    Learn More
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 w-full text-center animate-bounce z-20">
+            <a href="#about" class="text-white opacity-80 hover:opacity-100">
+                <i class="fa-solid fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-vangogh-blue mb-6">
+                        Meet Vincent
+                    </h2>
+                    <div class="w-20 h-1 bg-vangogh-yellow mb-8"></div>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Get ready for an unforgettable adventure in our stunning, professionally converted <strong>2022 Volkswagen T6.1 campervan</strong>. Named Vincent, this isn't just a van—it's a premium experience on wheels.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Combining the legendary reliability of a VW with a sleek, high-spec conversion, Vincent is designed for both comfort and style. Whether you are exploring the coasts of Hampshire or touring Europe, he is the perfect companion.
+                    </p>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-vangogh-blue mr-3"></i> Easy to drive Automatic Transmission
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-vangogh-blue mr-3"></i> Sleeps 4 Adults Comfortably
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-vangogh-blue mr-3"></i> Fully Equipped Kitchen
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Image (Index 0) -->
+                <div class="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
+                     <!-- Added data-index="0" for the carousel/lightbox functionality -->
+                     <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_800,q_auto,w_800/vymhy8v9wbox8t9ludyy.jpg" alt="Campervan Interior" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105 gallery-img" data-index="0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs & Features Grid -->
+    <section id="features" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-vangogh-blue mb-4">Premium Features</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Vincent comes fully equipped with everything you need for a luxury road trip experience.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-bed text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Sleeps 4</h3>
+                    <p class="text-sm text-gray-500">Pop-top roof bed & Rock'n'roll bed</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-gears text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Automatic</h3>
+                    <p class="text-sm text-gray-500">Smooth DSG transmission for easy driving</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-paw text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Pets Welcome</h3>
+                    <p class="text-sm text-gray-500">Bring your furry friends along</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Off-Grid</h3>
+                    <p class="text-sm text-gray-500">Solar panel & Leisure battery included</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-snowflake text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Heating & A/C</h3>
+                    <p class="text-sm text-gray-500">Diesel heater & Cabin A/C for all seasons</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-kitchen-set text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Full Kitchen</h3>
+                    <p class="text-sm text-gray-500">Fridge, Stove, Sink & Oven</p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-earth-europe text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">EU Travel</h3>
+                    <p class="text-sm text-gray-500">Allowed to travel abroad</p>
+                </div>
+
+                <!-- Feature 8 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-vangogh-blue">
+                        <i class="fa-solid fa-shield text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Safe & Secure</h3>
+                    <p class="text-sm text-gray-500">Isofix points & modern safety tech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-center text-vangogh-blue mb-12">Gallery</h2>
+            
+            <!-- Masonry-style Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
+                
+                <!-- Large Item (Index 1) -->
+                <div class="md:col-span-2 md:row-span-2 relative rounded-lg overflow-hidden cursor-pointer group h-[416px]">
+                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_800,q_auto,w_1000/ayjr1cqkmhumsmsaqkpr.jpg" alt="Van Scenic View" class="w-full h-full object-cover gallery-img" data-index="1">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition duration-300"></div>
+                </div>
+
+                <!-- Standard Items (Index 2-6) -->
+                <div class="relative rounded-lg overflow-hidden cursor-pointer group h-[200px]">
+                     <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/uwl6c0um558crscxpsw5.jpg" alt="Van Interior Front" class="w-full h-full object-cover gallery-img" data-index="2">
+                </div>
+
+                <div class="relative rounded-lg overflow-hidden cursor-pointer group h-[200px]">
+                     <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/o7nioxeup4iocpmai2dv.jpg" alt="Kitchen" class="w-full h-full object-cover gallery-img" data-index="3">
+                </div>
+
+                <div class="relative rounded-lg overflow-hidden cursor-pointer group h-[200px]">
+                     <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/ge39omnrfj2z84smc4qe.jpg" alt="Sleeping Area" class="w-full h-full object-cover gallery-img" data-index="4">
+                </div>
+                
+                <div class="relative rounded-lg overflow-hidden cursor-pointer group h-[200px]">
+                     <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/tvtojdnj3kclqrteqmxa.jpg" alt="Rear View" class="w-full h-full object-cover gallery-img" data-index="5">
+                </div>
+
+                <div class="relative rounded-lg overflow-hidden cursor-pointer group h-[200px]">
+                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/hrg8thrw5uzutywrndf4.jpg" alt="Roof Up" class="w-full h-full object-cover gallery-img" data-index="6">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Rates & Info Section -->
+    <section id="rates" class="py-20 bg-vangogh-blue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-white">Hire Rates & Details</h2>
+                <p class="text-gray-300">Transparent pricing for your peace of mind.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-2xl border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-2 text-vangogh-yellow">Daily Rate</h3>
+                    <div class="text-4xl font-bold mb-4">From £92<span class="text-lg font-normal text-gray-300">/day</span></div>
+                    <p class="text-gray-300 text-sm mb-4">Rates vary by season.</p>
+                    <ul class="space-y-2 text-sm text-gray-200">
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Insurance included</li>
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Breakdown cover</li>
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i>Unlimited UK mileage (subject to T&Cs)</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-2xl border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-2 text-vangogh-yellow">Booking Terms</h3>
+                    <ul class="space-y-4 text-gray-200 mt-6">
+                        <li><strong>Minimum Hire:</strong> 3 Nights</li>
+                        <li><strong>Driver Age:</strong> 25+ Years</li>
+                        <li><strong>Pickup:</strong> From 3:00 PM</li>
+                        <li><strong>Return:</strong> By 11:00 AM</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-2xl border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-2 text-vangogh-yellow">What's Included</h3>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Camping Table</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Chairs</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Crockery</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Cutlery</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Electric Cable</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Water Hose</span>
+                        <span class="bg-blue-900 bg-opacity-50 px-3 py-1 rounded-full text-xs border border-blue-400">Cleaning Kit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Booking Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    
+                    <!-- Contact Info Side -->
+                    <div class="bg-vangogh-blue p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-3xl font-bold mb-6">Ready to Go?</h3>
+                            <p class="mb-8 text-blue-100">
+                                Send us a direct inquiry to book your dates or ask any questions. We'll get back to you as soon as possible.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-location-dot mt-1 mr-4 text-vangogh-yellow"></i>
+                                    <span>Hampshire, United Kingdom</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-envelope mt-1 mr-4 text-vangogh-yellow"></i>
+                                    <a href="mailto:info@campervangogh.com" class="hover:text-vangogh-yellow transition">info@campervangogh.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <p class="text-sm opacity-70 mb-2">Prefer to book via platform?</p>
+                            <a href="https://www.goboony.com/campers/united-kingdom/england/hampshire/92689" target="_blank" class="inline-flex items-center text-white font-bold hover:text-vangogh-yellow transition">
+                                Check Availability on Goboony <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Form Side -->
+                    <div class="p-10">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Enquire Directly</h3>
+                        <form action="mailto:info@campervangogh.com" method="post" enctype="text/plain">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input type="text" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vangogh-blue focus:border-transparent outline-none" placeholder="Your Name" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vangogh-blue focus:border-transparent outline-none" placeholder="your@email.com" required>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                                    <input type="date" name="start_date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vangogh-blue focus:border-transparent outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                                    <input type="date" name="end_date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vangogh-blue focus:border-transparent outline-none">
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vangogh-blue focus:border-transparent outline-none" placeholder="Tell us about your trip plans..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-vangogh-yellow hover:bg-vangogh-gold text-white font-bold py-3 rounded-lg transition shadow-md">
+                                Send Enquiry
+                            </button>
+                            <p class="text-xs text-gray-400 mt-3 text-center">This will open your email client to send the request.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <span class="font-serif text-2xl font-bold text-white block mb-4">
+                         <i class="fa-solid fa-van-shuttle text-vangogh-yellow"></i> Camper Van Gogh
+                    </span>
+                    <p class="text-sm">
+                        Premium VW Campervan hire in Hampshire. Experience the art of travel with Vincent, your home on wheels.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-vangogh-yellow">The Van</a></li>
+                        <li><a href="#features" class="hover:text-vangogh-yellow">Features</a></li>
+                        <li><a href="#gallery" class="hover:text-vangogh-yellow">Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-vangogh-yellow">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-vangogh-blue hover:text-white transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-vangogh-blue hover:text-white transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-xs">
+                <p>&copy; 2025 Camper Van Gogh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal Structure -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[9999] bg-black bg-opacity-90 hidden items-center justify-center p-0 transition-opacity duration-300" onclick="closeLightbox(event)">
+        
+        <!-- Close Button -->
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl font-light hover:text-vangogh-yellow z-20 md:p-2" aria-label="Close Modal">
+            &times;
+        </button>
+        
+        <!-- Previous Button (Visible on medium screens and up) -->
+        <button id="lightbox-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-vangogh-yellow z-20 transition opacity-80 hover:opacity-100 p-2 rounded-full hidden md:block" onclick="showPrev(event)" aria-label="Previous Image">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Image Container -->
+        <div class="relative w-full h-full flex items-center justify-center p-2 md:p-10" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Enlarged Camper Van Photo" class="shadow-2xl">
+        </div>
+        
+        <!-- Next Button (Visible on medium screens and up) -->
+        <button id="lightbox-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-vangogh-yellow z-20 transition opacity-80 hover:opacity-100 p-2 rounded-full hidden md:block" onclick="showNext(event)" aria-label="Next Image">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        
+        <!-- Mobile Swipe/Tap indicators -->
+        <div class="absolute bottom-4 left-0 right-0 text-center text-white text-sm md:hidden">
+            <i class="fa-solid fa-arrow-left"></i> Swipe or tap sides to navigate <i class="fa-solid fa-arrow-right"></i>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('open');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.remove('open'); // Close mobile menu if open
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Lightbox/Modal Logic ---
+
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCloseBtn = document.getElementById('lightbox-close');
+        
+        // Select all images intended for the lightbox
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-img')); 
+        const totalImages = galleryImages.length;
+        let currentIndex = 0; 
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        // Set data-index attribute on all images for easy tracking
+        galleryImages.forEach((img, index) => {
+            img.setAttribute('data-index', index); 
+        });
+
+        // Function to update the image source with a fade transition
+        function updateImage(newIndex) {
+            lightboxImg.style.opacity = '0'; // Start fade out
+            setTimeout(() => {
+                currentIndex = (newIndex + totalImages) % totalImages; // Ensure index wraps correctly
+                lightboxImg.src = galleryImages[currentIndex].src;
+                lightboxImg.style.opacity = '1'; // Fade in
+            }, 300); // Match transition duration
+        }
+
+        // Function to open the lightbox
+        function openLightbox(index) {
+            updateImage(index);
+            
+            lightboxModal.classList.remove('hidden');
+            lightboxModal.classList.add('flex');
+            document.body.classList.add('modal-open'); // Prevent body scrolling
+        }
+
+        // Function to close the lightbox
+        function closeLightbox(event) {
+            // Check if click target is the modal backdrop, or the close button/its icon
+            if (event.target === lightboxModal || event.target === lightboxCloseBtn || event.target.closest('#lightbox-close')) {
+                lightboxModal.classList.remove('flex');
+                lightboxModal.classList.add('hidden');
+                document.body.classList.remove('modal-open'); // Restore scrolling
+            }
+        }
+
+        // Function to show the next image
+        function showNext(event) {
+            if (event) event.stopPropagation(); // Prevent modal close/other default actions
+            updateImage(currentIndex + 1);
+        }
+
+        // Function to show the previous image
+        function showPrev(event) {
+            if (event) event.stopPropagation(); // Prevent modal close/other default actions
+            updateImage(currentIndex - 1);
+        }
+
+        // Attach click listeners to all gallery images
+        galleryImages.forEach(img => {
+            img.addEventListener('click', (e) => {
+                // Get the index from the data attribute and open the lightbox
+                const index = parseInt(e.target.getAttribute('data-index')); 
+                openLightbox(index);
+            });
+        });
+
+        // --- Touch/Swipe Navigation for Mobile ---
+        function handleGesture() {
+            if (touchendX < touchstartX - 50) {
+                // Left swipe: Next image
+                showNext();
+            }
+            if (touchendX > touchstartX + 50) {
+                // Right swipe: Previous image
+                showPrev();
+            }
+        }
+
+        lightboxModal.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        }, false);
+
+        lightboxModal.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        }, false);
+        
+        // Attach global functions (for use by HTML onclick attributes)
+        window.closeLightbox = closeLightbox;
+        window.showNext = showNext;
+        window.showPrev = showPrev;
+
+        // Close on ESC key and navigate with arrow keys
+        document.addEventListener('keydown', (e) => {
+            if (lightboxModal.classList.contains('flex')) {
+                if (e.key === 'Escape') {
+                    // Manually trigger the closing behavior
+                    closeLightbox({ target: lightboxCloseBtn }); 
+                } else if (e.key === 'ArrowRight') {
+                    showNext(e);
+                } else if (e.key === 'ArrowLeft') {
+                    showPrev(e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
