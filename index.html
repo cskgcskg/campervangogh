@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camper Van Gogh | The Art Journal</title>
-    <meta name="description" content="Hire Vincent, a premium 2022 VW T6.1 Campervan. A masterpiece of engineering and design.">
-    
+    <meta name="description"
+        content="Hire Vincent, a premium 2022 VW T6.1 Campervan. A masterpiece of engineering and design.">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -46,21 +50,32 @@
         body {
             background-color: #F2F0E9;
             color: #121212;
-            cursor: crosshair; /* Artistic feel */
+            cursor: crosshair;
+            /* Artistic feel */
         }
 
         /* Brutalist Borders */
         .brutal-border {
             border: 2px solid #121212;
         }
-        .brutal-border-t { border-top: 2px solid #121212; }
-        .brutal-border-b { border-bottom: 2px solid #121212; }
-        .brutal-border-r { border-right: 2px solid #121212; }
+
+        .brutal-border-t {
+            border-top: 2px solid #121212;
+        }
+
+        .brutal-border-b {
+            border-bottom: 2px solid #121212;
+        }
+
+        .brutal-border-r {
+            border-right: 2px solid #121212;
+        }
 
         /* Hard Shadows */
         .hard-shadow {
             box-shadow: 6px 6px 0px 0px #121212;
         }
+
         .hard-shadow-hover:hover {
             box-shadow: 2px 2px 0px 0px #121212;
             transform: translate(4px, 4px);
@@ -70,16 +85,19 @@
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
     </style>
 </head>
+
 <body class="font-body selection:bg-pop selection:text-white pb-24 md:pb-0">
 
     <!-- Top Bar: Minimal Logo & Status -->
-    <header class="fixed top-0 w-full z-40 px-6 py-4 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+    <header
+        class="fixed top-0 w-full z-40 px-6 py-4 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
         <div class="font-headline uppercase tracking-widest text-xl pointer-events-auto">
             Camper Van Gogh<span class="text-pop">.</span>
         </div>
@@ -94,9 +112,10 @@
 
         <!-- SECTION 1: The Collage Hero -->
         <section class="min-h-screen relative pt-24 px-4 md:px-12 flex flex-col justify-center overflow-hidden">
-            
+
             <!-- Giant Typography Layer -->
-            <h1 class="font-headline text-[15vw] leading-[0.8] text-ink uppercase mix-blend-multiply z-10 pointer-events-none">
+            <h1
+                class="font-headline text-[15vw] leading-[0.8] text-ink uppercase mix-blend-multiply z-10 pointer-events-none">
                 Master<br>
                 <span class="ml-[10vw]">Piece</span>
             </h1>
@@ -104,20 +123,31 @@
             <!-- Handwriting Annotation -->
             <div class="absolute top-[20%] right-[10%] z-30 transform rotate-6 hidden md:block">
                 <p class="font-hand text-3xl text-pop font-bold"> Meet Vincent -> </p>
-                <svg class="w-12 h-12 text-pop transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <svg class="w-12 h-12 text-pop transform rotate-90" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
             </div>
 
             <!-- Image Layer: Asymmetrical Collage -->
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-full z-0 flex items-center justify-center pointer-events-none">
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-full z-0 flex items-center justify-center pointer-events-none">
                 <!-- Main Cutout (Simulated) -->
-                <div class="relative w-[80vw] md:w-[40vw] aspect-[4/5] md:aspect-square bg-gray-200 brutal-border hard-shadow transform -rotate-3 transition duration-700 hover:rotate-0 hover:scale-105 pointer-events-auto">
-                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_1080,q_auto,w_1080/ce2qm9hxq9v4eazoptfr.jpg" class="w-full h-full object-cover" alt="Hero Van">
-                    <div class="absolute bottom-4 left-4 bg-white px-3 py-1 font-mono text-xs border border-black">FIG 1.0: THE EXTERIOR</div>
+                <div
+                    class="relative w-[80vw] md:w-[40vw] aspect-[4/5] md:aspect-square bg-gray-200 brutal-border hard-shadow transform -rotate-3 transition duration-700 hover:rotate-0 hover:scale-105 pointer-events-auto">
+                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_1080,q_auto,w_1080/ce2qm9hxq9v4eazoptfr.jpg"
+                        class="w-full h-full object-cover" alt="Hero Van" loading="eager">
+                    <div class="absolute bottom-4 left-4 bg-white px-3 py-1 font-mono text-xs border border-black">FIG
+                        1.0: THE EXTERIOR</div>
                 </div>
-                
+
                 <!-- Secondary Image (Floating) -->
-                <div class="absolute bottom-[10%] right-[5%] w-48 md:w-64 aspect-video bg-gray-200 brutal-border transform rotate-6 hidden md:block pointer-events-auto hover:rotate-12 transition">
-                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/vymhy8v9wbox8t9ludyy.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition" alt="Interior">
+                <div
+                    class="absolute bottom-[10%] right-[5%] w-48 md:w-64 aspect-video bg-gray-200 brutal-border transform rotate-6 hidden md:block pointer-events-auto hover:rotate-12 transition">
+                    <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_400,q_auto,w_600/vymhy8v9wbox8t9ludyy.jpg"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition" alt="Interior"
+                        loading="eager">
                 </div>
             </div>
 
@@ -130,7 +160,7 @@
         <!-- NEW SECTION: Key Data Points (Static, Replacing Marquee) -->
         <section class="bg-canvas border-t-2 border-b-2 border-ink py-8 px-4 md:px-12">
             <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-6">
-                
+
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-car-side text-2xl text-pop"></i>
                     <div class="font-mono text-sm">
@@ -169,14 +199,15 @@
         <!-- SECTION 3: The "Spec Sheet" (Grid Layout) -->
         <section id="specs" class="bg-paper py-20 px-4 md:px-12 border-b-2 border-ink">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-px bg-ink border-2 border-ink">
-                
+
                 <!-- Title Block -->
                 <div class="col-span-1 md:col-span-4 bg-paper p-8 md:p-12 flex flex-col justify-between min-h-[400px]">
                     <div>
                         <span class="font-mono text-xs bg-ink text-white px-2 py-1">SPECIFICATION_SHEET</span>
                         <h2 class="font-headline text-6xl mt-6 uppercase leading-none">High<br>Spec<br>Living</h2>
                     </div>
-                    <p class="font-hand text-2xl mt-8">"Everything you need, nothing you don't. Designed for the modern nomad."</p>
+                    <p class="font-hand text-2xl mt-8">"Everything you need, nothing you don't. Designed for the modern
+                        nomad."</p>
                 </div>
 
                 <!-- Feature Grid -->
@@ -185,25 +216,30 @@
                     <div class="border-b md:border-b-0 md:border-r border-ink p-8 hover:bg-canvas transition group">
                         <i class="fa-solid fa-kitchen-set text-4xl mb-4 group-hover:text-pop transition"></i>
                         <h3 class="font-bold text-xl uppercase mb-2">The Galley</h3>
-                        <p class="text-sm opacity-80 font-mono">Full kitchen with fridge, stove, sink & oven. Cook a feast with a view.</p>
+                        <p class="text-sm opacity-80 font-mono">Full kitchen with fridge, stove, sink & oven. Cook a
+                            feast with a view.</p>
                     </div>
                     <!-- Item -->
                     <div class="border-b md:border-b-0 border-ink p-8 hover:bg-canvas transition group">
                         <i class="fa-solid fa-bed text-4xl mb-4 group-hover:text-pop transition"></i>
                         <h3 class="font-bold text-xl uppercase mb-2">The Quarters</h3>
-                        <p class="text-sm opacity-80 font-mono">Sleeps 4 adults. Pop-top roof bed & Rock'n'roll lower bed.</p>
+                        <p class="text-sm opacity-80 font-mono">Sleeps 4 adults. Pop-top roof bed & Rock'n'roll lower
+                            bed.</p>
                     </div>
                     <!-- Item -->
-                    <div class="border-b md:border-b-0 md:border-t md:border-r border-ink p-8 hover:bg-canvas transition group">
+                    <div
+                        class="border-b md:border-b-0 md:border-t md:border-r border-ink p-8 hover:bg-canvas transition group">
                         <i class="fa-solid fa-bolt text-4xl mb-4 group-hover:text-pop transition"></i>
                         <h3 class="font-bold text-xl uppercase mb-2">The Power</h3>
-                        <p class="text-sm opacity-80 font-mono">Off-grid ready with Solar Panels & heavy-duty leisure battery.</p>
+                        <p class="text-sm opacity-80 font-mono">Off-grid ready with Solar Panels & heavy-duty leisure
+                            battery.</p>
                     </div>
                     <!-- Item -->
                     <div class="md:border-t border-ink p-8 hover:bg-canvas transition group">
                         <i class="fa-solid fa-paw text-4xl mb-4 group-hover:text-pop transition"></i>
                         <h3 class="font-bold text-xl uppercase mb-2">The Co-Pilot</h3>
-                        <p class="text-sm opacity-80 font-mono">Pets are fully welcome. Bring your four-legged best friend.</p>
+                        <p class="text-sm opacity-80 font-mono">Pets are fully welcome. Bring your four-legged best
+                            friend.</p>
                     </div>
                 </div>
             </div>
@@ -214,59 +250,92 @@
             <div class="px-6 mb-12 flex items-end justify-between">
                 <h2 class="font-headline text-5xl md:text-7xl uppercase text-ink">Visual<br>Evidence</h2>
                 <div class="hidden md:flex gap-4">
-                    <button id="scroll-left" class="w-12 h-12 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-white transition"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button id="scroll-right" class="w-12 h-12 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-white transition"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="scroll-left"
+                        class="w-12 h-12 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-white transition"><i
+                            class="fa-solid fa-arrow-left"></i></button>
+                    <button id="scroll-right"
+                        class="w-12 h-12 border-2 border-ink flex items-center justify-center hover:bg-ink hover:text-white transition"><i
+                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
             <!-- Horizontal Scroll Container -->
-            <div id="gallery-track" class="flex gap-8 px-6 md:px-12 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory">
-                
+            <div id="gallery-track"
+                class="flex gap-8 px-6 md:px-12 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory">
+
                 <!-- Polaroid 1 -->
-                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(0)">
-                    <div class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform -rotate-2 group-hover:rotate-0 transition duration-300 border border-gray-200">
+                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(0)"
+                    role="button" tabindex="0"
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') openLightbox(0)">
+                    <div
+                        class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform -rotate-2 group-hover:rotate-0 transition duration-300 border border-gray-200">
                         <div class="w-full aspect-[4/3] bg-gray-100 overflow-hidden mb-4 border border-black">
-                            <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/ayjr1cqkmhumsmsaqkpr.jpg" class="w-full h-full object-cover gallery-img" data-index="0">
+                            <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/ayjr1cqkmhumsmsaqkpr.jpg"
+                                class="w-full h-full object-cover gallery-img" data-index="0" loading="lazy"
+                                alt="Gallery image: Somewhere in the wild">
                         </div>
                         <div class="font-hand text-2xl text-ink">Somewhere in the wild...</div>
                         <!-- Tape Effect -->
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 rotate-1 shadow-sm"></div>
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 rotate-1 shadow-sm">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Polaroid 2 -->
-                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(1)">
-                    <div class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform rotate-1 group-hover:rotate-0 transition duration-300 border border-gray-200">
+                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(1)"
+                    role="button" tabindex="0"
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') openLightbox(1)">
+                    <div
+                        class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform rotate-1 group-hover:rotate-0 transition duration-300 border border-gray-200">
                         <div class="w-full aspect-[4/3] bg-gray-100 overflow-hidden mb-4 border border-black">
-                             <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/tvtojdnj3kclqrteqmxa.jpg" class="w-full h-full object-cover gallery-img" data-index="1">
+                            <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/tvtojdnj3kclqrteqmxa.jpg"
+                                class="w-full h-full object-cover gallery-img" data-index="1" loading="lazy"
+                                alt="Gallery image: Room with a view">
                         </div>
                         <div class="font-hand text-2xl text-ink">Room with a view</div>
-                         <!-- Tape Effect -->
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 -rotate-2 shadow-sm"></div>
+                        <!-- Tape Effect -->
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 -rotate-2 shadow-sm">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Polaroid 3 -->
-                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(2)">
-                    <div class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform -rotate-3 group-hover:rotate-0 transition duration-300 border border-gray-200">
+                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(2)"
+                    role="button" tabindex="0"
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') openLightbox(2)">
+                    <div
+                        class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform -rotate-3 group-hover:rotate-0 transition duration-300 border border-gray-200">
                         <div class="w-full aspect-[4/3] bg-gray-100 overflow-hidden mb-4 border border-black">
-                             <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/ge39omnrfj2z84smc4qe.jpg" class="w-full h-full object-cover gallery-img" data-index="2">
+                            <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/ge39omnrfj2z84smc4qe.jpg"
+                                class="w-full h-full object-cover gallery-img" data-index="2" loading="lazy"
+                                alt="Gallery image: Cozy nights in">
                         </div>
                         <div class="font-hand text-2xl text-ink">Cozy nights in</div>
-                         <!-- Tape Effect -->
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 rotate-1 shadow-sm"></div>
+                        <!-- Tape Effect -->
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 rotate-1 shadow-sm">
+                        </div>
                     </div>
                 </div>
-                
-                 <!-- Polaroid 4 -->
-                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(3)">
-                    <div class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform rotate-2 group-hover:rotate-0 transition duration-300 border border-gray-200">
+
+                <!-- Polaroid 4 -->
+                <div class="flex-shrink-0 snap-center relative group cursor-pointer" onclick="openLightbox(3)"
+                    role="button" tabindex="0"
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') openLightbox(3)">
+                    <div
+                        class="w-[300px] md:w-[400px] bg-white p-4 pb-12 shadow-xl transform rotate-2 group-hover:rotate-0 transition duration-300 border border-gray-200">
                         <div class="w-full aspect-[4/3] bg-gray-100 overflow-hidden mb-4 border border-black">
-                             <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/uwl6c0um558crscxpsw5.jpg" class="w-full h-full object-cover gallery-img" data-index="3">
+                            <img src="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_600,q_auto,w_800/uwl6c0um558crscxpsw5.jpg"
+                                class="w-full h-full object-cover gallery-img" data-index="3" loading="lazy"
+                                alt="Gallery image: Captain's Chair">
                         </div>
                         <div class="font-hand text-2xl text-ink">Captain's Chair</div>
-                         <!-- Tape Effect -->
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 -rotate-1 shadow-sm"></div>
+                        <!-- Tape Effect -->
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100 opacity-80 -rotate-1 shadow-sm">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,31 +344,45 @@
         <!-- SECTION 5: Brutalist Pricing -->
         <section id="rates" class="py-20 px-4 md:px-12 bg-pop text-white relative">
             <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
-            
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+
             <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="font-headline text-8xl leading-none mb-6">Start<br>Here.</h2>
-                    <p class="text-xl md:text-2xl font-bold max-w-md">Transparent pricing. No hidden fees. Just grab the keys and go.</p>
+                    <p class="text-xl md:text-2xl font-bold max-w-md">Transparent pricing. No hidden fees. Just grab the
+                        keys and go.</p>
                 </div>
 
                 <div class="bg-paper text-ink p-8 brutal-border hard-shadow transform -rotate-1">
                     <div class="flex justify-between items-start border-b-2 border-ink pb-6 mb-6">
                         <div>
                             <div class="uppercase font-bold tracking-widest text-xs mb-1">Daily Rate</div>
-                            <div class="font-headline text-6xl">£92<span class="text-lg font-body font-normal text-gray-500">/day</span></div>
+                            <div class="font-headline text-6xl">£92<span
+                                    class="text-lg font-body font-normal text-gray-500">/day</span></div>
                         </div>
-                        <div class="bg-pop text-white px-3 py-1 font-bold text-xs uppercase transform rotate-3">Best Value</div>
+                        <div class="bg-pop text-white px-3 py-1 font-bold text-xs uppercase transform rotate-3">Best
+                            Value</div>
                     </div>
-                    
+
                     <ul class="space-y-4 font-mono text-sm mb-8">
-                        <li class="flex items-center gap-3"><div class="w-4 h-4 bg-ink"></div> Insurance Included</li>
-                        <li class="flex items-center gap-3"><div class="w-4 h-4 bg-ink"></div> Breakdown Cover</li>
-                        <li class="flex items-center gap-3"><div class="w-4 h-4 bg-ink"></div> Unlimited Mileage</li>
-                        <li class="flex items-center gap-3"><div class="w-4 h-4 bg-ink"></div> Camping Furniture</li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-4 h-4 bg-ink"></div> Insurance Included
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-4 h-4 bg-ink"></div> Breakdown Cover
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-4 h-4 bg-ink"></div> Unlimited Mileage
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-4 h-4 bg-ink"></div> Camping Furniture
+                        </li>
                     </ul>
 
-                    <a href="#contact" class="block w-full bg-ink text-white text-center py-4 font-bold uppercase tracking-widest hover:bg-pop transition border-2 border-ink">Check Availability</a>
+                    <a href="booking.html"
+                        class="block w-full bg-ink text-white text-center py-4 font-bold uppercase tracking-widest hover:bg-pop transition border-2 border-ink">Check
+                        Availability</a>
                 </div>
             </div>
         </section>
@@ -309,16 +392,31 @@
             <div class="flex flex-col md:flex-row justify-between gap-12">
                 <div class="max-w-xl">
                     <h2 class="font-headline text-5xl mb-6">Ready to Roll?</h2>
-                    <p class="font-mono text-gray-400 mb-8">Send us a message directly. We usually reply within 24 hours.</p>
-                    
-                    <form action="mailto:info@campervangogh.com" method="post" enctype="text/plain" class="space-y-4">
+                    <p class="font-mono text-gray-400 mb-8">Send us a message directly. We usually reply within 24
+                        hours.</p>
+
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="name" placeholder="NAME" class="bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono">
-                            <input type="email" name="email" placeholder="EMAIL" class="bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono">
+                            <div>
+                                <label for="contact-name" class="sr-only">Name</label>
+                                <input id="contact-name" type="text" name="name" placeholder="NAME"
+                                    class="w-full bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="sr-only">Email</label>
+                                <input id="contact-email" type="email" name="email" placeholder="EMAIL"
+                                    class="w-full bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono">
+                            </div>
                         </div>
-                        <textarea name="message" rows="2" placeholder="YOUR PLAN..." class="w-full bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono"></textarea>
-                        
-                        <button type="submit" class="mt-4 px-8 py-3 border border-white hover:bg-white hover:text-ink transition uppercase font-bold text-sm tracking-widest">Send Request</button>
+                        <div>
+                            <label for="contact-message" class="sr-only">Message</label>
+                            <textarea id="contact-message" name="message" rows="2" placeholder="YOUR PLAN..."
+                                class="w-full bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="mt-4 px-8 py-3 border border-white hover:bg-white hover:text-ink transition uppercase font-bold text-sm tracking-widest">Send
+                            Request</button>
                     </form>
                 </div>
 
@@ -326,8 +424,10 @@
                     <div class="font-headline text-2xl mb-2">Camper Van Gogh</div>
                     <div class="font-mono text-xs text-gray-500">© 2025. All Rights Reserved.</div>
                     <div class="flex justify-end gap-4 mt-4 text-2xl">
-                        <a href="https://www.instagram.com/camper.van.gogh/?igsh=ZmthdWhucmFqYzR5&utm_source=qr" class="hover:text-pop transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.instagram.com/camper.van.gogh/?igsh=ZmthdWhucmFqYzR5&utm_source=qr" class="hover:text-pop transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/camper.van.gogh/?igsh=ZmthdWhucmFqYzR5&utm_source=qr"
+                            class="hover:text-pop transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/camper.van.gogh/?igsh=ZmthdWhucmFqYzR5&utm_source=qr"
+                            class="hover:text-pop transition"><i class="fa-brands fa-facebook"></i></a>
                     </div>
                 </div>
             </div>
@@ -336,43 +436,57 @@
     </main>
 
     <!-- Bottom Navigation Bar (Dock Style) -->
-    <nav class="fixed bottom-0 left-0 w-full z-50 px-4 pb-4 pt-4 bg-gradient-to-t from-paper via-paper to-transparent md:bg-none">
-        <div class="max-w-4xl mx-auto bg-ink text-white rounded-full px-2 py-2 flex justify-between items-center shadow-2xl border border-gray-800">
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 px-4 pb-4 pt-4 bg-gradient-to-t from-paper via-paper to-transparent md:bg-none">
+        <div
+            class="max-w-4xl mx-auto bg-ink text-white rounded-full px-2 py-2 flex justify-between items-center shadow-2xl border border-gray-800">
             <!-- Nav Items -->
             <div class="flex gap-1">
-                <a href="#specs" class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                <a href="#specs"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
                     <i class="fa-solid fa-list-ul text-pop"></i> <span class="hidden sm:inline">Specs</span>
                 </a>
-                <a href="gallery.html" class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                <a href="gallery.html"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
                     <i class="fa-solid fa-camera text-pop"></i> <span class="hidden sm:inline">Photos</span>
                 </a>
-                <a href="#rates" class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                <a href="#rates"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
                     <i class="fa-solid fa-tag text-pop"></i> <span class="hidden sm:inline">Rates</span>
                 </a>
             </div>
 
             <!-- CTA -->
-            <a href="#contact" class="bg-white text-ink px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-pop hover:text-white transition shadow-lg transform hover:-translate-y-1">
+            <a href="booking.html"
+                class="bg-white text-ink px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-pop hover:text-white transition shadow-lg transform hover:-translate-y-1">
                 Book Now
             </a>
         </div>
     </nav>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-paper/95 p-4 transition-all opacity-0">
-        <button id="lightbox-close" class="absolute top-6 right-6 text-ink text-5xl hover:text-pop transition font-headline">&times;</button>
-        
+    <div id="lightbox-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-paper/95 p-4 transition-all opacity-0">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 text-ink text-5xl hover:text-pop transition font-headline z-50">&times;</button>
+
         <div class="relative max-w-5xl w-full p-4 bg-white shadow-2xl border-4 border-ink transform rotate-1">
-             <img id="lightbox-img" src="" alt="Zoomed" class="w-full h-auto max-h-[80vh] object-contain border border-gray-200">
-             <div class="absolute -bottom-12 left-0 w-full text-center font-hand text-3xl text-ink">Camper Van Gogh Memories</div>
+            <img id="lightbox-img" src="" alt="Zoomed"
+                class="w-full h-auto max-h-[80vh] object-contain border border-gray-200">
+            <div class="absolute -bottom-12 left-0 w-full text-center font-hand text-3xl text-ink">Camper Van Gogh
+                Memories</div>
         </div>
 
         <!-- Navigation Areas (Invisible but clickable) -->
-        <div class="absolute inset-y-0 left-0 w-1/4 cursor-pointer z-10 flex items-center justify-start pl-4 group" onclick="prevImage(event)">
-             <div class="bg-ink text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="absolute inset-y-0 left-0 w-1/4 cursor-pointer z-10 flex items-center justify-start pl-4 group"
+            onclick="prevImage(event)">
+            <div class="bg-ink text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition"><i
+                    class="fa-solid fa-arrow-left"></i></div>
         </div>
-        <div class="absolute inset-y-0 right-0 w-1/4 cursor-pointer z-10 flex items-center justify-end pr-4 group" onclick="nextImage(event)">
-             <div class="bg-ink text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="absolute inset-y-0 right-0 w-1/4 cursor-pointer z-10 flex items-center justify-end pr-4 group"
+            onclick="nextImage(event)">
+            <div class="bg-ink text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition"><i
+                    class="fa-solid fa-arrow-right"></i></div>
         </div>
     </div>
 
@@ -400,7 +514,8 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeLightbox() {
+        function closeLightbox(e) {
+            if (e) e.stopPropagation();
             modal.classList.add('opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
@@ -408,8 +523,8 @@
             }, 300);
         }
 
-        function nextImage(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex + 1) % galleryImgs.length; modalImg.src = galleryImgs[currentIndex].src; }
-        function prevImage(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length; modalImg.src = galleryImgs[currentIndex].src; }
+        function nextImage(e) { if (e) e.stopPropagation(); currentIndex = (currentIndex + 1) % galleryImgs.length; modalImg.src = galleryImgs[currentIndex].src; }
+        function prevImage(e) { if (e) e.stopPropagation(); currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length; modalImg.src = galleryImgs[currentIndex].src; }
 
         // Attach global functions for HTML onclick attributes
         window.openLightbox = openLightbox;
@@ -417,14 +532,15 @@
         window.prevImage = prevImage;
 
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        
+
         // Keyboard Nav
         document.addEventListener('keydown', (e) => {
-            if(modal.classList.contains('hidden')) return;
-            if(e.key === 'Escape') closeLightbox();
-            if(e.key === 'ArrowRight') nextImage();
-            if(e.key === 'ArrowLeft') prevImage();
+            if (modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | Camper Van Gogh</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#F2F0E9',
+                        'ink': '#121212',
+                        'pop': '#FF5733',
+                        'canvas': '#E6E2D6',
+                    },
+                    fontFamily: {
+                        'headline': ['"Anton"', 'sans-serif'],
+                        'body': ['"Inter"', 'sans-serif'],
+                        'hand': ['"Caveat"', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F2F0E9;
+            color: #121212;
+            cursor: crosshair;
+        }
+
+        .brutal-border {
+            border: 2px solid #121212;
+        }
+
+        .hard-shadow {
+            box-shadow: 6px 6px 0px 0px #121212;
+        }
+
+        /* Custom Date Picker Styling */
+        input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body class="font-body pb-32">
+
+    <!-- Top Bar -->
+    <header
+        class="fixed top-0 w-full z-40 px-6 py-4 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+        <div class="font-headline uppercase tracking-widest text-xl pointer-events-auto">
+            <a href="index.html">Camper Van Gogh<span class="text-pop">.</span></a>
+        </div>
+        <div class="font-mono text-xs hidden md:block opacity-60">
+            SECURE_BOOKING_CHANNEL_V1
+        </div>
+    </header>
+
+    <main class="w-full relative pt-24 px-4 md:px-12 max-w-7xl mx-auto">
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="booking-form">
+
+            <!-- Header -->
+            <div class="mb-12 border-b-2 border-ink pb-8">
+                <span class="font-mono text-xs bg-ink text-white px-2 py-1">STEP 1: CONFIGURATION</span>
+                <h1 class="font-headline text-6xl md:text-8xl mt-4 uppercase leading-none">Reserve<br>the Art</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+
+                <!-- LEFT COLUMN: The Form -->
+                <div class="lg:col-span-2 space-y-12">
+
+                    <!-- Dates Section -->
+                    <section>
+                        <h2 class="font-headline text-3xl mb-6 flex items-center gap-3"><span
+                                class="bg-pop text-white w-8 h-8 flex items-center justify-center text-lg rounded-full">1</span>
+                            Dates</h2>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white border-2 border-ink hard-shadow transform -rotate-1">
+                            <div>
+                                <label class="block font-mono text-xs font-bold mb-2 uppercase">Pick Up</label>
+                                <input type="date" id="start-date" name="Pick Up Date" required
+                                    class="w-full bg-gray-100 border-b-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition">
+                            </div>
+                            <div>
+                                <label class="block font-mono text-xs font-bold mb-2 uppercase">Drop Off</label>
+                                <input type="date" id="end-date" name="Drop Off Date" required
+                                    class="w-full bg-gray-100 border-b-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition">
+                            </div>
+                            <div class="col-span-1 md:col-span-2 text-xs font-mono text-gray-500 mt-2"
+                                id="date-message">
+                                * Minimum rental 3 days. Pick up/Drop off: Hampshire, UK.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Guests Section -->
+                    <section>
+                        <h2 class="font-headline text-3xl mb-6 flex items-center gap-3"><span
+                                class="bg-pop text-white w-8 h-8 flex items-center justify-center text-lg rounded-full">2</span>
+                            Passengers</h2>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink">
+                                <label class="block font-mono text-xs font-bold mb-4 uppercase">Adults</label>
+                                <div class="flex items-center justify-between border-2 border-gray-200 p-2">
+                                    <button type="button"
+                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                        onclick="adjustCount('adults', -1)">-</button>
+                                    <span id="adults-count" class="font-headline text-2xl">2</span>
+                                    <input type="hidden" id="adults-input" name="Adults" value="2">
+                                    <button type="button"
+                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                        onclick="adjustCount('adults', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink">
+                                <label class="block font-mono text-xs font-bold mb-4 uppercase">Children</label>
+                                <div class="flex items-center justify-between border-2 border-gray-200 p-2">
+                                    <button type="button"
+                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                        onclick="adjustCount('children', -1)">-</button>
+                                    <span id="children-count" class="font-headline text-2xl">0</span>
+                                    <input type="hidden" id="children-input" name="Children" value="0">
+                                    <button type="button"
+                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                        onclick="adjustCount('children', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Extras Section -->
+                    <section>
+                        <h2 class="font-headline text-3xl mb-6 flex items-center gap-3"><span
+                                class="bg-pop text-white w-8 h-8 flex items-center justify-center text-lg rounded-full">3</span>
+                            Extras</h2>
+                        <div class="space-y-4">
+
+                            <!-- Extra Item -->
+                            <label class="block relative cursor-pointer group">
+                                <input type="checkbox" class="peer sr-only" id="extra-pet" name="Extras" value="Pet Fee"
+                                    onchange="calculateTotal()">
+                                <div
+                                    class="bg-white p-4 border-2 border-ink flex items-center justify-between peer-checked:bg-ink peer-checked:text-white transition">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fa-solid fa-dog text-2xl"></i>
+                                        <div>
+                                            <div class="font-bold uppercase">Pet Cleansing Fee</div>
+                                            <div class="text-xs font-mono opacity-70">Deep clean for furry friends</div>
+                                        </div>
+                                    </div>
+                                    <div class="font-mono font-bold">+£25</div>
+                                </div>
+                                <div
+                                    class="absolute inset-0 border-2 border-ink translate-x-1 translate-y-1 -z-10 bg-gray-200 group-hover:translate-x-2 group-hover:translate-y-2 transition">
+                                </div>
+                            </label>
+
+                            <!-- Extra Item -->
+                            <label class="block relative cursor-pointer group">
+                                <input type="checkbox" class="peer sr-only" id="extra-bike" name="Extras"
+                                    value="Bike Rack" onchange="calculateTotal()">
+                                <div
+                                    class="bg-white p-4 border-2 border-ink flex items-center justify-between peer-checked:bg-ink peer-checked:text-white transition">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fa-solid fa-bicycle text-2xl"></i>
+                                        <div>
+                                            <div class="font-bold uppercase">Bike Rack</div>
+                                            <div class="text-xs font-mono opacity-70">Holds 4 bikes securely</div>
+                                        </div>
+                                    </div>
+                                    <div class="font-mono font-bold">+£20</div>
+                                </div>
+                                <div
+                                    class="absolute inset-0 border-2 border-ink translate-x-1 translate-y-1 -z-10 bg-gray-200 group-hover:translate-x-2 group-hover:translate-y-2 transition">
+                                </div>
+                            </label>
+
+                            <!-- Extra Item -->
+                            <label class="block relative cursor-pointer group">
+                                <input type="checkbox" class="peer sr-only" id="extra-late" name="Extras"
+                                    value="Late Checkout" onchange="calculateTotal()">
+                                <div
+                                    class="bg-white p-4 border-2 border-ink flex items-center justify-between peer-checked:bg-ink peer-checked:text-white transition">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fa-solid fa-clock text-2xl"></i>
+                                        <div>
+                                            <div class="font-bold uppercase">Late Checkout</div>
+                                            <div class="text-xs font-mono opacity-70">Drop off at 6pm instead of 11am
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="font-mono font-bold">+£40</div>
+                                </div>
+                                <div
+                                    class="absolute inset-0 border-2 border-ink translate-x-1 translate-y-1 -z-10 bg-gray-200 group-hover:translate-x-2 group-hover:translate-y-2 transition">
+                                </div>
+                            </label>
+
+                        </div>
+                    </section>
+
+                    <!-- Personal Info -->
+                    <section>
+                        <h2 class="font-headline text-3xl mb-6 flex items-center gap-3"><span
+                                class="bg-pop text-white w-8 h-8 flex items-center justify-center text-lg rounded-full">4</span>
+                            Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" id="user-name" name="Name" required placeholder="FULL NAME"
+                                class="w-full bg-transparent border-b-2 border-black py-4 font-mono focus:border-pop focus:outline-none">
+                            <input type="email" id="user-email" name="Email" required placeholder="EMAIL ADDRESS"
+                                class="w-full bg-transparent border-b-2 border-black py-4 font-mono focus:border-pop focus:outline-none">
+                            <textarea id="user-msg" name="Message"
+                                class="w-full md:col-span-2 bg-transparent border-b-2 border-black py-4 font-mono focus:border-pop focus:outline-none"
+                                rows="2" placeholder="ANY REQUESTS?"></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Hidden inputs for calculated values -->
+                    <input type="hidden" id="total-days-input" name="Total Days">
+                    <input type="hidden" id="grand-total-input" name="Estimated Cost">
+
+                </div>
+
+                <!-- RIGHT COLUMN: The Receipt (Sticky) -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24">
+                        <div class="bg-white border-2 border-ink p-8 relative">
+                            <!-- Tape -->
+                            <div
+                                class="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-red-500/20 rotate-3 transform">
+                            </div>
+
+                            <h3 class="font-headline text-4xl uppercase mb-6 text-center">Receipt</h3>
+
+                            <div class="space-y-4 font-mono text-sm border-t border-b border-gray-200 py-6 mb-6">
+                                <div class="flex justify-between">
+                                    <span class="opacity-60">Rate</span>
+                                    <span>£92 x <span id="days-count">0</span> nights</span>
+                                </div>
+                                <div class="flex justify-between" id="receipt-extras" style="display:none">
+                                    <span class="opacity-60">Extras</span>
+                                    <span>+£<span id="extras-total">0</span></span>
+                                </div>
+                                <div class="flex justify-between font-bold text-pop">
+                                    <span>Total</span>
+                                    <span>£<span id="grand-total">0</span></span>
+                                </div>
+                            </div>
+
+                            <div id="error-box"
+                                class="hidden bg-red-100 text-red-600 text-xs font-bold p-3 mb-4 border border-red-300">
+                                Please select valid dates (min 3 days).
+                            </div>
+
+                            <button type="button" onclick="validateAndSubmit()"
+                                class="w-full bg-ink text-white py-4 font-headline uppercase text-xl hover:bg-pop transition shadow-lg transform hover:-translate-y-1">
+                                Confirm Request
+                            </button>
+
+                            <p class="text-[10px] text-center mt-4 text-gray-400 font-mono">
+                                By clicking confirm, you create a provisional email request. No payment is taken yet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </main>
+
+    <!-- Dock for Mobile Nav Consistency -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-40 px-4 pb-4 pt-4 bg-gradient-to-t from-paper via-paper to-transparent md:hidden">
+        <div
+            class="max-w-4xl mx-auto bg-ink text-white rounded-full px-2 py-2 flex justify-between items-center shadow-2xl border border-gray-800">
+            <a href="index.html"
+                class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left text-pop"></i> <span>Back</span>
+            </a>
+            <div class="px-5 py-3 font-headline text-xl">Booking</div>
+        </div>
+    </nav>
+
+    <script>
+        const DAILY_RATE = 92;
+        let guestCounts = { adults: 2, children: 0 };
+
+        function adjustCount(type, delta) {
+            const current = guestCounts[type];
+            if (current + delta < 0) return;
+            if (type === 'adults' && current + delta < 1) return; // Min 1 adult
+
+            guestCounts[type] = current + delta;
+            document.getElementById(`${type}-count`).innerText = guestCounts[type];
+            document.getElementById(`${type}-input`).value = guestCounts[type];
+        }
+
+        function calculateTotal() {
+            const startInput = document.getElementById('start-date').value;
+            const endInput = document.getElementById('end-date').value;
+            const dateMessage = document.getElementById('date-message');
+            const errorBox = document.getElementById('error-box');
+
+            let days = 0;
+            let extrasCost = 0;
+
+            // Date Calc
+            if (startInput && endInput) {
+                const start = new Date(startInput);
+                const end = new Date(endInput);
+                const diffTime = Math.abs(end - start);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (start < end) {
+                    days = diffDays;
+                    dateMessage.innerText = `${days} nights selected.`;
+                    dateMessage.classList.remove('text-red-500');
+                    dateMessage.classList.add('text-gray-500');
+                } else {
+                    dateMessage.innerText = "Check-out must be after Check-in.";
+                    dateMessage.classList.add('text-red-500');
+                }
+            }
+
+            // Extras Calc
+            if (document.getElementById('extra-pet').checked) extrasCost += 25;
+            if (document.getElementById('extra-bike').checked) extrasCost += 20;
+            if (document.getElementById('extra-late').checked) extrasCost += 40;
+
+            // DOM Updates
+            document.getElementById('days-count').innerText = days;
+            document.getElementById('extras-total').innerText = extrasCost;
+            document.getElementById('grand-total').innerText = (days * DAILY_RATE) + extrasCost;
+
+            // Update hidden inputs for form submission
+            document.getElementById('total-days-input').value = days;
+            document.getElementById('grand-total-input').value = "£" + ((days * DAILY_RATE) + extrasCost);
+
+            if (extrasCost > 0) {
+                document.getElementById('receipt-extras').style.display = 'flex';
+            } else {
+                document.getElementById('receipt-extras').style.display = 'none';
+            }
+
+            return { days, extrasCost };
+        }
+
+        // Attach listeners
+        document.getElementById('start-date').addEventListener('change', calculateTotal);
+        document.getElementById('end-date').addEventListener('change', calculateTotal);
+
+        function validateAndSubmit() {
+            const { days } = calculateTotal();
+            const form = document.getElementById('booking-form');
+            const errorBox = document.getElementById('error-box');
+
+            if (days < 3) {
+                errorBox.innerText = "Minimum rental period is 3 days.";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            errorBox.classList.add('hidden');
+            form.submit();
+        }
+    </script>
+</body>
+
+</html>
+```

@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal Photo Gallery</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#F2F0E9',      /* Bone / Art Paper */
+                        'ink': '#121212',        /* Deep Black */
+                        'pop': '#FF5733',        /* Vibrant Orange/Red Accent */
+                        'canvas': '#E6E2D6',     /* Darker Paper */
+                    },
+                    fontFamily: {
+                        'headline': ['"Anton"', 'sans-serif'],
+                        'body': ['"Inter"', 'sans-serif'],
+                        'hand': ['"Caveat"', 'cursive'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    },
+                    rotate: {
+                        '3': '3deg',
+                        '-3': '-3deg',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         /* Ensures the background is clean and removes default browser margins */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: ##F2F0E9;
-            padding: 0; 
-            margin: 0; 
+            background-color: #F2F0E9;
+            padding: 0;
+            margin: 0;
+            padding-bottom: 6rem;
+            /* Space for the dock */
         }
     </style>
 </head>
+
 <body class="antialiased">
 
     <!-- Full Width Photo Gallery Grid (Minimalist design) -->
@@ -30,34 +65,81 @@
     <!-- Full-Screen Gallery Modal (Lightbox) - Essential for navigation functionality -->
     <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden transition-opacity duration-300">
         <div class="h-full w-full flex items-center justify-center relative">
-            
+
             <!-- Close Button -->
-            <button id="close-modal" class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition duration-150">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            <button id="close-modal"
+                class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
 
             <!-- Previous Button -->
-            <button id="prev-image" class="absolute left-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            <button id="prev-image"
+                class="absolute left-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
             </button>
 
             <!-- Current Image Container -->
             <div class="max-w-6xl max-h-full p-10">
-                <img id="current-gallery-image" src="" alt="Campervan Photo" class="max-h-[85vh] w-auto object-contain rounded-lg shadow-2xl">
+                <img id="current-gallery-image" src="" alt="Campervan Photo"
+                    class="max-h-[85vh] w-auto object-contain rounded-lg shadow-2xl">
             </div>
 
             <!-- Next Button -->
-            <button id="next-image" class="absolute right-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <button id="next-image"
+                class="absolute right-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
             </button>
 
             <!-- Image Counter -->
-            <div id="image-counter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-1 rounded-full text-sm font-medium">
+            <div id="image-counter"
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-1 rounded-full text-sm font-medium">
                 1 of 25
             </div>
 
         </div>
     </div>
+
+    <!-- Bottom Navigation Bar (Dock Style) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-40 px-4 pb-4 pt-4 bg-gradient-to-t from-paper via-paper to-transparent md:bg-none">
+        <div
+            class="max-w-4xl mx-auto bg-ink text-white rounded-full px-2 py-2 flex justify-between items-center shadow-2xl border border-gray-800">
+            <!-- Nav Items -->
+            <div class="flex gap-1">
+                <a href="index.html"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-home text-pop"></i> <span class="hidden sm:inline">Home</span>
+                </a>
+                <a href="index.html#specs"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-list-ul text-pop"></i> <span class="hidden sm:inline">Specs</span>
+                </a>
+                <a href="gallery.html"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2 bg-white/10">
+                    <i class="fa-solid fa-camera text-pop"></i> <span class="hidden sm:inline">Photos</span>
+                </a>
+                <a href="index.html#rates"
+                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-tag text-pop"></i> <span class="hidden sm:inline">Rates</span>
+                </a>
+            </div>
+
+            <!-- CTA -->
+            <a href="booking.html"
+                class="bg-white text-ink px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-pop hover:text-white transition shadow-lg transform hover:-translate-y-1">
+                Book Now
+            </a>
+        </div>
+    </nav>
 
     <!-- JavaScript for Gallery Functionality -->
     <script>
@@ -75,14 +157,14 @@
         // 25 UNIQUE Image Identifiers extracted from the Goboony listing
         // This array ensures there are no repeated images in the gallery.
         const imageIds = [
-            'ayjr1cqkmhumsmsaqkpr.jpg', 'vymhy8v9wbox8t9ludyy.jpg', 'ce2qm9hxq9v4eazoptfr.jpg', 
-            'o7nioxeup4iocpmai2dv.jpg', 'uwl6c0um558crscxpsw5.jpg', 'ge39omnrfj2z84smc4qe.jpg', 
-            'hrg8thrw5uzutywrndf4.jpg', 'ucdsd1ejdxzcou34jlwa.jpg', 'w1fvkszzmqooa7v1gagh.jpg', 
-            'ijxgcpi6axmrahkq1uv3.jpg', 'ivsgbhzhct8hrw1e1ufh.jpg', 'bsme416uqmdijifl0vss.jpg', 
-            'tvtojdnj3kclqrteqmxa.jpg', 'lxduli1ejaxwfh55kfaz.jpg', 'lmdhry3owynkijb1vq6f.jpg', 
-            'qetnppfotp6i1k3k8e8v.jpg', 'yeuzrn3hfwrvsjhjdoi7.jpg', 'kyfljzdufcigmwd31lqk.jpg', 
-            'c46qpbwnk4wda1yxy3my.jpg', 'jhjg8ryvwkr7skkvua7m.jpg', 'wvebuvwe28ln58glwqlm.jpg', 
-            'wv2t9minixnlhmiu7k9q.jpg', 'ntpv4sbvwkdknli7ygcn.jpg', 'ml2nkibfpdyc6vy9lbbr.jpg', 
+            'ayjr1cqkmhumsmsaqkpr.jpg', 'vymhy8v9wbox8t9ludyy.jpg', 'ce2qm9hxq9v4eazoptfr.jpg',
+            'o7nioxeup4iocpmai2dv.jpg', 'uwl6c0um558crscxpsw5.jpg', 'ge39omnrfj2z84smc4qe.jpg',
+            'hrg8thrw5uzutywrndf4.jpg', 'ucdsd1ejdxzcou34jlwa.jpg', 'w1fvkszzmqooa7v1gagh.jpg',
+            'ijxgcpi6axmrahkq1uv3.jpg', 'ivsgbhzhct8hrw1e1ufh.jpg', 'bsme416uqmdijifl0vss.jpg',
+            'tvtojdnj3kclqrteqmxa.jpg', 'lxduli1ejaxwfh55kfaz.jpg', 'lmdhry3owynkijb1vq6f.jpg',
+            'qetnppfotp6i1k3k8e8v.jpg', 'yeuzrn3hfwrvsjhjdoi7.jpg', 'kyfljzdufcigmwd31lqk.jpg',
+            'c46qpbwnk4wda1yxy3my.jpg', 'jhjg8ryvwkr7skkvua7m.jpg', 'wvebuvwe28ln58glwqlm.jpg',
+            'wv2t9minixnlhmiu7k9q.jpg', 'ntpv4sbvwkdknli7ygcn.jpg', 'ml2nkibfpdyc6vy9lbbr.jpg',
             'ytxagfwalldrpqk3iren.jpg' // Total of 25 unique images
         ];
 
@@ -92,15 +174,15 @@
         // Function to create the thumbnail grid
         function initializeGallery() {
             // uniformClass uses 'aspect-video' (16:9) to ensure a landscape appearance
-            const uniformClass = 'aspect-video'; 
-            
+            const uniformClass = 'aspect-video';
+
             imageUrls.forEach((url, index) => {
                 const imgContainer = document.createElement('div');
-                
+
                 // For the grid display, we insert Cloudinary parameters to optimize and crop the image
                 // for the small thumbnail view, ensuring fast loading and consistent size.
                 const thumbnailUrl = url.replace('/f_auto,q_auto/', '/c_fill,f_auto,h_400,q_auto,w_600/');
-                
+
                 imgContainer.innerHTML = `
                     <img src="${thumbnailUrl}" 
                          alt="Campervan Photo ${index + 1}" 
@@ -111,7 +193,7 @@
 
                 // Applying the uniform size class
                 imgContainer.className = uniformClass;
-                
+
                 imgContainer.querySelector('img').addEventListener('click', () => {
                     openGallery(index);
                 });
@@ -176,4 +258,5 @@
     </script>
 
 </body>
+
 </html>
