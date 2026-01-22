@@ -365,24 +365,40 @@
                                 Please select valid dates (min 3 days).
                             </div>
 
-                            <!-- Dual Action Buttons -->
+                            <!-- Single Request Button -->
                             <div class="space-y-3">
-                                <button type="button" onclick="validateAndProceedToPayment()"
-                                    class="w-full bg-ink text-white py-4 font-headline uppercase text-xl hover:bg-pop transition shadow-lg transform hover:-translate-y-1">
-                                    <i class="fa-solid fa-credit-card mr-2"></i>Pay Rental + £750 Deposit
-                                </button>
-
                                 <button type="button" onclick="validateAndSubmit()"
-                                    class="w-full bg-white text-ink border-2 border-ink py-3 font-bold uppercase text-sm hover:bg-paper transition">
-                                    <i class="fa-solid fa-envelope mr-2"></i>Inquiry Only (No Payment)
+                                    class="w-full bg-ink text-white py-4 font-headline uppercase text-2xl hover:bg-pop transition shadow-lg transform hover:-translate-y-1">
+                                    <i class="fa-solid fa-paper-plane mr-2"></i>Request to Book
                                 </button>
+                                <p class="text-[11px] leading-tight text-gray-500 font-mono text-center px-2">
+                                    No payment is taken at this stage. We will review your request and send a
+                                    verification link. Once approved, you can finalize your payment to secure the dates.
+                                </p>
                             </div>
 
-                            <p class="text-[10px] text-center mt-4 text-gray-400 font-mono">
-                                Payment includes rental cost + £750 security deposit.<br>
-                                Deposit held in escrow by Stripe, returned after rental.<br>
-                                Subject to approval after payment.
-                            </p>
+                            <!-- How it Works section -->
+                            <div class="mt-8 pt-6 border-t border-dashed border-gray-300">
+                                <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest mb-4 opacity-50">
+                                    How it Works</h4>
+                                <div class="space-y-4">
+                                    <div class="flex gap-3">
+                                        <div class="font-headline text-lg text-pop">01.</div>
+                                        <div class="text-[10px] font-mono leading-tight uppercase">Submit Booking
+                                            Request</div>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="font-headline text-lg text-pop">02.</div>
+                                        <div class="text-[10px] font-mono leading-tight uppercase">Driver Identity &
+                                            Insurance Verification</div>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="font-headline text-lg text-pop">03.</div>
+                                        <div class="text-[10px] font-mono leading-tight uppercase">Secure Payment
+                                            (Post-Approval)</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
