@@ -8,13 +8,32 @@
     <meta name="description"
         content="Hire Vincent, a premium 2022 VW T6.1 Campervan. A masterpiece of engineering and design.">
 
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://formspree.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://res.cloudinary.com data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://formspree.io;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" as="image"
+        href="https://res.cloudinary.com/hqxyevlf6/image/upload/c_fill,f_auto,h_1080,q_auto,w_1080/ce2qm9hxq9v4eazoptfr.jpg">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts with display=swap for faster rendering -->
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
         rel="stylesheet">
@@ -413,6 +432,9 @@
                             <textarea id="contact-message" name="message" rows="2" placeholder="YOUR PLAN..."
                                 class="w-full bg-transparent border-b border-gray-600 py-3 focus:outline-none focus:border-pop transition font-mono"></textarea>
                         </div>
+
+                        <!-- Honeypot for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
                         <button type="submit"
                             class="mt-4 px-8 py-3 border border-white hover:bg-white hover:text-ink transition uppercase font-bold text-sm tracking-widest">Send
