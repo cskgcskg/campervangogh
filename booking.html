@@ -6,16 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking | Camper Van Gogh</title>
 
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://formspree.io https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://res.cloudinary.com data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com https://checkout.stripe.com;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://js.stripe.com">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts with display=swap for faster rendering -->
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
         rel="stylesheet">
+
+    <!-- Stripe.js for payment processing -->
+    <script src="https://js.stripe.com/v3/"></script>
 
     <script>
         tailwind.config = {
@@ -232,6 +250,9 @@
                                 class="w-full md:col-span-2 bg-transparent border-b-2 border-black py-4 font-mono focus:border-pop focus:outline-none"
                                 rows="2" placeholder="ANY REQUESTS?"></textarea>
                         </div>
+
+                        <!-- Honeypot for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
                     </section>
 
                     <!-- Hidden inputs for calculated values -->
@@ -260,8 +281,23 @@
                                     <span class="opacity-60">Extras</span>
                                     <span>+£<span id="extras-total">0</span></span>
                                 </div>
-                                <div class="flex justify-between font-bold text-pop">
-                                    <span>Total</span>
+                                <div class="flex justify-between font-bold">
+                                    <span>Rental Cost</span>
+                                    <span>£<span id="rental-total">0</span></span>
+                                </div>
+                                <div class="border-t border-gray-300 pt-4 mt-4">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex-1">
+                                            <div class="font-bold">Security Deposit</div>
+                                            <div class="text-[10px] opacity-60 mt-1">Held in escrow, returned after
+                                                rental</div>
+                                        </div>
+                                        <span class="font-bold">£750</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between font-bold text-2xl text-pop border-t border-gray-300 pt-4">
+                                    <span>Total Due</span>
                                     <span>£<span id="grand-total">0</span></span>
                                 </div>
                             </div>
@@ -271,13 +307,23 @@
                                 Please select valid dates (min 3 days).
                             </div>
 
-                            <button type="button" onclick="validateAndSubmit()"
-                                class="w-full bg-ink text-white py-4 font-headline uppercase text-xl hover:bg-pop transition shadow-lg transform hover:-translate-y-1">
-                                Confirm Request
-                            </button>
+                            <!-- Dual Action Buttons -->
+                            <div class="space-y-3">
+                                <button type="button" onclick="validateAndProceedToPayment()"
+                                    class="w-full bg-ink text-white py-4 font-headline uppercase text-xl hover:bg-pop transition shadow-lg transform hover:-translate-y-1">
+                                    <i class="fa-solid fa-credit-card mr-2"></i>Pay Rental + £750 Deposit
+                                </button>
+
+                                <button type="button" onclick="validateAndSubmit()"
+                                    class="w-full bg-white text-ink border-2 border-ink py-3 font-bold uppercase text-sm hover:bg-paper transition">
+                                    <i class="fa-solid fa-envelope mr-2"></i>Inquiry Only (No Payment)
+                                </button>
+                            </div>
 
                             <p class="text-[10px] text-center mt-4 text-gray-400 font-mono">
-                                By clicking confirm, you create a provisional email request. No payment is taken yet.
+                                Payment includes rental cost + £750 security deposit.<br>
+                                Deposit held in escrow by Stripe, returned after rental.<br>
+                                Subject to approval after payment.
                             </p>
                         </div>
                     </div>
@@ -303,7 +349,45 @@
 
     <script>
         const DAILY_RATE = 92;
+        const SECURITY_DEPOSIT = 750; // Fixed £750 escrow deposit
         let guestCounts = { adults: 2, children: 0 };
+
+        // Add this code right after line 353 in booking.html
+
+        // ==================== CALENDAR BLOCKING SYSTEM ====================
+        let blockedDates = [];
+
+        async function loadBlockedDates() {
+            try {
+                const response = await fetch('blocked-dates.json');
+                const data = await response.json();
+                blockedDates = data.blockedDates || [];
+            } catch (error) {
+                blockedDates = [];
+            }
+        }
+
+        function isDateBlocked(dateString) {
+            return blockedDates.includes(dateString);
+        }
+
+        function isRangeBlocked(startDate, endDate) {
+            if (!startDate || !endDate) return { blocked: false };
+
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+
+            for (let dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+                const dateStr = dt.toISOString().split('T')[0];
+                if (isDateBlocked(dateStr)) {
+                    return { blocked: true, date: dateStr };
+                }
+            }
+            return { blocked: false };
+        }
+
+        loadBlockedDates(); // Load blocked dates on page load
+        // ==================================================================
 
         function adjustCount(type, delta) {
             const current = guestCounts[type];
@@ -347,14 +431,20 @@
             if (document.getElementById('extra-bike').checked) extrasCost += 20;
             if (document.getElementById('extra-late').checked) extrasCost += 40;
 
+            // Calculate rental cost (without deposit)
+            const rentalCost = (days * DAILY_RATE) + extrasCost;
+            // Calculate grand total (rental + deposit)
+            const grandTotal = rentalCost + SECURITY_DEPOSIT;
+
             // DOM Updates
             document.getElementById('days-count').innerText = days;
             document.getElementById('extras-total').innerText = extrasCost;
-            document.getElementById('grand-total').innerText = (days * DAILY_RATE) + extrasCost;
+            document.getElementById('rental-total').innerText = rentalCost; // Rental subtotal
+            document.getElementById('grand-total').innerText = grandTotal; // Total with deposit
 
             // Update hidden inputs for form submission
             document.getElementById('total-days-input').value = days;
-            document.getElementById('grand-total-input').value = "£" + ((days * DAILY_RATE) + extrasCost);
+            document.getElementById('grand-total-input').value = "£" + grandTotal;
 
             if (extrasCost > 0) {
                 document.getElementById('receipt-extras').style.display = 'flex';
@@ -362,18 +452,80 @@
                 document.getElementById('receipt-extras').style.display = 'none';
             }
 
-            return { days, extrasCost };
+            return { days, extrasCost, rentalCost, grandTotal, deposit: SECURITY_DEPOSIT };
         }
 
         // Attach listeners
         document.getElementById('start-date').addEventListener('change', calculateTotal);
         document.getElementById('end-date').addEventListener('change', calculateTotal);
 
+        // Replace the validateAndSubmit function (around line 425) with this updated version:
+
         function validateAndSubmit() {
             const { days } = calculateTotal();
             const form = document.getElementById('booking-form');
             const errorBox = document.getElementById('error-box');
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
 
+            // Check minimum days
+            if (days < 3) {
+                errorBox.innerText = "Minimum rental period is 3 days.";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            // Check if dates overlap with blocked dates
+            const rangeCheck = isRangeBlocked(startDate, endDate);
+            if (rangeCheck.blocked) {
+                errorBox.innerText = `Sorry, ${rangeCheck.date} is already booked. Please select different dates.`;
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            // Check form validity
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            errorBox.classList.add('hidden');
+            form.submit(); // Send inquiry email via Formspree
+        }
+
+
+
+        // ==================== STRIPE PAYMENT INTEGRATION ====================
+        // 
+        // SETUP INSTRUCTIONS:
+        // 1. Create account at https://stripe.com (FREE)
+        // 2. Get your Publishable Key from Dashboard > Developers > API Keys
+        // 3. Replace 'YOUR_PUBLISHABLE_KEY_HERE' below with your actual key
+        // 4. Create a Product in Stripe Dashboard:
+        //    - Name: "Campervan Rental - Daily Rate"
+        //    - Price: £92 (or use dynamic pricing - see Option 2 below)
+        // 5. Test with test mode first, then switch to live mode
+        //
+        // OPTION 1: Simple Payment Link (Easiest - No Code Changes Needed)
+        // - Create a Payment Link in Stripe Dashboard
+        // - Replace the validateAndProceedToPayment function to just redirect:
+        //   window.location.href = 'https://buy.stripe.com/YOUR_LINK';
+        //
+        // OPTION 2: Dynamic Stripe Checkout (Recommended - shown below)
+        // - Uses Stripe.js to create dynamic checkout sessions
+        // - Allows custom pricing based on dates/extras
+        // =====================================================================
+
+        // Initialize Stripe (replace with your actual publishable key)
+        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE');
+        // For live mode, use: pk_live_YOUR_PUBLISHABLE_KEY_HERE
+
+        async function validateAndProceedToPayment() {
+            const { days, rentalCost, grandTotal, deposit, extrasCost } = calculateTotal();
+            const form = document.getElementById('booking-form');
+            const errorBox = document.getElementById('error-box');
+
+            // Validate form
             if (days < 3) {
                 errorBox.innerText = "Minimum rental period is 3 days.";
                 errorBox.classList.remove('hidden');
@@ -386,7 +538,75 @@
             }
 
             errorBox.classList.add('hidden');
-            form.submit();
+
+            // Get calculated values (already retrieved above)
+            const totalCost = grandTotal; // Includes rental + £750 deposit
+            const totalInPence = Math.round(totalCost * 100); // Stripe uses smallest currency unit
+
+            // Get booking details
+            const bookingData = {
+                startDate: document.getElementById('start-date').value,
+                endDate: document.getElementById('end-date').value,
+                adults: guestCounts.adults,
+                children: guestCounts.children,
+                name: document.getElementById('user-name').value,
+                email: document.getElementById('user-email').value,
+                message: document.getElementById('user-msg').value,
+                days: days,
+                extrasCost: extrasCost,
+                totalCost: totalCost
+            };
+
+            // SIMPLE METHOD: Redirect to Stripe Payment Link
+            // Uncomment this and add your payment link:
+            // window.location.href = 'https://buy.stripe.com/YOUR_PAYMENT_LINK?prefilled_email=' + bookingData.email;
+            // return;
+
+            // ADVANCED METHOD: Use Stripe Checkout API
+            // This requires a backend endpoint to create checkout sessions
+            // For now, show a helpful message:
+            errorBox.classList.remove('hidden');
+            errorBox.classList.remove('bg-red-100', 'text-red-600', 'border-red-300');
+            errorBox.classList.add('bg-blue-100', 'text-blue-800', 'border-blue-300');
+            errorBox.innerHTML = `
+                <strong>Stripe Setup Required:</strong><br>
+                To enable live payments:<br>
+                1. Create Stripe account at <a href="https://stripe.com" target="_blank" class="underline">stripe.com</a><br>
+                2. Create a Payment Link in your dashboard<br>
+                3. Update the code with your payment link<br>
+                <br>
+                <strong>Booking Breakdown:</strong><br>
+                Rental Cost: £${rentalCost}<br>
+                Security Deposit: £${deposit} (held in escrow)<br>
+                <strong>Total Payment: £${totalCost}</strong><br>
+                <br>
+                For now, use the "Inquiry Only" button below.
+            `;
+
+            // When ready, use this code with your backend:
+            /*
+            try {
+                const response = await fetch('YOUR_BACKEND_URL/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+                
+                if (result.error) {
+                    errorBox.innerText = result.error.message;
+                    errorBox.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorBox.innerText = "Payment system error. Please try inquiry option.";
+                errorBox.classList.remove('hidden');
+            }
+            */
         }
     </script>
 </body>

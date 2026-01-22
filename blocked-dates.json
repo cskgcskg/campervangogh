@@ -1,0 +1,12 @@
+{
+    "blockedDates": [
+        "2026-02-14",
+        "2026-02-15",
+        "2026-02-16",
+        "2026-03-20",
+        "2026-03-21",
+        "2026-03-22",
+        "2026-03-23"
+    ],
+    "note": "Update this file with dates that are already booked. Format: YYYY-MM-DD"
+}
