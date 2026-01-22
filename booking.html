@@ -8,7 +8,7 @@
 
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://formspree.io https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https://res.cloudinary.com data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com https://checkout.stripe.com;">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://formspree.io https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' https://res.cloudinary.com data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com https://checkout.stripe.com;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -31,6 +31,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
         rel="stylesheet">
+
+    <!-- Flatpickr for visual calendar with blocked dates -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Stripe.js for payment processing -->
     <script src="https://js.stripe.com/v3/"></script>
@@ -75,6 +79,42 @@
             appearance: none;
             -webkit-appearance: none;
         }
+
+        /* Flatpickr Calendar Customization */
+        .flatpickr-calendar {
+            border: 2px solid #121212 !important;
+            box-shadow: 6px 6px 0px 0px #121212 !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .flatpickr-day.disabled,
+        .flatpickr-day.disabled:hover,
+        .flatpickr-day.flatpickr-disabled,
+        .flatpickr-day.flatpickr-disabled:hover {
+            background-color: #ffcccc !important;
+            color: #cc0000 !important;
+            text-decoration: line-through !important;
+            cursor: not-allowed !important;
+        }
+
+        .flatpickr-day.today {
+            border: 2px solid #FF5733 !important;
+        }
+
+        .flatpickr-day.selected {
+            background-color: #FF5733 !important;
+            border-color: #FF5733 !important;
+        }
+
+        /* Available Dates Styling */
+        .flatpickr-day:not(.disabled):not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay) {
+            background-color: #e6f4ea !important;
+            color: #1e8e3e !important;
+        }
+
+        .flatpickr-day:hover:not(.disabled):not(.flatpickr-disabled) {
+            background-color: #d1ead6 !important;
+        }
     </style>
 </head>
 
@@ -115,17 +155,30 @@
                             class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white border-2 border-ink hard-shadow transform -rotate-1">
                             <div>
                                 <label class="block font-mono text-xs font-bold mb-2 uppercase">Pick Up</label>
-                                <input type="date" id="start-date" name="Pick Up Date" required
-                                    class="w-full bg-gray-100 border-b-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition">
+                                <input type="text" id="start-date" name="Pick Up Date" required
+                                    placeholder="Select date..."
+                                    class="w-full bg-white border-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition cursor-pointer">
                             </div>
                             <div>
                                 <label class="block font-mono text-xs font-bold mb-2 uppercase">Drop Off</label>
-                                <input type="date" id="end-date" name="Drop Off Date" required
-                                    class="w-full bg-gray-100 border-b-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition">
+                                <input type="text" id="end-date" name="Drop Off Date" required
+                                    placeholder="Select date..."
+                                    class="w-full bg-white border-2 border-ink p-3 font-mono focus:outline-none focus:bg-pop/10 focus:border-pop transition cursor-pointer">
                             </div>
-                            <div class="col-span-1 md:col-span-2 text-xs font-mono text-gray-500 mt-2"
-                                id="date-message">
-                                * Minimum rental 3 days. Pick up/Drop off: Hampshire, UK.
+                            <div class="col-span-1 md:col-span-2 flex flex-wrap items-center gap-4 mt-2">
+                                <div class="flex items-center gap-2 font-mono text-[10px] uppercase">
+                                    <span class="w-3 h-3 bg-[#e6f4ea] border border-[#1e8e3e]"></span> Available
+                                </div>
+                                <div class="flex items-center gap-2 font-mono text-[10px] uppercase">
+                                    <span class="w-3 h-3 bg-[#ffcccc] border border-[#cc0000] relative overflow-hidden">
+                                        <span
+                                            class="absolute top-1/2 left-0 w-full h-[1px] bg-[#cc0000] -rotate-45"></span>
+                                    </span> Booked
+                                </div>
+                                <div class="flex items-center gap-2 font-mono text-[10px] uppercase ml-auto">
+                                    <span class="text-gray-400 italic" id="date-message">* Min 3 days. Hampshire,
+                                        UK.</span>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -136,32 +189,37 @@
                                 class="bg-pop text-white w-8 h-8 flex items-center justify-center text-lg rounded-full">2</span>
                             Passengers</h2>
                         <div class="flex flex-wrap gap-4">
-                            <div class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink">
+                            <div
+                                class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink shadow-[4px_4px_0px_0px_#121212]">
                                 <label class="block font-mono text-xs font-bold mb-4 uppercase">Adults</label>
-                                <div class="flex items-center justify-between border-2 border-gray-200 p-2">
-                                    <button type="button"
-                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                <div class="flex items-center justify-between border-2 border-ink p-2">
+                                    <button type="button" id="adults-minus"
+                                        class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 font-bold transition"
                                         onclick="adjustCount('adults', -1)">-</button>
-                                    <span id="adults-count" class="font-headline text-2xl">2</span>
-                                    <input type="hidden" id="adults-input" name="Adults" value="2">
-                                    <button type="button"
-                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                    <span id="adults-count" class="font-headline text-3xl">4</span>
+                                    <input type="hidden" id="adults-input" name="Adults" value="4">
+                                    <button type="button" id="adults-plus"
+                                        class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 font-bold transition"
                                         onclick="adjustCount('adults', 1)">+</button>
                                 </div>
                             </div>
-                            <div class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink">
+                            <div
+                                class="flex-1 min-w-[150px] p-6 bg-white border-2 border-ink shadow-[4px_4px_0px_0px_#121212]">
                                 <label class="block font-mono text-xs font-bold mb-4 uppercase">Children</label>
-                                <div class="flex items-center justify-between border-2 border-gray-200 p-2">
-                                    <button type="button"
-                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                <div class="flex items-center justify-between border-2 border-ink p-2">
+                                    <button type="button" id="children-minus"
+                                        class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 font-bold transition"
                                         onclick="adjustCount('children', -1)">-</button>
-                                    <span id="children-count" class="font-headline text-2xl">0</span>
+                                    <span id="children-count" class="font-headline text-3xl">0</span>
                                     <input type="hidden" id="children-input" name="Children" value="0">
-                                    <button type="button"
-                                        class="w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                                    <button type="button" id="children-plus"
+                                        class="w-10 h-10 flex items-center justify-center hover:bg-gray-100 font-bold transition"
                                         onclick="adjustCount('children', 1)">+</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mt-4 text-[10px] font-mono text-gray-500 uppercase">
+                            * Maximum capacity: 4 passengers total (at least 1 adult).
                         </div>
                     </section>
 
@@ -350,7 +408,7 @@
     <script>
         const DAILY_RATE = 92;
         const SECURITY_DEPOSIT = 750; // Fixed £750 escrow deposit
-        let guestCounts = { adults: 2, children: 0 };
+        let guestCounts = { adults: 4, children: 0 };
 
         // Add this code right after line 353 in booking.html
 
@@ -362,9 +420,20 @@
                 const response = await fetch('blocked-dates.json');
                 const data = await response.json();
                 blockedDates = data.blockedDates || [];
+                // Initialize pickers immediately after data is loaded
+                initializeDatePickers();
             } catch (error) {
+                console.error("Error loading blocked dates:", error);
                 blockedDates = [];
+                initializeDatePickers(); // Initialize anyway
             }
+        }
+
+        function formatDate(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
         }
 
         function isDateBlocked(dateString) {
@@ -378,7 +447,7 @@
             const end = new Date(endDate);
 
             for (let dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
-                const dateStr = dt.toISOString().split('T')[0];
+                const dateStr = formatDate(dt);
                 if (isDateBlocked(dateStr)) {
                     return { blocked: true, date: dateStr };
                 }
@@ -387,17 +456,107 @@
         }
 
         loadBlockedDates(); // Load blocked dates on page load
+
+        // Initialize Flatpickr date pickers with visual blocking
+        function initializeDatePickers() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Start date picker
+            const startPicker = flatpickr("#start-date", {
+                minDate: today,
+                dateFormat: "Y-m-d",
+                disable: blockedDates,
+                onChange: function (selectedDates, dateStr) {
+                    if (selectedDates.length > 0) {
+                        const minEndDate = new Date(selectedDates[0]);
+                        minEndDate.setDate(minEndDate.getDate() + 3); // Minimum 3 days
+                        endPicker.set('minDate', minEndDate);
+                    }
+                    calculateTotal();
+                },
+                onDayCreate: function (dObj, dStr, fp, dayElem) {
+                    const dateStr = formatDate(dayElem.dateObj);
+                    if (isDateBlocked(dateStr)) {
+                        dayElem.classList.add('disabled');
+                        dayElem.innerHTML += '<br><small style="font-size:8px; line-height:1; display:block; margin-top:2px; opacity:0.8;">Booked</small>';
+                    }
+                }
+            });
+
+            // End date picker
+            const endPicker = flatpickr("#end-date", {
+                minDate: new Date(today.getTime() + (3 * 24 * 60 * 60 * 1000)),
+                dateFormat: "Y-m-d",
+                disable: blockedDates,
+                onChange: function () {
+                    calculateTotal();
+                },
+                onDayCreate: function (dObj, dStr, fp, dayElem) {
+                    const dateStr = formatDate(dayElem.dateObj);
+                    if (isDateBlocked(dateStr)) {
+                        dayElem.classList.add('disabled');
+                        dayElem.innerHTML += '<br><small style="font-size:8px; line-height:1; display:block; margin-top:2px; opacity:0.8;">Booked</small>';
+                    }
+                }
+            });
+        }
+
+        // Initial call to load data
+        loadBlockedDates();
         // ==================================================================
 
         function adjustCount(type, delta) {
             const current = guestCounts[type];
-            if (current + delta < 0) return;
-            if (type === 'adults' && current + delta < 1) return; // Min 1 adult
+            const otherType = type === 'adults' ? 'children' : 'adults';
+            const total = guestCounts.adults + guestCounts.children;
 
+            // Rule 1: Minimum 0 children
+            if (type === 'children' && current + delta < 0) return;
+
+            // Rule 2: Minimum 1 adult
+            if (type === 'adults' && current + delta < 1) return;
+
+            // Rule 3: Maximum 4 total guests
+            if (delta > 0 && total + delta > 4) return;
+
+            // Apply change
             guestCounts[type] = current + delta;
+
+            // Update UI
             document.getElementById(`${type}-count`).innerText = guestCounts[type];
             document.getElementById(`${type}-input`).value = guestCounts[type];
+
+            // Re-calculate receipt
+            calculateTotal();
+            updateButtonStates();
         }
+
+        function updateButtonStates() {
+            const total = guestCounts.adults + guestCounts.children;
+
+            // Plus buttons
+            document.getElementById('adults-plus').disabled = (total >= 4);
+            document.getElementById('children-plus').disabled = (total >= 4);
+
+            // Minus buttons
+            document.getElementById('adults-minus').disabled = (guestCounts.adults <= 1);
+            document.getElementById('children-minus').disabled = (guestCounts.children <= 0);
+
+            // Style disabled states
+            const buttons = ['adults-plus', 'children-plus', 'adults-minus', 'children-minus'];
+            buttons.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn && btn.disabled) {
+                    btn.classList.add('opacity-30', 'cursor-not-allowed');
+                } else if (btn) {
+                    btn.classList.remove('opacity-30', 'cursor-not-allowed');
+                }
+            });
+        }
+
+        // Initialize button states
+        setTimeout(updateButtonStates, 100);
 
         function calculateTotal() {
             const startInput = document.getElementById('start-date').value;
