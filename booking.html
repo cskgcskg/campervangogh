@@ -333,7 +333,7 @@
                             <div class="space-y-4 font-mono text-sm border-t border-b border-gray-200 py-6 mb-6">
                                 <div class="flex justify-between">
                                     <span class="opacity-60">Rate</span>
-                                    <span>£92 x <span id="days-count">0</span> nights</span>
+                                    <span>£130 x <span id="days-count">0</span> nights</span>
                                 </div>
                                 <div class="flex justify-between" id="receipt-extras" style="display:none">
                                     <span class="opacity-60">Extras</span>
@@ -389,8 +389,9 @@
                                     </div>
                                     <div class="flex gap-3">
                                         <div class="font-headline text-lg text-pop">02.</div>
-                                        <div class="text-[10px] font-mono leading-tight uppercase">Driver License, Two Proofs of Address & DVLA check
-                                            </div>
+                                        <div class="text-[10px] font-mono leading-tight uppercase">Driver License, Two
+                                            Proofs of Address & DVLA check
+                                        </div>
                                     </div>
                                     <div class="flex gap-3">
                                         <div class="font-headline text-lg text-pop">03.</div>
@@ -422,7 +423,7 @@
     </nav>
 
     <script>
-        const DAILY_RATE = 92;
+        const DAILY_RATE = 130;
         const SECURITY_DEPOSIT = 750; // Fixed £750 escrow deposit
         let guestCounts = { adults: 4, children: 0 };
 
@@ -678,7 +679,7 @@
         // 3. Replace 'YOUR_PUBLISHABLE_KEY_HERE' below with your actual key
         // 4. Create a Product in Stripe Dashboard:
         //    - Name: "Campervan Rental - Daily Rate"
-        //    - Price: £92 (or use dynamic pricing - see Option 2 below)
+        //    - Price: £130 (or use dynamic pricing - see Option 2 below)
         // 5. Test with test mode first, then switch to live mode
         //
         // OPTION 1: Simple Payment Link (Easiest - No Code Changes Needed)
@@ -784,6 +785,7 @@
             */
         }
     </script>
+    <script src="whatsapp-widget.js"></script>
 </body>
 
 </html>
