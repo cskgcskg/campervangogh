@@ -156,8 +156,8 @@
     <!-- Filter Tabs -->
     <div class="filter-tabs" id="filter-tabs">
         <button class="filter-tab active" data-filter="all">All</button>
-        <button class="filter-tab" data-filter="campervan">Campervan</button>
-        <button class="filter-tab" data-filter="scotland">Scotland 2026</button>
+        <button class="filter-tab" data-filter="interior">Interior</button>
+        <button class="filter-tab" data-filter="exterior">Exterior</button>
     </div>
 
     <!-- Full Width Photo Gallery (Masonry layout — no cropping) -->
@@ -207,7 +207,7 @@
             <!-- Image Counter -->
             <div id="image-counter"
                 class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-1 rounded-full text-sm font-medium">
-                1 of 25
+                1 of 58
             </div>
 
         </div>
@@ -256,58 +256,75 @@
         const nextBtn = document.getElementById('next-image');
         let currentImageIndex = 0;
 
-        // Base URL prefix for Cloudinary images
-        const CLOUDINARY_BASE = 'https://res.cloudinary.com/hqxyevlf6/image/upload/f_auto,q_auto/';
-
-        // 25 UNIQUE Cloudinary Image Identifiers (Campervan photos)
-        const campervanImageIds = [
-            'ayjr1cqkmhumsmsaqkpr.jpg', 'vymhy8v9wbox8t9ludyy.jpg', 'ce2qm9hxq9v4eazoptfr.jpg',
-            'o7nioxeup4iocpmai2dv.jpg', 'uwl6c0um558crscxpsw5.jpg', 'ge39omnrfj2z84smc4qe.jpg',
-            'hrg8thrw5uzutywrndf4.jpg', 'ucdsd1ejdxzcou34jlwa.jpg', 'w1fvkszzmqooa7v1gagh.jpg',
-            'ijxgcpi6axmrahkq1uv3.jpg', 'ivsgbhzhct8hrw1e1ufh.jpg', 'bsme416uqmdijifl0vss.jpg',
-            'tvtojdnj3kclqrteqmxa.jpg', 'lxduli1ejaxwfh55kfaz.jpg', 'lmdhry3owynkijb1vq6f.jpg',
-            'qetnppfotp6i1k3k8e8v.jpg', 'yeuzrn3hfwrvsjhjdoi7.jpg', 'kyfljzdufcigmwd31lqk.jpg',
-            'c46qpbwnk4wda1yxy3my.jpg', 'jhjg8ryvwkr7skkvua7m.jpg', 'wvebuvwe28ln58glwqlm.jpg',
-            'wv2t9minixnlhmiu7k9q.jpg', 'ntpv4sbvwkdknli7ygcn.jpg', 'ml2nkibfpdyc6vy9lbbr.jpg',
-            'ytxagfwalldrpqk3iren.jpg'
+        // Interior photos (8 photos)
+        const interiorPhotos = [
+            'gallery/interior/campervan-01.jpg',
+            'gallery/interior/campervan-02.jpg',
+            'gallery/interior/campervan-03.jpg',
+            'gallery/interior/campervan-04.jpg',
+            'gallery/interior/campervan-05.jpg',
+            'gallery/interior/campervan-06.jpg',
+            'gallery/interior/campervan-07.jpg',
+            'gallery/interior/campervan-08.jpg'
         ];
 
-        // Cloudinary full URLs
-        const campervanUrls = campervanImageIds.map(id => CLOUDINARY_BASE + id);
-
-        // Scotland 2026 local photos (web-optimised JPEGs)
-        const scotlandFilenames = [
-            'IMG_4989.jpeg', 'IMG_5129.jpeg', 'IMG_5180.jpeg', 'IMG_5193.jpeg',
-            'IMG_5199.jpeg', 'IMG_5208.jpeg', 'IMG_5237.jpeg', 'IMG_5264.jpeg',
-            'IMG_5268.jpeg', 'IMG_5280.jpeg', 'IMG_5336.jpeg', 'IMG_5339.jpeg',
-            'IMG_5374.jpeg', 'IMG_5396.jpeg', 'IMG_5470.jpeg', 'IMG_5535.jpeg',
-            'IMG_5620.jpeg', 'IMG_5661.jpeg', 'IMG_5702.jpeg', 'IMG_5706.jpeg',
-            'IMG_5728.jpeg', 'IMG_5814.jpeg', 'IMG_7653.jpeg', 'IMG_7720.jpeg',
-            'IMG_7722.jpeg', 'IMG_7730.jpeg', 'IMG_7731.jpeg', 'IMG_7768.jpeg',
-            'IMG_7771.jpeg', 'IMG_7772.jpeg', 'IMG_7840.jpeg',
-            'IMG_7859.jpeg', 'IMG_7890.jpeg', 'IMG_7893.jpeg'
+        // Exterior photos (50 photos: 17 campervan + 33 Scotland)
+        const exteriorPhotos = [
+            'gallery/exterior/campervan-01.jpg',
+            'gallery/exterior/campervan-02.jpg',
+            'gallery/exterior/campervan-03.jpg',
+            'gallery/exterior/campervan-04.jpg',
+            'gallery/exterior/campervan-05.jpg',
+            'gallery/exterior/campervan-06.jpg',
+            'gallery/exterior/campervan-07.jpg',
+            'gallery/exterior/campervan-08.jpg',
+            'gallery/exterior/campervan-09.jpg',
+            'gallery/exterior/campervan-10.jpg',
+            'gallery/exterior/campervan-12.jpg',
+            'gallery/exterior/campervan-13.jpg',
+            'gallery/exterior/campervan-14.jpg',
+            'gallery/exterior/campervan-15.jpg',
+            'gallery/exterior/campervan-17.jpg',
+            'gallery/exterior/campervan-18.jpg',
+            'gallery/exterior/campervan-21.jpg',
+            'gallery/exterior/campervan-22.jpg',
+            'gallery/exterior/scotland-01.jpg',
+            'gallery/exterior/scotland-02.jpg',
+            'gallery/exterior/scotland-03.jpg',
+            'gallery/exterior/scotland-04.jpg',
+            'gallery/exterior/scotland-05.jpg',
+            'gallery/exterior/scotland-06.jpg',
+            'gallery/exterior/scotland-07.jpg',
+            'gallery/exterior/scotland-09.jpg',
+            'gallery/exterior/scotland-10.jpg',
+            'gallery/exterior/scotland-11.jpg',
+            'gallery/exterior/scotland-12.jpg',
+            'gallery/exterior/scotland-13.jpg',
+            'gallery/exterior/scotland-14.jpg',
+            'gallery/exterior/scotland-15.jpg',
+            'gallery/exterior/scotland-16.jpg',
+            'gallery/exterior/scotland-17.jpg',
+            'gallery/exterior/scotland-18.jpg',
+            'gallery/exterior/scotland-19.jpg',
+            'gallery/exterior/scotland-20.jpg',
+            'gallery/exterior/scotland-21.jpg',
+            'gallery/exterior/scotland-22.jpg',
+            'gallery/exterior/scotland-23.jpg',
+            'gallery/exterior/scotland-24.jpg',
+            'gallery/exterior/scotland-25.jpg',
+            'gallery/exterior/scotland-26.jpg',
+            'gallery/exterior/scotland-27.jpg',
+            'gallery/exterior/scotland-28.jpg',
+            'gallery/exterior/scotland-29.jpg',
+            'gallery/exterior/scotland-30.jpg',
+            'gallery/exterior/scotland-33.jpg',
+            'gallery/exterior/scotland-34.jpg',
+            'gallery/exterior/scotland-35.jpg'
         ];
-        const scotlandBase = 'photos%20Scotland%202026/web/';
-        const scotlandUrls = scotlandFilenames.map(f => scotlandBase + f);
 
         // Current filter state and visible image list for lightbox
         let activeFilter = 'all';
         let visibleImageUrls = [];
-
-        // Build the unified image list based on current filter
-        function getFilteredImages() {
-            if (activeFilter === 'campervan') return { urls: [...campervanUrls], sections: ['campervan'] };
-            if (activeFilter === 'scotland') return { urls: [...scotlandUrls], sections: ['scotland'] };
-            return { urls: [...campervanUrls, ...scotlandUrls], sections: ['campervan', 'scotland'] };
-        }
-
-        // Get a thumbnail URL — Cloudinary images use c_limit to scale down without cropping
-        function getThumbnailUrl(url) {
-            if (url.startsWith('https://res.cloudinary.com')) {
-                return url.replace('/f_auto,q_auto/', '/c_limit,f_auto,w_800,q_auto/');
-            }
-            return url; // local images are already web-optimised
-        }
 
         // Create section header element
         function createSectionHeader(title, accent) {
@@ -324,43 +341,21 @@
         // Function to create the masonry gallery
         function initializeGallery() {
             imageGallery.innerHTML = '';
-            const { urls, sections } = getFilteredImages();
-            visibleImageUrls = urls;
-
+            let allPhotos = [];
             let globalIndex = 0;
 
-            if (activeFilter === 'all' || activeFilter === 'campervan') {
+            if (activeFilter === 'all' || activeFilter === 'interior') {
                 if (activeFilter === 'all') {
-                    imageGallery.appendChild(createSectionHeader('The Campervan', '25 photos'));
+                    imageGallery.appendChild(createSectionHeader('Interior', `${interiorPhotos.length} photos`));
                 }
-                campervanUrls.forEach((url) => {
-                    const idx = globalIndex++;
-                    const imgContainer = document.createElement('div');
-                    imgContainer.className = 'masonry-item';
-                    const thumbnailUrl = getThumbnailUrl(url);
-                    imgContainer.innerHTML = `
-                        <img src="${thumbnailUrl}" 
-                             alt="Campervan Photo ${idx + 1}" 
-                             loading="lazy"
-                             data-index="${idx}"
-                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
-                    `;
-                    imgContainer.addEventListener('click', () => openGallery(idx));
-                    imageGallery.appendChild(imgContainer);
-                });
-            }
-
-            if (activeFilter === 'all' || activeFilter === 'scotland') {
-                if (activeFilter === 'all') {
-                    imageGallery.appendChild(createSectionHeader('Scotland 2026', '34 photos'));
-                }
-                scotlandUrls.forEach((url) => {
+                interiorPhotos.forEach((url) => {
+                    allPhotos.push(url);
                     const idx = globalIndex++;
                     const imgContainer = document.createElement('div');
                     imgContainer.className = 'masonry-item';
                     imgContainer.innerHTML = `
                         <img src="${url}" 
-                             alt="Scotland 2026 Photo ${idx + 1}" 
+                             alt="Interior Photo ${idx + 1}" 
                              loading="lazy"
                              data-index="${idx}"
                              onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
@@ -369,6 +364,29 @@
                     imageGallery.appendChild(imgContainer);
                 });
             }
+
+            if (activeFilter === 'all' || activeFilter === 'exterior') {
+                if (activeFilter === 'all') {
+                    imageGallery.appendChild(createSectionHeader('Exterior', `${exteriorPhotos.length} photos`));
+                }
+                exteriorPhotos.forEach((url) => {
+                    allPhotos.push(url);
+                    const idx = globalIndex++;
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'masonry-item';
+                    imgContainer.innerHTML = `
+                        <img src="${url}" 
+                             alt="Exterior Photo ${idx + 1}" 
+                             loading="lazy"
+                             data-index="${idx}"
+                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
+                    `;
+                    imgContainer.addEventListener('click', () => openGallery(idx));
+                    imageGallery.appendChild(imgContainer);
+                });
+            }
+
+            visibleImageUrls = allPhotos;
         }
 
         // Filter tab click handling
