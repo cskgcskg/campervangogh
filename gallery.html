@@ -49,15 +49,120 @@
             padding-bottom: 6rem;
             /* Space for the dock */
         }
+
+        /* Filter tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 1rem 0.5rem 0.75rem;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: linear-gradient(to bottom, #F2F0E9 80%, transparent);
+        }
+        .filter-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: 2px solid #121212;
+            background: transparent;
+            color: #121212;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .filter-tab:hover {
+            background: #121212;
+            color: #F2F0E9;
+        }
+        .filter-tab.active {
+            background: #121212;
+            color: #F2F0E9;
+        }
+
+        /* Masonry layout using CSS columns */
+        .masonry-grid {
+            columns: 2;
+            column-gap: 4px;
+            padding: 0;
+        }
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-gap: 8px;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 4px;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        @media (min-width: 640px) {
+            .masonry-item {
+                margin-bottom: 8px;
+            }
+        }
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        .masonry-item:hover img {
+            opacity: 0.88;
+        }
+
+        /* Section headers */
+        .section-header {
+            break-before: column;
+            break-inside: avoid;
+            column-span: all;
+            padding: 1.5rem 0.5rem 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .section-header h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #121212;
+            margin: 0;
+        }
+        .section-header .accent {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: #FF5733;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+        .section-header .line {
+            flex: 1;
+            height: 2px;
+            background: #121212;
+            opacity: 0.15;
+        }
     </style>
 </head>
 
 <body class="antialiased">
 
-    <!-- Full Width Photo Gallery Grid (Minimalist design) -->
+    <!-- Filter Tabs -->
+    <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="campervan">Campervan</button>
+        <button class="filter-tab" data-filter="scotland">Scotland 2026</button>
+    </div>
+
+    <!-- Full Width Photo Gallery (Masonry layout — no cropping) -->
     <section id="photo-gallery" class="p-1 sm:p-2">
-        <!-- Grid enforces 2 columns (grid-cols-2) across all screen sizes for a dense vertical scroll. -->
-        <div class="grid grid-cols-2 gap-1 sm:gap-2">
+        <div class="masonry-grid">
             <!-- Images will be injected here by JavaScript -->
         </div>
     </section>
@@ -151,12 +256,11 @@
         const nextBtn = document.getElementById('next-image');
         let currentImageIndex = 0;
 
-        // Base URL prefix for all images
+        // Base URL prefix for Cloudinary images
         const CLOUDINARY_BASE = 'https://res.cloudinary.com/hqxyevlf6/image/upload/f_auto,q_auto/';
 
-        // 25 UNIQUE Image Identifiers extracted from the Goboony listing
-        // This array ensures there are no repeated images in the gallery.
-        const imageIds = [
+        // 25 UNIQUE Cloudinary Image Identifiers (Campervan photos)
+        const campervanImageIds = [
             'ayjr1cqkmhumsmsaqkpr.jpg', 'vymhy8v9wbox8t9ludyy.jpg', 'ce2qm9hxq9v4eazoptfr.jpg',
             'o7nioxeup4iocpmai2dv.jpg', 'uwl6c0um558crscxpsw5.jpg', 'ge39omnrfj2z84smc4qe.jpg',
             'hrg8thrw5uzutywrndf4.jpg', 'ucdsd1ejdxzcou34jlwa.jpg', 'w1fvkszzmqooa7v1gagh.jpg',
@@ -165,49 +269,125 @@
             'qetnppfotp6i1k3k8e8v.jpg', 'yeuzrn3hfwrvsjhjdoi7.jpg', 'kyfljzdufcigmwd31lqk.jpg',
             'c46qpbwnk4wda1yxy3my.jpg', 'jhjg8ryvwkr7skkvua7m.jpg', 'wvebuvwe28ln58glwqlm.jpg',
             'wv2t9minixnlhmiu7k9q.jpg', 'ntpv4sbvwkdknli7ygcn.jpg', 'ml2nkibfpdyc6vy9lbbr.jpg',
-            'ytxagfwalldrpqk3iren.jpg' // Total of 25 unique images
+            'ytxagfwalldrpqk3iren.jpg'
         ];
 
-        // The full array of unique image URLs for the lightbox
-        const imageUrls = imageIds.map(id => CLOUDINARY_BASE + id);
+        // Cloudinary full URLs
+        const campervanUrls = campervanImageIds.map(id => CLOUDINARY_BASE + id);
 
-        // Function to create the thumbnail grid
-        function initializeGallery() {
-            // uniformClass uses 'aspect-video' (16:9) to ensure a landscape appearance
-            const uniformClass = 'aspect-video';
+        // Scotland 2026 local photos (web-optimised JPEGs)
+        const scotlandFilenames = [
+            'IMG_4989.jpeg', 'IMG_5129.jpeg', 'IMG_5180.jpeg', 'IMG_5193.jpeg',
+            'IMG_5199.jpeg', 'IMG_5208.jpeg', 'IMG_5237.jpeg', 'IMG_5264.jpeg',
+            'IMG_5268.jpeg', 'IMG_5280.jpeg', 'IMG_5336.jpeg', 'IMG_5339.jpeg',
+            'IMG_5374.jpeg', 'IMG_5396.jpeg', 'IMG_5470.jpeg', 'IMG_5535.jpeg',
+            'IMG_5620.jpeg', 'IMG_5661.jpeg', 'IMG_5702.jpeg', 'IMG_5706.jpeg',
+            'IMG_5728.jpeg', 'IMG_5814.jpeg', 'IMG_7653.jpeg', 'IMG_7720.jpeg',
+            'IMG_7722.jpeg', 'IMG_7730.jpeg', 'IMG_7731.jpeg', 'IMG_7768.jpeg',
+            'IMG_7771.jpeg', 'IMG_7772.jpeg', 'IMG_7840.jpeg',
+            'IMG_7859.jpeg', 'IMG_7890.jpeg', 'IMG_7893.jpeg'
+        ];
+        const scotlandBase = 'photos%20Scotland%202026/web/';
+        const scotlandUrls = scotlandFilenames.map(f => scotlandBase + f);
 
-            imageUrls.forEach((url, index) => {
-                const imgContainer = document.createElement('div');
+        // Current filter state and visible image list for lightbox
+        let activeFilter = 'all';
+        let visibleImageUrls = [];
 
-                // For the grid display, we insert Cloudinary parameters to optimize and crop the image
-                // for the small thumbnail view, ensuring fast loading and consistent size.
-                const thumbnailUrl = url.replace('/f_auto,q_auto/', '/c_fill,f_auto,h_400,q_auto,w_600/');
-
-                imgContainer.innerHTML = `
-                    <img src="${thumbnailUrl}" 
-                         alt="Campervan Photo ${index + 1}" 
-                         class="w-full h-full object-cover cursor-pointer hover:opacity-90 transition duration-300 rounded-md shadow-sm" 
-                         data-index="${index}"
-                         onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo+${index + 1}'; this.onerror=null;">
-                `;
-
-                // Applying the uniform size class
-                imgContainer.className = uniformClass;
-
-                imgContainer.querySelector('img').addEventListener('click', () => {
-                    openGallery(index);
-                });
-
-                imageGallery.appendChild(imgContainer);
-            });
+        // Build the unified image list based on current filter
+        function getFilteredImages() {
+            if (activeFilter === 'campervan') return { urls: [...campervanUrls], sections: ['campervan'] };
+            if (activeFilter === 'scotland') return { urls: [...scotlandUrls], sections: ['scotland'] };
+            return { urls: [...campervanUrls, ...scotlandUrls], sections: ['campervan', 'scotland'] };
         }
+
+        // Get a thumbnail URL — Cloudinary images use c_limit to scale down without cropping
+        function getThumbnailUrl(url) {
+            if (url.startsWith('https://res.cloudinary.com')) {
+                return url.replace('/f_auto,q_auto/', '/c_limit,f_auto,w_800,q_auto/');
+            }
+            return url; // local images are already web-optimised
+        }
+
+        // Create section header element
+        function createSectionHeader(title, accent) {
+            const header = document.createElement('div');
+            header.className = 'section-header';
+            header.innerHTML = `
+                <h2>${title}</h2>
+                <span class="accent">${accent}</span>
+                <div class="line"></div>
+            `;
+            return header;
+        }
+
+        // Function to create the masonry gallery
+        function initializeGallery() {
+            imageGallery.innerHTML = '';
+            const { urls, sections } = getFilteredImages();
+            visibleImageUrls = urls;
+
+            let globalIndex = 0;
+
+            if (activeFilter === 'all' || activeFilter === 'campervan') {
+                if (activeFilter === 'all') {
+                    imageGallery.appendChild(createSectionHeader('The Campervan', '25 photos'));
+                }
+                campervanUrls.forEach((url) => {
+                    const idx = globalIndex++;
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'masonry-item';
+                    const thumbnailUrl = getThumbnailUrl(url);
+                    imgContainer.innerHTML = `
+                        <img src="${thumbnailUrl}" 
+                             alt="Campervan Photo ${idx + 1}" 
+                             loading="lazy"
+                             data-index="${idx}"
+                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
+                    `;
+                    imgContainer.addEventListener('click', () => openGallery(idx));
+                    imageGallery.appendChild(imgContainer);
+                });
+            }
+
+            if (activeFilter === 'all' || activeFilter === 'scotland') {
+                if (activeFilter === 'all') {
+                    imageGallery.appendChild(createSectionHeader('Scotland 2026', '34 photos'));
+                }
+                scotlandUrls.forEach((url) => {
+                    const idx = globalIndex++;
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'masonry-item';
+                    imgContainer.innerHTML = `
+                        <img src="${url}" 
+                             alt="Scotland 2026 Photo ${idx + 1}" 
+                             loading="lazy"
+                             data-index="${idx}"
+                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
+                    `;
+                    imgContainer.addEventListener('click', () => openGallery(idx));
+                    imageGallery.appendChild(imgContainer);
+                });
+            }
+        }
+
+        // Filter tab click handling
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeFilter = tab.dataset.filter;
+                initializeGallery();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
 
         // Function to open the modal
         function openGallery(index) {
             currentImageIndex = index;
             updateModalImage();
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            document.body.style.overflow = 'hidden';
         }
 
         // Function to close the modal
@@ -218,20 +398,19 @@
 
         // Function to update the image in the modal
         function updateModalImage() {
-            const url = imageUrls[currentImageIndex];
+            const url = visibleImageUrls[currentImageIndex];
             currentImage.src = url;
-            // Update the counter text to show which image is currently viewed
-            imageCounter.textContent = `${currentImageIndex + 1} of ${imageUrls.length}`;
+            imageCounter.textContent = `${currentImageIndex + 1} of ${visibleImageUrls.length}`;
         }
 
         // Navigation handlers
         function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+            currentImageIndex = (currentImageIndex + 1) % visibleImageUrls.length;
             updateModalImage();
         }
 
         function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + imageUrls.length) % imageUrls.length;
+            currentImageIndex = (currentImageIndex - 1 + visibleImageUrls.length) % visibleImageUrls.length;
             updateModalImage();
         }
 
@@ -257,6 +436,7 @@
         document.addEventListener('DOMContentLoaded', initializeGallery);
     </script>
 
+    <script src="whatsapp-widget.js"></script>
 </body>
 
 </html>
