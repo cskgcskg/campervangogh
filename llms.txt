@@ -1,0 +1,62 @@
+# Camper Van Gogh
+
+> Premium VW T6.1 campervan hire in Hampshire, UK. We rent Vincent, a hand-converted 2022 Volkswagen Transporter T6.1, for adventures across the United Kingdom.
+
+## Business at a glance
+
+- **Name:** Camper Van Gogh
+- **Tagline:** The Art of Adventure
+- **Location:** Hampshire, United Kingdom
+- **Email:** hello@campervangogh.co.uk
+- **Instagram:** https://www.instagram.com/camper.van.gogh/
+- **Service area:** United Kingdom (commonly Scotland, Wales, the Lake District, southern England)
+- **Website:** https://campervangogh.com
+
+## The vehicle: "Vincent"
+
+- **Make / model:** Volkswagen Transporter T6.1
+- **Year:** 2022
+- **Transmission:** Automatic DSG
+- **Sleeping capacity:** 4 adults (2 in the pop-top upper bed, 2 in the rock'n'roll lower bed)
+- **Conversion features:**
+  - Pop-top roof
+  - Two-burner gas stove
+  - Integrated fridge
+  - Oven
+  - Stainless steel sink
+  - Leather diamond-stitched captain's seats
+  - Rock'n'roll bed (lounge → double bed)
+  - Rooftop solar panels
+  - High-capacity leisure battery (off-grid capable)
+- **Pet policy:** Pets fully welcome. No additional fees, no breed or size restrictions.
+
+## Pricing
+
+- **Daily rate:** £130 GBP / day
+- **Security deposit:** £750 GBP (refundable)
+- **Included in rate:**
+  - Comprehensive insurance
+  - 24/7 UK breakdown cover
+  - Unlimited mileage
+  - Camping furniture (table, chairs)
+
+## Booking
+
+- Reservations are taken online at https://campervangogh.com/booking.html
+- Availability calendar is live; unavailable dates are blocked automatically.
+- Payment is processed via Stripe.
+
+## Frequently asked
+
+- **How much per day?** £130/day plus a £750 refundable security deposit.
+- **Mileage?** Unlimited.
+- **Pets?** Yes — fully welcome at no extra cost.
+- **Sleeps?** 4 adults.
+- **Where are you based?** Hampshire, UK. Collection and return are from Hampshire.
+- **Insurance?** Comprehensive insurance and 24/7 breakdown cover are included.
+
+## Pages
+
+- [Home](https://campervangogh.com/): About the van, features, pricing, FAQ.
+- [Gallery](https://campervangogh.com/gallery.html): Interior and exterior photography, including Scotland road trip shots.
+- [Book Vincent](https://campervangogh.com/booking.html): Live availability calendar and reservation flow.

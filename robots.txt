@@ -1,0 +1,33 @@
+# Camper Van Gogh — robots.txt
+User-agent: *
+Allow: /
+
+# Block source files we don't want indexed
+Disallow: /blocked-dates.json
+
+# AI crawlers — explicitly allow (remove a line to block a specific one)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://campervangogh.com/sitemap.xml

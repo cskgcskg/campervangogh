@@ -4,259 +4,811 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal Photo Gallery</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#0a0a0a">
+
+    <title>Photo Gallery — Vincent VW T6.1 Campervan | Camper Van Gogh</title>
+    <meta name="description" content="Browse the full photo gallery of Vincent, our 2022 VW T6.1 campervan. Interior conversion details, exterior shots, and on-the-road photography from Scotland and across the UK.">
+    <link rel="canonical" href="https://campervangogh.com/gallery.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Camper Van Gogh">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:url" content="https://campervangogh.com/gallery.html">
+    <meta property="og:title" content="Photo Gallery — Vincent VW T6.1 Campervan">
+    <meta property="og:description" content="Interior and exterior photography of our hand-converted 2022 VW T6.1 campervan, including Scotland road trip shots.">
+    <meta property="og:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Photo Gallery — Vincent VW T6.1 Campervan">
+    <meta name="twitter:description" content="Browse interior and exterior photos of our luxury Hampshire-based VW T6.1 campervan.">
+    <meta name="twitter:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
+
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Structured Data: Breadcrumb + ImageGallery -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://campervangogh.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Gallery", "item": "https://campervangogh.com/gallery.html" }
+          ]
+        },
+        {
+          "@type": "ImageGallery",
+          "name": "Camper Van Gogh — Photo Gallery",
+          "description": "Interior and exterior photography of Vincent, a 2022 VW T6.1 campervan based in Hampshire, UK.",
+          "url": "https://campervangogh.com/gallery.html",
+          "publisher": { "@type": "Organization", "name": "Camper Van Gogh" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;700&display=swap"
-        rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'paper': '#F2F0E9',      /* Bone / Art Paper */
-                        'ink': '#121212',        /* Deep Black */
-                        'pop': '#FF5733',        /* Vibrant Orange/Red Accent */
-                        'canvas': '#E6E2D6',     /* Darker Paper */
-                    },
-                    fontFamily: {
-                        'headline': ['"Anton"', 'sans-serif'],
-                        'body': ['"Inter"', 'sans-serif'],
-                        'hand': ['"Caveat"', 'cursive'],
-                    },
-                    spacing: {
-                        '128': '32rem',
-                    },
-                    rotate: {
-                        '3': '3deg',
-                        '-3': '-3deg',
-                    }
-                }
+    <!-- Site Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           GALLERY PAGE — LUXURY DARK THEME
+           ═══════════════════════════════════════════════ */
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --gold: #c9a96e;
+            --gold-light: #d4b87a;
+            --gold-dark: #a88a4e;
+            --text-primary: #f0ece4;
+            --text-secondary: rgba(240, 236, 228, 0.6);
+            --text-muted: rgba(240, 236, 228, 0.35);
+            --glass-bg: rgba(10, 10, 10, 0.72);
+            --glass-border: rgba(201, 169, 110, 0.12);
+            --glass-blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ─── HEADER ─── */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .site-header.scrolled {
+            padding: 0.85rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .header-logo:hover {
+            color: var(--gold);
+        }
+
+        .header-logo .dot {
+            color: var(--gold);
+        }
+
+        /* ─── EDITORIAL PAGE HEADER (museum-label style) ─── */
+        .page-hero {
+            position: relative;
+            padding: 9rem 1.5rem 2.5rem;
+            background: var(--bg-primary);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Subtle radial glow behind the title — replaces the photo */
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(360px, 60vw, 720px);
+            height: clamp(360px, 60vw, 720px);
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.45;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: clamp(3.5rem, 11vw, 7rem);
+            letter-spacing: 0.01em;
+            color: var(--text-primary);
+            line-height: 0.95;
+            margin: 0;
+        }
+
+        .hero-rule {
+            width: 56px;
+            height: 1.5px;
+            background: var(--gold);
+            margin: 0.25rem 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .hero-meta {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-meta .dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.7;
+        }
+
+        .hero-meta strong {
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.32em;
+        }
+
+        @media (max-width: 640px) {
+            .page-hero {
+                padding: 7rem 1.25rem 2rem;
+            }
+            .hero-eyebrow {
+                font-size: 0.62rem;
+                letter-spacing: 0.28em;
+            }
+            .hero-eyebrow::before,
+            .hero-eyebrow::after { width: 18px; }
+            .hero-meta {
+                font-size: 0.62rem;
+                letter-spacing: 0.22em;
+                gap: 0.5rem;
             }
         }
-    </script>
-    <style>
-        /* Ensures the background is clean and removes default browser margins */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F2F0E9;
-            padding: 0;
-            margin: 0;
-            padding-bottom: 6rem;
-            /* Space for the dock */
-        }
 
-        /* Filter tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            padding: 1rem 0.5rem 0.75rem;
+        /* ─── FILTER TABS ─── */
+        .filter-section {
             position: sticky;
             top: 0;
-            z-index: 30;
-            background: linear-gradient(to bottom, #F2F0E9 80%, transparent);
-        }
-        .filter-tab {
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            border: 2px solid #121212;
-            background: transparent;
-            color: #121212;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-        }
-        .filter-tab:hover {
-            background: #121212;
-            color: #F2F0E9;
-        }
-        .filter-tab.active {
-            background: #121212;
-            color: #F2F0E9;
+            z-index: 50;
+            padding: 1.25rem 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(180deg, var(--bg-primary) 70%, transparent 100%);
+            transition: background 0.3s ease;
         }
 
-        /* Masonry layout using CSS columns */
+        .filter-tab {
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            border: 1.5px solid rgba(240, 236, 228, 0.15);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .filter-tab:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 169, 110, 0.06);
+        }
+
+        .filter-tab.active {
+            background: var(--gold);
+            color: var(--bg-primary);
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(201, 169, 110, 0.25);
+        }
+
+        /* ─── MASONRY GALLERY ─── */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.5rem 0.5rem 8rem;
+        }
+
         .masonry-grid {
             columns: 2;
             column-gap: 4px;
-            padding: 0;
         }
-        @media (min-width: 640px) {
+
+        @media (min-width: 768px) {
             .masonry-grid {
+                columns: 3;
                 column-gap: 8px;
             }
         }
+
+        @media (min-width: 1200px) {
+            .masonry-grid {
+                column-gap: 10px;
+            }
+        }
+
         .masonry-item {
             break-inside: avoid;
             margin-bottom: 4px;
-            border-radius: 0.375rem;
+            border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
         }
-        @media (min-width: 640px) {
+
+        @media (min-width: 768px) {
             .masonry-item {
                 margin-bottom: 8px;
+                border-radius: 6px;
             }
         }
+
         .masonry-item img {
             width: 100%;
             display: block;
-            transition: opacity 0.3s ease;
-        }
-        .masonry-item:hover img {
-            opacity: 0.88;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.4s ease,
+                        filter 0.4s ease;
+            will-change: transform;
         }
 
-        /* Section headers */
-        .section-header {
-            break-before: column;
-            break-inside: avoid;
-            column-span: all;
-            padding: 1.5rem 0.5rem 0.5rem;
+        .masonry-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(10, 10, 10, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .masonry-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Zoom icon on hover */
+        .masonry-item .zoom-icon {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.35s ease;
+            z-index: 2;
+            color: var(--gold);
+            font-size: 0.7rem;
         }
+
+        .masonry-item:hover .zoom-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section Headers in "All" view */
+        .section-header {
+            break-before: auto;
+            break-inside: avoid;
+            column-span: all;
+            padding: 2.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header:first-child {
+            padding-top: 0.5rem;
+        }
+
         .section-header h2 {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.5rem;
-            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
             letter-spacing: 0.05em;
-            color: #121212;
+            color: var(--text-primary);
             margin: 0;
+            white-space: nowrap;
         }
-        .section-header .accent {
-            font-family: 'Caveat', cursive;
-            font-size: 1.1rem;
-            color: #FF5733;
-            transform: rotate(-2deg);
-            display: inline-block;
+
+        .section-header .count {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            white-space: nowrap;
         }
+
         .section-header .line {
             flex: 1;
-            height: 2px;
-            background: #121212;
-            opacity: 0.15;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+            opacity: 0.25;
+        }
+
+        /* ─── LIGHTBOX ─── */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(5, 5, 5, 0.96);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(240, 236, 228, 0.2);
+            background: rgba(240, 236, 228, 0.05);
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-primary);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-image-wrap {
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image-wrap img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(201, 169, 110, 0.3);
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            color: var(--gold);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: var(--bg-primary);
+            border-color: var(--gold);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .lightbox-prev {
+            left: 1.5rem;
+        }
+
+        .lightbox-next {
+            right: 1.5rem;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            border: 1px solid rgba(240, 236, 228, 0.06);
+        }
+
+        /* ─── BOTTOM NAV DOCK ─── */
+        .bottom-dock-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 90;
+            padding: 0 1rem 1rem;
+            pointer-events: none;
+        }
+
+        .bottom-dock {
+            max-width: 540px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem 0.5rem;
+            border-radius: 100px;
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            pointer-events: all;
+        }
+
+        .dock-links {
+            display: flex;
+            gap: 2px;
+        }
+
+        .dock-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.65rem 0.85rem;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .dock-link i {
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+
+        .dock-link:hover {
+            background: rgba(240, 236, 228, 0.08);
+            color: var(--text-primary);
+        }
+
+        .dock-link.active {
+            background: rgba(201, 169, 110, 0.12);
+            color: var(--gold);
+        }
+
+        .dock-link span {
+            display: none;
+        }
+
+        @media (min-width: 480px) {
+            .dock-link span {
+                display: inline;
+            }
+        }
+
+        .dock-cta {
+            display: flex;
+            align-items: center;
+            padding: 0.65rem 1.25rem;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bg-primary);
+            background: var(--gold);
+            text-decoration: none;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 16px rgba(201, 169, 110, 0.2);
+        }
+
+        .dock-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(201, 169, 110, 0.35);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Lazy load placeholder shimmer */
+        .masonry-item img[data-src] {
+            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            min-height: 120px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ─── RESPONSIVE TWEAKS ─── */
+        @media (max-width: 767px) {
+            .site-header {
+                padding: 1rem 1.25rem;
+            }
+
+            .site-header.scrolled {
+                padding: 0.75rem 1.25rem;
+            }
+
+            .page-hero {
+                height: 35vh;
+                min-height: 260px;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 0.85rem;
+            }
+
+            .lightbox-prev {
+                left: 0.75rem;
+            }
+
+            .lightbox-next {
+                right: 0.75rem;
+            }
+
+            .lightbox-close {
+                top: 0.75rem;
+                right: 0.75rem;
+                width: 38px;
+                height: 38px;
+            }
         }
     </style>
 </head>
 
-<body class="antialiased">
+<body>
 
-    <!-- Filter Tabs -->
-    <div class="filter-tabs" id="filter-tabs">
+    <!-- ═══ HEADER ═══ -->
+    <header class="site-header" id="site-header">
+        <a href="index.html" class="header-logo">Camper Van Gogh<span class="dot">.</span></a>
+    </header>
+
+    <!-- ═══ EDITORIAL PAGE HEADER ═══ -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow fade-in-up">Collection</p>
+            <h1 class="hero-title fade-in-up delay-1">Gallery</h1>
+            <div class="hero-rule fade-in-up delay-2"></div>
+            <p class="hero-meta fade-in-up delay-3">
+                <strong>Interior</strong>
+                <span class="dot"></span>
+                <strong>Exterior</strong>
+                <span class="dot"></span>
+                <span id="photo-count">58</span> Pieces
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ FILTER TABS ═══ -->
+    <div class="filter-section" id="filter-tabs">
         <button class="filter-tab active" data-filter="all">All</button>
         <button class="filter-tab" data-filter="interior">Interior</button>
         <button class="filter-tab" data-filter="exterior">Exterior</button>
     </div>
 
-    <!-- Full Width Photo Gallery (Masonry layout — no cropping) -->
-    <section id="photo-gallery" class="p-1 sm:p-2">
-        <div class="masonry-grid">
-            <!-- Images will be injected here by JavaScript -->
+    <!-- ═══ MASONRY GALLERY ═══ -->
+    <section class="gallery-container" id="photo-gallery">
+        <div class="masonry-grid" id="masonry-grid">
+            <!-- Images injected by JavaScript -->
         </div>
     </section>
 
-    <!-- Full-Screen Gallery Modal (Lightbox) - Essential for navigation functionality -->
-    <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden transition-opacity duration-300">
-        <div class="h-full w-full flex items-center justify-center relative">
+    <!-- ═══ LIGHTBOX MODAL ═══ -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close gallery">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
-            <!-- Close Button -->
-            <button id="close-modal"
-                class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition duration-150">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
 
-            <!-- Previous Button -->
-            <button id="prev-image"
-                class="absolute left-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-
-            <!-- Current Image Container -->
-            <div class="max-w-6xl max-h-full p-10">
-                <img id="current-gallery-image" src="" alt="Campervan Photo"
-                    class="max-h-[85vh] w-auto object-contain rounded-lg shadow-2xl">
-            </div>
-
-            <!-- Next Button -->
-            <button id="next-image"
-                class="absolute right-4 p-3 bg-white/20 text-white rounded-full hover:bg-white/40 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-
-            <!-- Image Counter -->
-            <div id="image-counter"
-                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-1 rounded-full text-sm font-medium">
-                1 of 58
-            </div>
-
+        <div class="lightbox-image-wrap">
+            <img id="lightbox-img" src="" alt="Gallery photo">
         </div>
+
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="lightbox-counter" id="lightbox-counter">1 of 58</div>
     </div>
 
-    <!-- Bottom Navigation Bar (Dock Style) -->
-    <nav
-        class="fixed bottom-0 left-0 w-full z-40 px-4 pb-4 pt-4 bg-gradient-to-t from-paper via-paper to-transparent md:bg-none">
-        <div
-            class="max-w-4xl mx-auto bg-ink text-white rounded-full px-2 py-2 flex justify-between items-center shadow-2xl border border-gray-800">
-            <!-- Nav Items -->
-            <div class="flex gap-1">
-                <a href="index.html"
-                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-home text-pop"></i> <span class="hidden sm:inline">Home</span>
+    <!-- ═══ BOTTOM NAV DOCK ═══ -->
+    <nav class="bottom-dock-wrapper">
+        <div class="bottom-dock">
+            <div class="dock-links">
+                <a href="index.html" class="dock-link">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
                 </a>
-                <a href="index.html#specs"
-                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-list-ul text-pop"></i> <span class="hidden sm:inline">Specs</span>
+                <a href="index.html#features" class="dock-link">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>Specs</span>
                 </a>
-                <a href="gallery.html"
-                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2 bg-white/10">
-                    <i class="fa-solid fa-camera text-pop"></i> <span class="hidden sm:inline">Photos</span>
+                <a href="gallery.html" class="dock-link active">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Photos</span>
                 </a>
-                <a href="index.html#rates"
-                    class="px-5 py-3 rounded-full hover:bg-white/10 transition text-sm font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-tag text-pop"></i> <span class="hidden sm:inline">Rates</span>
+                <a href="index.html#pricing" class="dock-link">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Rates</span>
                 </a>
             </div>
-
-            <!-- CTA -->
-            <a href="booking.html"
-                class="bg-white text-ink px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-pop hover:text-white transition shadow-lg transform hover:-translate-y-1">
-                Book Now
-            </a>
+            <a href="booking.html" class="dock-cta">Book Now</a>
         </div>
     </nav>
 
-    <!-- JavaScript for Gallery Functionality -->
+    <!-- ═══ GALLERY JAVASCRIPT ═══ -->
     <script>
-        const imageGallery = document.getElementById('photo-gallery').querySelector('div');
-        const modal = document.getElementById('gallery-modal');
-        const currentImage = document.getElementById('current-gallery-image');
-        const imageCounter = document.getElementById('image-counter');
-        const prevBtn = document.getElementById('prev-image');
-        const nextBtn = document.getElementById('next-image');
-        let currentImageIndex = 0;
-
-        // Interior photos (8 photos)
+        // ── Photo Arrays ──
         const interiorPhotos = [
             'gallery/interior/campervan-01.jpg',
             'gallery/interior/campervan-02.jpg',
@@ -268,7 +820,6 @@
             'gallery/interior/campervan-08.jpg'
         ];
 
-        // Exterior photos (50 photos: 17 campervan + 33 Scotland)
         const exteriorPhotos = [
             'gallery/exterior/campervan-01.jpg',
             'gallery/exterior/campervan-02.jpg',
@@ -288,6 +839,7 @@
             'gallery/exterior/campervan-18.jpg',
             'gallery/exterior/campervan-21.jpg',
             'gallery/exterior/campervan-22.jpg',
+            'gallery/exterior/campervan-23.jpg',
             'gallery/exterior/scotland-01.jpg',
             'gallery/exterior/scotland-02.jpg',
             'gallery/exterior/scotland-03.jpg',
@@ -322,74 +874,85 @@
             'gallery/exterior/scotland-35.jpg'
         ];
 
-        // Current filter state and visible image list for lightbox
+        // ── State ──
+        const grid = document.getElementById('masonry-grid');
+        const overlay = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCounter = document.getElementById('lightbox-counter');
         let activeFilter = 'all';
-        let visibleImageUrls = [];
+        let visiblePhotos = [];
+        let currentIndex = 0;
 
-        // Create section header element
-        function createSectionHeader(title, accent) {
+        // ── Section Header Builder ──
+        function createSectionHeader(title, count) {
             const header = document.createElement('div');
             header.className = 'section-header';
             header.innerHTML = `
                 <h2>${title}</h2>
-                <span class="accent">${accent}</span>
+                <span class="count">${count} photos</span>
                 <div class="line"></div>
             `;
             return header;
         }
 
-        // Function to create the masonry gallery
+        // ── Masonry Item Builder ──
+        function createMasonryItem(src, alt, index) {
+            const item = document.createElement('div');
+            item.className = 'masonry-item';
+            item.innerHTML = `
+                <img src="${src}" alt="${alt}" loading="lazy">
+                <div class="zoom-icon"><i class="fa-solid fa-expand"></i></div>
+            `;
+            item.addEventListener('click', () => openLightbox(index));
+            return item;
+        }
+
+        // ── Initialize Gallery ──
         function initializeGallery() {
-            imageGallery.innerHTML = '';
-            let allPhotos = [];
+            grid.innerHTML = '';
+            visiblePhotos = [];
             let globalIndex = 0;
 
             if (activeFilter === 'all' || activeFilter === 'interior') {
                 if (activeFilter === 'all') {
-                    imageGallery.appendChild(createSectionHeader('Interior', `${interiorPhotos.length} photos`));
+                    grid.appendChild(createSectionHeader('Interior', interiorPhotos.length));
                 }
-                interiorPhotos.forEach((url) => {
-                    allPhotos.push(url);
+                interiorPhotos.forEach((src, i) => {
+                    visiblePhotos.push(src);
                     const idx = globalIndex++;
-                    const imgContainer = document.createElement('div');
-                    imgContainer.className = 'masonry-item';
-                    imgContainer.innerHTML = `
-                        <img src="${url}" 
-                             alt="Interior Photo ${idx + 1}" 
-                             loading="lazy"
-                             data-index="${idx}"
-                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
-                    `;
-                    imgContainer.addEventListener('click', () => openGallery(idx));
-                    imageGallery.appendChild(imgContainer);
+                    grid.appendChild(createMasonryItem(src, `Vincent VW T6.1 campervan interior — handcrafted conversion, view ${i + 1}`, idx));
                 });
             }
 
             if (activeFilter === 'all' || activeFilter === 'exterior') {
                 if (activeFilter === 'all') {
-                    imageGallery.appendChild(createSectionHeader('Exterior', `${exteriorPhotos.length} photos`));
+                    grid.appendChild(createSectionHeader('Exterior', exteriorPhotos.length));
                 }
-                exteriorPhotos.forEach((url) => {
-                    allPhotos.push(url);
+                exteriorPhotos.forEach((src, i) => {
+                    visiblePhotos.push(src);
                     const idx = globalIndex++;
-                    const imgContainer = document.createElement('div');
-                    imgContainer.className = 'masonry-item';
-                    imgContainer.innerHTML = `
-                        <img src="${url}" 
-                             alt="Exterior Photo ${idx + 1}" 
-                             loading="lazy"
-                             data-index="${idx}"
-                             onerror="this.src='https://placehold.co/600x400/e0e7ff/4338ca?text=Photo'; this.onerror=null;">
-                    `;
-                    imgContainer.addEventListener('click', () => openGallery(idx));
-                    imageGallery.appendChild(imgContainer);
+                    const isScotland = src.includes('scotland-');
+                    const alt = isScotland
+                        ? `Vincent VW T6.1 campervan on a Scotland road trip, view ${i + 1}`
+                        : `Vincent VW T6.1 campervan exterior, Hampshire UK, view ${i + 1}`;
+                    grid.appendChild(createMasonryItem(src, alt, idx));
                 });
             }
 
-            visibleImageUrls = allPhotos;
+            // Stagger reveal animation
+            const items = grid.querySelectorAll('.masonry-item');
+            items.forEach((item, i) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(12px)';
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, Math.min(i * 30, 600));
+            });
         }
 
-        // Filter tab click handling
+        // ── Filter Tabs ──
         document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
@@ -400,61 +963,106 @@
             });
         });
 
-        // Function to open the modal
-        function openGallery(index) {
-            currentImageIndex = index;
-            updateModalImage();
-            modal.classList.remove('hidden');
+        // ── Lightbox: Open ──
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxImage();
+            overlay.style.display = 'flex';
+            requestAnimationFrame(() => {
+                overlay.classList.add('active');
+            });
             document.body.style.overflow = 'hidden';
         }
 
-        // Function to close the modal
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+        // ── Lightbox: Close ──
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 400);
+            document.body.style.overflow = '';
         }
 
-        // Function to update the image in the modal
-        function updateModalImage() {
-            const url = visibleImageUrls[currentImageIndex];
-            currentImage.src = url;
-            imageCounter.textContent = `${currentImageIndex + 1} of ${visibleImageUrls.length}`;
+        // ── Lightbox: Update Image ──
+        function updateLightboxImage() {
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = visiblePhotos[currentIndex];
+                lightboxImg.onload = () => {
+                    lightboxImg.style.opacity = '1';
+                };
+            }, 150);
+            lightboxCounter.textContent = `${currentIndex + 1} of ${visiblePhotos.length}`;
         }
 
-        // Navigation handlers
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % visibleImageUrls.length;
-            updateModalImage();
+        // ── Lightbox: Navigation ──
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % visiblePhotos.length;
+            updateLightboxImage();
         }
 
-        function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + visibleImageUrls.length) % visibleImageUrls.length;
-            updateModalImage();
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + visiblePhotos.length) % visiblePhotos.length;
+            updateLightboxImage();
         }
 
-        // Event listeners for navigation
-        prevBtn.addEventListener('click', showPrevImage);
-        nextBtn.addEventListener('click', showNextImage);
-        document.getElementById('close-modal').addEventListener('click', closeModal);
+        // ── Lightbox Event Listeners ──
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
+        document.getElementById('lightbox-next').addEventListener('click', nextImage);
 
-        // Keyboard navigation (Escape key to close, Arrows to navigate)
-        document.addEventListener('keydown', (e) => {
-            if (modal.classList.contains('hidden')) return;
-
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowRight') {
-                showNextImage();
-            } else if (e.key === 'ArrowLeft') {
-                showPrevImage();
-            }
+        // Close on backdrop click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeLightbox();
         });
 
-        // Initialize the gallery when the page loads
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (overlay.style.display !== 'flex') return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // ── Touch / Swipe Support for Lightbox ──
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        overlay.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        overlay.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? nextImage() : prevImage();
+            }
+        }, { passive: true });
+
+        // ── Header Scroll Effect ──
+        const header = document.getElementById('site-header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = scrollY;
+        }, { passive: true });
+
+        // ── Set total photo count in header ──
+        const countEl = document.getElementById('photo-count');
+        if (countEl) countEl.textContent = interiorPhotos.length + exteriorPhotos.length;
+
+        // ── Init on Load ──
         document.addEventListener('DOMContentLoaded', initializeGallery);
     </script>
 
-    <script src="whatsapp-widget.js"></script>
+    <script src='whatsapp-widget.js'></script>
 </body>
 
 </html>
