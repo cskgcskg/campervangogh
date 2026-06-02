@@ -411,11 +411,8 @@
             transform: translateY(0);
         }
 
-        /* Section Headers in "All" view */
+        /* Section Headers in "All" view (siblings of grids, not inside columns) */
         .section-header {
-            break-before: auto;
-            break-inside: avoid;
-            column-span: all;
             padding: 2.5rem 0.5rem 1rem;
             display: flex;
             align-items: center;
@@ -768,9 +765,7 @@
 
     <!-- ═══ MASONRY GALLERY ═══ -->
     <section class="gallery-container" id="photo-gallery">
-        <div class="masonry-grid" id="masonry-grid">
-            <!-- Images injected by JavaScript -->
-        </div>
+        <!-- Section headers + masonry grids injected by JavaScript -->
     </section>
 
     <!-- ═══ LIGHTBOX MODAL ═══ -->
@@ -888,7 +883,7 @@
         ];
 
         // ── State ──
-        const grid = document.getElementById('masonry-grid');
+        const galleryContainer = document.getElementById('photo-gallery');
         const overlay = document.getElementById('lightbox-overlay');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCounter = document.getElementById('lightbox-counter');
@@ -920,40 +915,45 @@
             return item;
         }
 
+        // ── Helper: build a fresh masonry grid element ──
+        function buildGrid(photos, altBuilder, startIndex) {
+            const grid = document.createElement('div');
+            grid.className = 'masonry-grid';
+            photos.forEach((src, i) => {
+                visiblePhotos.push(src);
+                const idx = startIndex + i;
+                grid.appendChild(createMasonryItem(src, altBuilder(src, i), idx));
+            });
+            return grid;
+        }
+
+        const interiorAlt = (src, i) =>
+            `Vincent VW T6.1 campervan interior — handcrafted conversion, view ${i + 1}`;
+        const exteriorAlt = (src, i) => src.includes('scotland-')
+            ? `Vincent VW T6.1 campervan on a Scotland road trip, view ${i + 1}`
+            : `Vincent VW T6.1 campervan exterior, Hampshire UK, view ${i + 1}`;
+
         // ── Initialize Gallery ──
         function initializeGallery() {
-            grid.innerHTML = '';
+            galleryContainer.innerHTML = '';
             visiblePhotos = [];
-            let globalIndex = 0;
 
             if (activeFilter === 'all' || activeFilter === 'interior') {
                 if (activeFilter === 'all') {
-                    grid.appendChild(createSectionHeader('Interior', interiorPhotos.length));
+                    galleryContainer.appendChild(createSectionHeader('Interior', interiorPhotos.length));
                 }
-                interiorPhotos.forEach((src, i) => {
-                    visiblePhotos.push(src);
-                    const idx = globalIndex++;
-                    grid.appendChild(createMasonryItem(src, `Vincent VW T6.1 campervan interior — handcrafted conversion, view ${i + 1}`, idx));
-                });
+                galleryContainer.appendChild(buildGrid(interiorPhotos, interiorAlt, visiblePhotos.length));
             }
 
             if (activeFilter === 'all' || activeFilter === 'exterior') {
                 if (activeFilter === 'all') {
-                    grid.appendChild(createSectionHeader('Exterior', exteriorPhotos.length));
+                    galleryContainer.appendChild(createSectionHeader('Exterior', exteriorPhotos.length));
                 }
-                exteriorPhotos.forEach((src, i) => {
-                    visiblePhotos.push(src);
-                    const idx = globalIndex++;
-                    const isScotland = src.includes('scotland-');
-                    const alt = isScotland
-                        ? `Vincent VW T6.1 campervan on a Scotland road trip, view ${i + 1}`
-                        : `Vincent VW T6.1 campervan exterior, Hampshire UK, view ${i + 1}`;
-                    grid.appendChild(createMasonryItem(src, alt, idx));
-                });
+                galleryContainer.appendChild(buildGrid(exteriorPhotos, exteriorAlt, visiblePhotos.length));
             }
 
             // Stagger reveal animation
-            const items = grid.querySelectorAll('.masonry-item');
+            const items = galleryContainer.querySelectorAll('.masonry-item');
             items.forEach((item, i) => {
                 item.style.opacity = '0';
                 item.style.transform = 'translateY(12px)';
