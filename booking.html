@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0a0a">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Logo/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="Logo/favicon-96.png">
+    <link rel="shortcut icon" href="Logo/favicon.ico">
+
     <title>Book Vincent — VW T6.1 Campervan Hire from £130/day | Camper Van Gogh</title>
     <meta name="description" content="Reserve Vincent, our premium 2022 VW T6.1 campervan, online. £130/day with insurance, unlimited mileage, breakdown cover and camping furniture included. Hampshire, UK.">
     <link rel="canonical" href="https://campervangogh.com/booking.html">
@@ -303,21 +308,19 @@
         }
 
         .header-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: color 0.3s ease;
+            transition: opacity 0.3s ease;
         }
-
-        .header-logo span {
-            color: var(--gold);
+        .header-logo img {
+            height: 56px;
+            width: auto;
+            display: block;
         }
-
-        .header-logo:hover {
-            color: var(--gold);
+        .header-logo:hover { opacity: 0.85; }
+        @media (max-width: 640px) {
+            .header-logo img { height: 44px; }
         }
 
         .header-tag {
@@ -1087,7 +1090,9 @@
 
     <!-- ======================== HEADER ======================== -->
     <header class="booking-header" id="main-header">
-        <a href="index.html" class="header-logo">Camper Van Gogh<span>.</span></a>
+        <a href="index.html" class="header-logo" aria-label="Camper Van Gogh — Home">
+            <img src="Logo/logo-480.png" alt="Camper Van Gogh logo" loading="eager" width="160" height="162">
+        </a>
         <div class="header-tag">Secure Booking</div>
     </header>
 

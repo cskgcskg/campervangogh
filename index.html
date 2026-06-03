@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0a0a">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Logo/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="Logo/favicon-96.png">
+    <link rel="shortcut icon" href="Logo/favicon.ico">
+
     <title>Campervan Hire Hampshire UK | VW T6.1 from £130/day | Camper Van Gogh</title>
     <meta name="description" content="Hire Vincent, a premium 2022 VW T6.1 campervan from Hampshire, UK. Sleeps 4, pet friendly, automatic DSG, pop-top roof, full kitchen. From £130/day with insurance and unlimited mileage.">
     <meta name="keywords" content="campervan hire Hampshire, VW T6.1 hire UK, luxury campervan rental, pet friendly campervan, pop top campervan hire, VW California alternative, Scotland road trip campervan, weekend campervan hire UK">
@@ -422,10 +427,17 @@
             .footer-container { grid-template-columns: 1fr; }
         }
         .footer-brand {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .footer-brand img {
+            height: 96px;
+            width: auto;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .footer-brand img { height: 80px; margin: 0 auto; }
+            .footer-brand { text-align: center; }
         }
         .footer-tagline {
             font-style: italic;
@@ -1006,7 +1018,9 @@
     <footer id="contact" class="footer">
         <div class="footer-container">
             <div class="reveal">
-                <h2 class="footer-brand">Camper <span class="gold">Van Gogh</span></h2>
+                <div class="footer-brand">
+                    <img src="Logo/logo-320.png" alt="Camper Van Gogh logo" loading="lazy" width="320" height="324">
+                </div>
                 <p class="footer-tagline">The Art of Adventure</p>
                 <div class="footer-details">
                     <p><i class="fa-solid fa-location-dot"></i> Hampshire, UK</p>

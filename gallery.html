@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0a0a">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Logo/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="Logo/favicon-96.png">
+    <link rel="shortcut icon" href="Logo/favicon.ico">
+
     <title>Photo Gallery — Vincent VW T6.1 Campervan | Camper Van Gogh</title>
     <meta name="description" content="Browse the full photo gallery of Vincent, our 2022 VW T6.1 campervan. Interior conversion details, exterior shots, and on-the-road photography from Scotland and across the UK.">
     <link rel="canonical" href="https://campervangogh.com/gallery.html">
@@ -113,7 +118,7 @@
             z-index: 100;
             padding: 1.25rem 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -127,22 +132,30 @@
         }
 
         .header-logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-logo img {
+            height: 76px;
+            width: auto;
+            display: block;
+            transition: transform 0.4s ease;
         }
 
         .header-logo:hover {
-            color: var(--gold);
+            opacity: 0.85;
         }
 
-        .header-logo .dot {
-            color: var(--gold);
+        .site-header.scrolled .header-logo img {
+            height: 60px;
+        }
+
+        @media (max-width: 640px) {
+            .header-logo img { height: 60px; }
+            .site-header.scrolled .header-logo img { height: 48px; }
         }
 
         /* ─── EDITORIAL PAGE HEADER (museum-label style) ─── */
@@ -737,7 +750,9 @@
 
     <!-- ═══ HEADER ═══ -->
     <header class="site-header" id="site-header">
-        <a href="index.html" class="header-logo">Camper Van Gogh<span class="dot">.</span></a>
+        <a href="index.html" class="header-logo" aria-label="Camper Van Gogh — Home">
+            <img src="Logo/logo-480.png" alt="Camper Van Gogh logo" loading="eager" width="160" height="162">
+        </a>
     </header>
 
     <!-- ═══ EDITORIAL PAGE HEADER ═══ -->
