@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0b">
 
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
@@ -11,8 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="Logo/apple-touch-icon.png">
 
     <title>Campervan Hire Hampshire UK | VW T6.1 from £130/day | Camper Van Gogh</title>
-    <meta name="description" content="Hire Vincent, a premium VW T6.1 campervan from Hampshire, UK. Sleeps 4, pet friendly, automatic DSG, pop-top roof, full kitchen. From £130/day with insurance and unlimited mileage.">
-    <meta name="keywords" content="campervan hire Hampshire, VW T6.1 hire UK, luxury campervan rental, pet friendly campervan, pop top campervan hire, VW California alternative, Scotland road trip campervan, weekend campervan hire UK">
+    <meta name="description" content="Hire Vincent, a premium 2022 VW T6.1 campervan from Hampshire, UK. Sleeps 4, pet friendly, automatic DSG, pop-top roof, full kitchen. From £130/day with insurance and unlimited mileage.">
     <meta name="author" content="Camper Van Gogh">
     <link rel="canonical" href="https://campervangogh.com/">
 
@@ -23,666 +22,200 @@
     <meta property="og:url" content="https://campervangogh.com/">
     <meta property="og:title" content="Camper Van Gogh — Premium VW T6.1 Campervan Hire, Hampshire UK">
     <meta property="og:description" content="Vincent, a hand-converted 2022 VW T6.1. Sleeps 4, pet friendly, pop-top roof. From £130/day with insurance & unlimited mileage.">
-    <meta property="og:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
-    <meta property="og:image:width" content="1600">
-    <meta property="og:image:height" content="1200">
+    <meta property="og:image" content="https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg">
     <meta property="og:image:alt" content="Camper Van Gogh — VW T6.1 campervan against snow-capped Scottish mountains">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Camper Van Gogh — Premium VW T6.1 Campervan Hire">
     <meta name="twitter:description" content="Hampshire-based luxury campervan hire from £130/day. Sleeps 4, pet friendly, unlimited mileage.">
-    <meta name="twitter:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
+    <meta name="twitter:image" content="https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg">
 
-    <!-- Robots -->
     <meta name="robots" content="index, follow, max-image-preview:large">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- LCP image preload -->
+    <link rel="preload" as="image" href="gallery/exterior/scotland-15-1920.webp"
+          imagesrcset="gallery/exterior/scotland-15-1080.webp 1080w, gallery/exterior/scotland-15-1920.webp 1920w"
+          imagesizes="100vw" fetchpriority="high">
+
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        /* ── Page-specific: Hero, About, Features, Gallery, Pricing, Footer ── */
-        .gold { color: var(--accent-gold); }
+        /* ── Page-specific styles ── */
 
         /* Highlights bar */
         .highlights {
-            background: var(--bg-secondary);
-            border-top: 1px solid rgba(201,168,76,0.1);
-            border-bottom: 1px solid rgba(201,168,76,0.1);
-            padding: 28px 24px;
+            background: var(--bg-1);
+            border-block: 1px solid var(--line-gold);
+            padding: var(--s-5) var(--inline-pad);
         }
-        .highlights-inner {
-            max-width: 1200px;
-            margin: 0 auto;
+        .highlights__inner {
+            max-width: var(--content-w);
+            margin-inline: auto;
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: var(--s-2) var(--s-6);
         }
-        .highlights-item {
+        .highlights__item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 16px;
-        }
-        .highlights-icon {
-            color: var(--accent-gold);
-            font-size: 1.3rem;
-        }
-        .highlights-label {
-            font-size: 0.85rem;
+            padding: var(--s-2) var(--s-3);
+            font-size: 0.82rem;
             font-weight: 500;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
+            color: var(--ink-2);
         }
-        .highlights-divider {
-            width: 1px;
-            height: 24px;
-            background: var(--accent-gold);
-            opacity: 0.3;
-        }
-        @media (max-width: 640px) {
-            .highlights-divider { display: none; }
-            .highlights-inner { justify-content: space-around; }
-        }
+        .highlights__item svg.icon { color: var(--gold); width: 1.25em; height: 1.25em; }
 
-        /* Section eyebrow */
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--accent-gold);
-            margin-bottom: 16px;
-        }
-        .section-eyebrow::before {
-            content: '';
-            display: inline-block;
-            width: 28px;
-            height: 2px;
-            background: var(--accent-gold);
-        }
-
-        /* About section */
-        .about {
-            padding: 100px 24px;
-            background: var(--bg-primary);
-        }
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* About */
+        .about__grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: var(--s-7);
             align-items: center;
         }
-        @media (max-width: 900px) {
-            .about-container { grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 900px) {
+            .about__grid { grid-template-columns: 1fr 1fr; gap: var(--s-8); }
         }
-        .about-description {
-            margin: 24px 0 32px;
-        }
-        .about-description p {
-            margin-bottom: 16px;
-            line-height: 1.8;
-        }
-        .about-image-frame {
+        .about__copy p { margin-bottom: var(--s-4); line-height: 1.8; }
+        .about__copy .btn { margin-top: var(--s-3); }
+        .about__media {
             position: relative;
-            border-radius: var(--radius-lg);
+            border-radius: var(--r-md);
             overflow: hidden;
+            aspect-ratio: 4 / 3;
         }
-        .about-image-frame img {
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius-lg);
-            transition: transform 0.6s var(--ease-out-expo);
+        .about__media img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease);
         }
-        .about-image-frame:hover img {
-            transform: scale(1.03);
-        }
-        .about-image-accent {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--accent-gold);
-            border-radius: var(--radius-lg);
-            opacity: 0.3;
-            z-index: -1;
-        }
-        .about-image-wrap {
-            position: relative;
-        }
+        .about__media:hover img { transform: scale(1.03); }
 
-        /* Features section */
-        .features {
-            padding: 100px 24px;
-            background: var(--bg-secondary);
-        }
-        .features-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Features */
+        .features__grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--s-5);
         }
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
-
-        .feature-card {
-            background: rgba(26,26,26,0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(201,168,76,0.1);
-            border-radius: var(--radius-lg);
-            padding: 36px 28px;
-            transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.35s;
-        }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 30px rgba(201,168,76,0.08);
-            border-color: rgba(201,168,76,0.25);
-        }
-        .feature-card-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(201,168,76,0.08);
-            border-radius: var(--radius-md);
+        .feature { padding: var(--s-6) var(--s-5); }
+        .feature__icon {
+            width: 52px; height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 20px;
+            background: var(--gold-08);
+            border-radius: var(--r-md);
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: var(--s-4);
         }
-        .feature-card-title {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-        .feature-card-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
+        .feature__icon svg.icon { width: 24px; height: 24px; }
+        .feature h3 { margin-bottom: var(--s-3); }
+        .feature p { font-size: 0.92rem; line-height: 1.7; }
 
-        /* Gallery preview */
-        .gallery-section {
-            padding: 100px 0;
-            background: var(--bg-primary);
-            overflow: hidden;
-        }
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 48px;
-            padding: 0 24px;
-        }
-        .gallery-strip {
+        /* Gallery strip */
+        .strip {
             overflow-x: auto;
-            cursor: grab;
-            -ms-overflow-style: none;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
-        .gallery-strip::-webkit-scrollbar { display: none; }
-        .gallery-track {
+        .strip::-webkit-scrollbar { display: none; }
+        .strip__track {
             display: flex;
-            gap: 16px;
-            padding: 0 24px;
+            gap: var(--s-4);
+            padding-inline: max(var(--inline-pad), calc((100vw - var(--content-w)) / 2));
         }
-        .gallery-item {
+        .strip__item {
             flex-shrink: 0;
-            width: 320px;
-            height: 240px;
-            border-radius: var(--radius-md);
+            width: min(320px, 72vw);
+            aspect-ratio: 4 / 3;
+            border-radius: var(--r-md);
             overflow: hidden;
         }
-        @media (max-width: 640px) {
-            .gallery-item { width: 260px; height: 195px; }
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
+        .strip__item img {
+            width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 0.5s var(--ease-out-expo);
+            transition: transform 0.5s var(--ease);
         }
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-        .gallery-cta {
-            text-align: center;
-            margin-top: 40px;
-        }
+        .strip__item:hover img { transform: scale(1.06); }
 
-        /* Pricing section */
-        .pricing {
-            padding: 100px 24px;
-            background: var(--bg-secondary);
-        }
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
+        /* Pricing */
         .pricing-card {
-            max-width: 480px;
-            margin: 0 auto;
-            background: rgba(26,26,26,0.7);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(201,168,76,0.2);
-            border-radius: var(--radius-xl);
-            padding: 48px 40px;
+            max-width: 460px;
+            margin-inline: auto;
+            background: var(--bg-2);
+            border: 1px solid var(--gold-30);
+            border-radius: var(--r-md);
+            padding: clamp(32px, 5vw, 48px) clamp(24px, 4vw, 40px);
             text-align: center;
         }
-        .pricing-badge {
+        .pricing-card__badge {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: var(--accent-gold);
-            border: 1px solid rgba(201,168,76,0.3);
-            border-radius: var(--radius-full);
-            padding: 6px 20px;
-            margin-bottom: 24px;
+            color: var(--gold);
+            border: 1px solid var(--gold-30);
+            border-radius: var(--r-pill);
+            padding: 7px 20px;
+            margin-bottom: var(--s-5);
         }
-        .pricing-amount {
-            margin-bottom: 32px;
-        }
-        .pricing-currency {
+        .pricing-card__amount { margin-bottom: var(--s-6); }
+        .pricing-card__currency {
             font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--accent-gold);
+            font-size: 1.9rem;
+            color: var(--gold);
             vertical-align: top;
+            line-height: 1.6;
         }
-        .pricing-number {
+        .pricing-card__number {
             font-family: var(--font-display);
-            font-size: 5rem;
+            font-size: clamp(3.6rem, 8vw, 4.6rem);
             font-weight: 700;
-            color: var(--text-primary);
             line-height: 1;
         }
-        .pricing-period {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-        .pricing-includes {
+        .pricing-card__period { font-size: 1rem; color: var(--ink-2); }
+        .pricing-card__includes {
             text-align: left;
-            margin-bottom: 36px;
+            margin-bottom: var(--s-6);
         }
-        .pricing-includes li {
+        .pricing-card__includes li {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            border-bottom: 1px solid var(--line);
+            color: var(--ink-2);
+            font-size: 0.94rem;
         }
-        .pricing-includes li i {
-            color: var(--accent-gold);
-            font-size: 0.85rem;
+        .pricing-card__includes li:last-child { border-bottom: none; }
+        .pricing-card__includes svg.icon { color: var(--gold); }
+        .pricing-card__deposit {
+            margin-top: var(--s-4);
+            font-size: 0.78rem;
+            color: var(--ink-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .pricing-deposit {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        .pricing-deposit i {
-            color: var(--accent-gold);
-            margin-right: 6px;
-        }
+        .pricing-card__deposit svg.icon { color: var(--gold); }
 
         /* FAQ */
-        .faq {
-            padding: 100px 24px;
-            background: var(--bg-primary);
-        }
-        .faq-container {
-            max-width: 880px;
-            margin: 0 auto;
-        }
-        .faq-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
         .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .faq-item {
-            background: rgba(26,26,26,0.6);
-            border: 1px solid rgba(201,168,76,0.1);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            transition: border-color 0.3s, background 0.3s;
-        }
-        .faq-item[open] {
-            border-color: rgba(201,168,76,0.3);
-            background: rgba(26,26,26,0.85);
-        }
-        .faq-item summary {
-            list-style: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 22px 26px;
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            transition: color 0.3s;
-        }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary:hover { color: var(--accent-gold); }
-        .faq-item summary i {
-            color: var(--accent-gold);
-            font-size: 0.9rem;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-        .faq-item[open] summary i { transform: rotate(45deg); }
-        .faq-item p {
-            padding: 0 26px 24px;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            font-size: 0.95rem;
-        }
-        .faq-item p strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        @media (max-width: 640px) {
-            .faq-item summary { font-size: 1rem; padding: 18px 20px; }
-            .faq-item p { padding: 0 20px 20px; font-size: 0.9rem; }
-        }
-
-        /* Footer */
-        .footer {
-            padding: 80px 24px 40px;
-            background: var(--bg-primary);
-            border-top: 1px solid rgba(255,255,255,0.04);
-        }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 840px;
+            margin-inline: auto;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-        }
-        @media (max-width: 768px) {
-            .footer-container { grid-template-columns: 1fr; }
-        }
-        .footer-brand {
-            margin-bottom: 12px;
-            display: block;
-        }
-        .footer-brand img {
-            height: 96px;
-            width: auto;
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .footer-brand img { height: 80px; margin: 0 auto; }
-            .footer-brand { text-align: center; }
-        }
-        .footer-tagline {
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-        .footer-details p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-        .footer-details i {
-            color: var(--accent-gold);
-            margin-right: 8px;
-            width: 16px;
-        }
-        .footer-social {
-            margin-top: 20px;
-            display: flex;
-            gap: 16px;
-        }
-        .footer-social a {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid rgba(201,168,76,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-        }
-        .footer-social a:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            background: rgba(201,168,76,0.08);
-        }
-        .footer-form-title {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
-        .footer-form input,
-        .footer-form textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            padding: 14px 0;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            transition: border-color 0.3s;
-        }
-        .footer-form input:focus,
-        .footer-form textarea:focus {
-            border-bottom-color: var(--accent-gold);
-        }
-        .footer-form input::placeholder,
-        .footer-form textarea::placeholder {
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.8rem;
-        }
-        .footer-form .form-group {
-            margin-bottom: 0;
-        }
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            text-align: center;
-        }
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* Dock nav */
-        .dock {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            border-radius: var(--radius-full);
-            background: rgba(20,20,20,0.9);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(201,168,76,0.12);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            transition: transform 0.5s var(--ease-out-expo), opacity 0.5s;
-            opacity: 0;
-        }
-        .dock.active {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-        .dock-inner {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .dock-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 16px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-primary);
-            border-radius: var(--radius-full);
-            transition: all 0.25s;
-            white-space: nowrap;
-        }
-        .dock-link:hover, .dock-link--active {
-            color: var(--accent-gold);
-            background: rgba(201,168,76,0.08);
-        }
-        .dock-link i {
-            font-size: 0.9rem;
-        }
-        .dock-cta {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--accent-gold);
-            color: var(--bg-primary) !important;
-            font-weight: 600;
-            padding: 10px 22px;
-            border-radius: var(--radius-full);
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            transition: all 0.3s;
-        }
-        .dock-cta:hover {
-            background: var(--accent-gold-light);
-            color: var(--bg-primary) !important;
-            box-shadow: 0 0 30px rgba(201,168,76,0.2);
-        }
-        @media (max-width: 768px) {
-            .dock { bottom: 16px; left: 16px; right: 16px; transform: translateX(0) translateY(100px); }
-            .dock.active { transform: translateX(0) translateY(0); }
-            .dock-link span { display: none; }
-            .dock-link { padding: 10px 12px; }
-        }
-
-        /* btn full width */
-        .btn-full { width: 100%; }
-
-        /* Hero scroll indicator */
-        .hero-scroll-indicator {
-            position: absolute;
-            bottom: 36px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            animation: bounce 2s infinite;
-        }
-        .hero-scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 32px;
-            background: linear-gradient(to bottom, var(--accent-gold), transparent);
-        }
-
-        /* Hero specifics */
-        .hero-parallax {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center 68%;
-            z-index: 0;
-        }
-        /* Keep the van in frame on narrow viewports */
-        @media (max-aspect-ratio: 1/1) {
-            .hero-parallax { background-position: center 72%; }
-        }
-        @media (max-aspect-ratio: 3/4) {
-            .hero-parallax { background-position: center 78%; }
-        }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.85) 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 24px;
-            max-width: 900px;
-        }
-        .hero-eyebrow {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-        .hero-title {
-            margin-bottom: 20px;
-        }
-        .hero-title-line {
-            display: block;
-        }
-        .hero-title-line--gold {
-            color: var(--accent-gold);
-        }
-        .hero-subtitle {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-        .hero-tagline {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 36px;
-        }
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: var(--s-3);
         }
     </style>
 
@@ -697,22 +230,13 @@
           "name": "Camper Van Gogh",
           "description": "Premium campervan hire from Hampshire, UK. A hand-converted 2022 VW T6.1 campervan that sleeps 4, with pop-top roof, full galley kitchen, and pet-friendly policy.",
           "url": "https://campervangogh.com/",
-          "image": "https://campervangogh.com/gallery/exterior/scotland-15.jpg",
+          "image": "https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg",
           "telephone": "",
           "email": "hello@campervangogh.co.uk",
           "priceRange": "££",
-          "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Hampshire",
-            "addressCountry": "GB"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "United Kingdom"
-          },
-          "sameAs": [
-            "https://www.instagram.com/camper.van.gogh/"
-          ]
+          "address": { "@type": "PostalAddress", "addressRegion": "Hampshire", "addressCountry": "GB" },
+          "areaServed": { "@type": "Country", "name": "United Kingdom" },
+          "sameAs": ["https://www.instagram.com/camper.van.gogh/"]
         },
         {
           "@type": "Product",
@@ -720,14 +244,11 @@
           "name": "Vincent — 2022 VW T6.1 Campervan",
           "description": "Hand-converted 2022 Volkswagen Transporter T6.1 campervan. Automatic DSG, pop-top roof sleeping 4 adults, full galley kitchen with two-burner stove, fridge and oven, leather captain's seats, rock'n'roll bed, solar panels and leisure battery, pet friendly.",
           "image": [
-            "https://campervangogh.com/gallery/exterior/scotland-15.jpg",
-            "https://campervangogh.com/gallery/exterior/campervan-09.jpg",
-            "https://campervangogh.com/gallery/exterior/scotland-20.jpg"
+            "https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg",
+            "https://campervangogh.com/gallery/exterior/campervan-09-1600.jpg",
+            "https://campervangogh.com/gallery/exterior/scotland-20-1600.jpg"
           ],
-          "brand": {
-            "@type": "Brand",
-            "name": "Volkswagen"
-          },
+          "brand": { "@type": "Brand", "name": "Volkswagen" },
           "model": "Transporter T6.1",
           "vehicleModelDate": "2022",
           "category": "Campervan",
@@ -736,78 +257,22 @@
             "url": "https://campervangogh.com/booking.html",
             "priceCurrency": "GBP",
             "price": "130",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "130",
-              "priceCurrency": "GBP",
-              "unitText": "DAY"
-            },
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "130", "priceCurrency": "GBP", "unitText": "DAY" },
             "availability": "https://schema.org/InStock",
-            "seller": {
-              "@id": "https://campervangogh.com/#business"
-            }
+            "seller": { "@id": "https://campervangogh.com/#business" }
           }
         },
         {
           "@type": "FAQPage",
           "@id": "https://campervangogh.com/#faq",
           "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How much does it cost to hire Vincent?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Hire is £130 per day with a refundable £750 security deposit. Comprehensive insurance, 24/7 breakdown cover, unlimited mileage and camping furniture are all included."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Where is Camper Van Gogh based?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "We are based in Hampshire, UK. Vincent is collected from and returned to our Hampshire location."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Are pets allowed in the campervan?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes — pets are fully welcome. Adventure is better together, and that includes four-legged co-pilots. There are no extra fees or restrictions for bringing your dog."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How many people can sleep in the campervan?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Vincent sleeps four adults. The pop-top roof opens to reveal a spacious upper bed, and the rock'n'roll lower bed converts from lounge seating to a second double bed."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is there a mileage limit?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Unlimited mileage is included in the daily rate, so you are free to take Vincent as far as you'd like — including Scotland, Wales, or anywhere in the UK."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What's included in the daily rate?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Comprehensive insurance, 24/7 UK breakdown cover, unlimited mileage, and a full set of camping furniture (table, chairs, awning where applicable)."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What kind of campervan is Vincent?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Vincent is a 2022 Volkswagen Transporter T6.1 with an automatic DSG gearbox. The interior is a hand-crafted conversion featuring leather captain's seats, a two-burner stove, fridge, oven, sink, solar panels and a leisure battery for full off-grid capability."
-              }
-            }
+            { "@type": "Question", "name": "How much does it cost to hire Vincent?", "acceptedAnswer": { "@type": "Answer", "text": "Hire is £130 per day with a refundable £750 security deposit. Comprehensive insurance, 24/7 breakdown cover, unlimited mileage and camping furniture are all included." } },
+            { "@type": "Question", "name": "Where is Camper Van Gogh based?", "acceptedAnswer": { "@type": "Answer", "text": "We are based in Hampshire, UK. Vincent is collected from and returned to our Hampshire location." } },
+            { "@type": "Question", "name": "Are pets allowed in the campervan?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — pets are fully welcome. Adventure is better together, and that includes four-legged co-pilots. There are no extra fees or restrictions for bringing your dog." } },
+            { "@type": "Question", "name": "How many people can sleep in the campervan?", "acceptedAnswer": { "@type": "Answer", "text": "Vincent sleeps four adults. The pop-top roof opens to reveal a spacious upper bed, and the rock'n'roll lower bed converts from lounge seating to a second double bed." } },
+            { "@type": "Question", "name": "Is there a mileage limit?", "acceptedAnswer": { "@type": "Answer", "text": "No. Unlimited mileage is included in the daily rate, so you are free to take Vincent as far as you'd like — including Scotland, Wales, or anywhere in the UK." } },
+            { "@type": "Question", "name": "What's included in the daily rate?", "acceptedAnswer": { "@type": "Answer", "text": "Comprehensive insurance, 24/7 UK breakdown cover, unlimited mileage, and a full set of camping furniture (table, chairs, awning where applicable)." } },
+            { "@type": "Question", "name": "What kind of campervan is Vincent?", "acceptedAnswer": { "@type": "Answer", "text": "Vincent is a 2022 Volkswagen Transporter T6.1 with an automatic DSG gearbox. The interior is a hand-crafted conversion featuring leather captain's seats, a two-burner stove, fridge, oven, sink, solar panels and a leisure battery for full off-grid capability." } }
           ]
         },
         {
@@ -816,9 +281,7 @@
           "url": "https://campervangogh.com/",
           "name": "Camper Van Gogh",
           "description": "Premium VW T6.1 campervan hire in Hampshire, UK",
-          "publisher": {
-            "@id": "https://campervangogh.com/#business"
-          },
+          "publisher": { "@id": "https://campervangogh.com/#business" },
           "inLanguage": "en-GB"
         }
       ]
@@ -827,187 +290,242 @@
 </head>
 <body>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-        <div class="hero-parallax" style="background-image: url('gallery/exterior/scotland-15.jpg');"></div>
-        <div class="hero-overlay"></div>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="brand" aria-label="Camper Van Gogh — Home">
+                <img src="Logo/logo-96.png" alt="" width="96" height="97">
+                <span class="brand__name">Camper Van Gogh</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+                <svg class="icon icon-burger" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                <svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a class="site-nav__link" href="index.html" aria-current="page">Home</a>
+                <a class="site-nav__link" href="#features">The Van</a>
+                <a class="site-nav__link" href="gallery.html">Gallery</a>
+                <a class="site-nav__link" href="#pricing">Rates</a>
+                <a class="site-nav__link" href="#contact">Contact</a>
+                <a class="btn btn--gold" href="booking.html">Book Now</a>
+            </nav>
+        </div>
+    </header>
 
-        <div class="hero-content">
-            <p class="hero-eyebrow reveal">Est. Hampshire, UK</p>
-            <h1 class="hero-title reveal">
-                <span class="hero-title-line">CAMPER</span>
-                <span class="hero-title-line hero-title-line--gold">VAN GOGH</span>
-            </h1>
-            <p class="hero-subtitle reveal"><em>The Art of Adventure</em></p>
-            <p class="hero-tagline reveal">Premium 2022 VW T6.1 Campervan Hire · Hampshire, UK</p>
-            <div class="hero-actions reveal">
-                <a href="booking.html" class="btn-primary">Book Now</a>
-                <a href="#about" class="btn-outline">Explore</a>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__media">
+            <picture>
+                <source type="image/webp" srcset="gallery/exterior/scotland-15-1080.webp 1080w, gallery/exterior/scotland-15-1920.webp 1920w" sizes="100vw">
+                <img src="gallery/exterior/scotland-15-1920.jpg" width="1920" height="1440" alt="Vincent, a VW T6.1 campervan, parked before snow-capped Scottish mountains" fetchpriority="high" decoding="async">
+            </picture>
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <p class="hero__eyebrow reveal">Est. Hampshire, UK</p>
+            <h1 class="hero__title reveal reveal-d1"><span>Camper</span><span class="gold">Van Gogh</span></h1>
+            <p class="hero__sub reveal reveal-d2">The Art of Adventure</p>
+            <p class="hero__tag reveal reveal-d2">Premium 2022 VW T6.1 Campervan Hire · Hampshire, UK</p>
+            <div class="hero__actions reveal reveal-d3">
+                <a href="booking.html" class="btn btn--gold btn--lg">Book Now</a>
+                <a href="#about" class="btn btn--ghost btn--lg">Explore</a>
             </div>
         </div>
-
-        <div class="hero-scroll-indicator">
-            <span>Scroll</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
+        <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
     </section>
 
-    <!-- HIGHLIGHTS BAR -->
-    <section class="highlights">
-        <div class="highlights-inner reveal">
-            <div class="highlights-item">
-                <i class="fa-solid fa-van-shuttle highlights-icon"></i>
-                <span class="highlights-label">2022 VW T6.1</span>
+    <!-- HIGHLIGHTS -->
+    <section class="highlights" aria-label="Key features">
+        <div class="highlights__inner reveal">
+            <div class="highlights__item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V8a2 2 0 0 1 2-2h9l5 5h2a1 1 0 0 1 1 1v4h-2.2M3 16h1.2M3 16v-2m13.8 2H9.2"/><circle cx="7" cy="17" r="2"/><circle cx="19" cy="17" r="2"/></svg>
+                <span>2022 VW T6.1</span>
             </div>
-            <div class="highlights-divider"></div>
-            <div class="highlights-item">
-                <i class="fa-solid fa-gears highlights-icon"></i>
-                <span class="highlights-label">Automatic DSG</span>
+            <div class="highlights__item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Automatic DSG</span>
             </div>
-            <div class="highlights-divider"></div>
-            <div class="highlights-item">
-                <i class="fa-solid fa-bed highlights-icon"></i>
-                <span class="highlights-label">Sleeps 4</span>
+            <div class="highlights__item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9V19m0-4h20v4M2 11h20v-1a4 4 0 0 0-4-4H9v4"/><circle cx="5.5" cy="8.5" r="1.5"/></svg>
+                <span>Sleeps 4</span>
             </div>
-            <div class="highlights-divider"></div>
-            <div class="highlights-item">
-                <i class="fa-solid fa-paw highlights-icon"></i>
-                <span class="highlights-label">Pet Friendly</span>
+            <div class="highlights__item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="4.5" r="2"/><circle cx="18" cy="8.5" r="2"/><circle cx="4" cy="8.5" r="2"/><path d="M11 18.5c-3 0-4.5-2-4.5-4a4.5 4.5 0 0 1 9 0c0 2-1.5 4-4.5 4z"/></svg>
+                <span>Pet Friendly</span>
             </div>
         </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <div class="reveal">
+    <section id="about" class="section">
+        <div class="container about__grid">
+            <div class="about__copy reveal">
                 <p class="section-eyebrow">The Experience</p>
-                <h2 class="section-title">Meet <span class="gold">Vincent</span></h2>
-                <div class="about-description">
+                <h2>Meet <span class="gold">Vincent</span></h2>
+                <div style="margin-top: 24px;">
                     <p>Vincent isn't just a campervan — he's a masterpiece. A premium 2022 Volkswagen T6.1, meticulously handcrafted with a bespoke conversion that redefines what adventure feels like.</p>
                     <p>Step inside and discover a sanctuary of luxury: sumptuous leather upholstery, diamond-stitched captain's seats, and a full galley kitchen with everything you need to create culinary moments on the road.</p>
                     <p>With a pop-top roof that opens to the stars and sleeping space for four, Vincent transforms every journey into an experience worth remembering. This is not camping. This is <em>the art of adventure.</em></p>
                 </div>
-                <a href="#features" class="btn-outline btn-sm">Discover More</a>
+                <a href="#features" class="btn btn--ghost">Discover More</a>
             </div>
-            <div class="about-image-wrap reveal">
-                <div class="about-image-frame">
-                    <img src="gallery/exterior/campervan-09.jpg" alt="Vincent — Premium VW T6.1 Campervan" loading="lazy">
-                </div>
-                <div class="about-image-accent"></div>
+            <div class="about__media reveal reveal-d1">
+                <picture>
+                    <source type="image/webp" srcset="gallery/exterior/campervan-09-800.webp 800w, gallery/exterior/campervan-09-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw">
+                    <img src="gallery/exterior/campervan-09-1600.jpg" width="1600" height="1200" alt="Vincent — premium VW T6.1 campervan exterior" loading="lazy" decoding="async">
+                </picture>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES GRID -->
-    <section id="features" class="features">
-        <div class="features-header reveal">
-            <p class="section-eyebrow">Specifications</p>
-            <h2 class="section-title">Designed for <span class="gold">Living</span></h2>
-        </div>
-
-        <div class="features-grid">
-            <article class="feature-card reveal">
-                <div class="feature-card-icon"><i class="fa-solid fa-fire-burner"></i></div>
-                <h3 class="feature-card-title">The Galley</h3>
-                <p class="feature-card-desc">A fully equipped kitchen with two-burner stove, integrated fridge, sink, and oven — everything you need to craft memorable meals wherever the road takes you.</p>
-            </article>
-            <article class="feature-card reveal">
-                <div class="feature-card-icon"><i class="fa-solid fa-moon"></i></div>
-                <h3 class="feature-card-title">The Quarters</h3>
-                <p class="feature-card-desc">Sleeps four adults in comfort. The pop-top roof reveals a spacious upper bed, while the rock'n'roll lower bed converts effortlessly from lounge to sleeping quarters.</p>
-            </article>
-            <article class="feature-card reveal">
-                <div class="feature-card-icon"><i class="fa-solid fa-solar-panel"></i></div>
-                <h3 class="feature-card-title">The Power</h3>
-                <p class="feature-card-desc">Go fully off-grid with rooftop solar panels and a high-capacity leisure battery. Stay powered, connected, and self-sufficient no matter how far you roam.</p>
-            </article>
-            <article class="feature-card reveal">
-                <div class="feature-card-icon"><i class="fa-solid fa-dog"></i></div>
-                <h3 class="feature-card-title">The Co-Pilot</h3>
-                <p class="feature-card-desc">Adventure is better together — and that includes four-legged companions. Pets are fully welcome aboard Vincent. No compromises, no restrictions.</p>
-            </article>
+    <!-- FEATURES -->
+    <section id="features" class="section bg-raised">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="section-eyebrow section-eyebrow--center">Specifications</p>
+                <h2>Designed for <span class="gold">Living</span></h2>
+            </div>
+            <div class="features__grid">
+                <article class="card feature reveal">
+                    <div class="feature__icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M8.5 14.5c0-2 1.5-3 1.5-4.5 0-1-.5-1.8-1.5-2.5.2 1-.8 1.5-1.3 2.6C6.6 11.4 7 13 8.5 14.5zM12 21a7 7 0 0 0 7-7c0-2-1-3.9-2-5.5s-2.5-3-2.5-5C12.5 5 10 6.5 9 8 7 6.5 6.5 5.5 6.5 4 5 6 5 8.5 5 10a7 7 0 0 0 7 11z"/></svg>
+                    </div>
+                    <h3>The Galley</h3>
+                    <p>A fully equipped kitchen with two-burner stove, integrated fridge, stainless steel sink, and oven — everything you need to craft memorable meals wherever the road takes you.</p>
+                </article>
+                <article class="card feature reveal reveal-d1">
+                    <div class="feature__icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+                    </div>
+                    <h3>The Quarters</h3>
+                    <p>Sleeps four adults in comfort. The pop-top roof reveals a spacious upper bed, while the rock'n'roll lower bed converts effortlessly from lounge to sleeping quarters.</p>
+                </article>
+                <article class="card feature reveal reveal-d2">
+                    <div class="feature__icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    </div>
+                    <h3>The Power</h3>
+                    <p>Go fully off-grid with rooftop solar panels and a high-capacity leisure battery. Stay powered, connected, and self-sufficient no matter how far you roam.</p>
+                </article>
+                <article class="card feature reveal reveal-d3">
+                    <div class="feature__icon" aria-hidden="true">
+                        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="4.5" r="2"/><circle cx="18" cy="8.5" r="2"/><circle cx="4" cy="8.5" r="2"/><path d="M11 18.5c-3 0-4.5-2-4.5-4a4.5 4.5 0 0 1 9 0c0 2-1.5 4-4.5 4z"/></svg>
+                    </div>
+                    <h3>The Co-Pilot</h3>
+                    <p>Adventure is better together — and that includes four-legged companions. Pets are fully welcome aboard Vincent. No compromises, no restrictions.</p>
+                </article>
+            </div>
         </div>
     </section>
 
     <!-- GALLERY PREVIEW -->
-    <section id="gallery" class="gallery-section">
-        <div class="gallery-header reveal">
-            <p class="section-eyebrow">Portfolio</p>
-            <h2 class="section-title">Visual <span class="gold">Evidence</span></h2>
+    <section id="gallery" class="section" style="overflow: hidden;">
+        <div class="container section-head section-head--center reveal" style="margin-bottom: 40px;">
+            <p class="section-eyebrow section-eyebrow--center">Portfolio</p>
+            <h2>Visual <span class="gold">Evidence</span></h2>
         </div>
-
-        <div class="gallery-strip reveal">
-            <div class="gallery-track">
-                <a href="gallery.html" class="gallery-item"><img src="gallery/exterior/campervan-02.jpg" alt="Campervan exterior" loading="lazy"></a>
-                <a href="gallery.html" class="gallery-item"><img src="gallery/interior/campervan-01.jpg" alt="Luxury interior" loading="lazy"></a>
-                <a href="gallery.html" class="gallery-item"><img src="gallery/exterior/scotland-05.jpg" alt="Scotland adventure" loading="lazy"></a>
-                <a href="gallery.html" class="gallery-item"><img src="gallery/interior/campervan-03.jpg" alt="Interior details" loading="lazy"></a>
-                <a href="gallery.html" class="gallery-item"><img src="gallery/exterior/scotland-15.jpg" alt="Scottish landscape" loading="lazy"></a>
-                <a href="gallery.html" class="gallery-item"><img src="gallery/exterior/campervan-07.jpg" alt="On the road" loading="lazy"></a>
+        <div class="strip reveal">
+            <div class="strip__track">
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/exterior/campervan-02-800.webp">
+                        <img src="gallery/exterior/campervan-02-800.jpg" width="800" height="600" alt="Campervan exterior" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/interior/campervan-01-800.webp">
+                        <img src="gallery/interior/campervan-01-800.jpg" width="800" height="600" alt="Luxury campervan interior" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/exterior/scotland-05-800.webp">
+                        <img src="gallery/exterior/scotland-05-800.jpg" width="800" height="600" alt="Campervan on a Scotland road trip" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/interior/campervan-03-800.webp">
+                        <img src="gallery/interior/campervan-03-800.jpg" width="800" height="600" alt="Interior conversion details" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/exterior/scotland-15-800.webp">
+                        <img src="gallery/exterior/scotland-15-800.jpg" width="800" height="600" alt="Scottish mountain landscape with campervan" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <a href="gallery.html" class="strip__item">
+                    <picture>
+                        <source type="image/webp" srcset="gallery/exterior/campervan-07-800.webp">
+                        <img src="gallery/exterior/campervan-07-800.jpg" width="800" height="600" alt="Campervan on the road" loading="lazy" decoding="async">
+                    </picture>
+                </a>
             </div>
         </div>
-        <div class="gallery-cta reveal">
-            <a href="gallery.html" class="btn-outline">View Full Gallery</a>
+        <div class="text-center reveal" style="margin-top: 40px;">
+            <a href="gallery.html" class="btn btn--ghost">View Full Gallery</a>
         </div>
     </section>
 
     <!-- PRICING -->
-    <section id="pricing" class="pricing">
-        <div class="pricing-header reveal">
-            <p class="section-eyebrow">Rates</p>
-            <h2 class="section-title">Your Adventure <span class="gold">Awaits</span></h2>
-        </div>
-
-        <div class="pricing-card reveal">
-            <div class="pricing-badge">Vincent · VW T6.1</div>
-            <div class="pricing-amount">
-                <span class="pricing-currency">£</span>
-                <span class="pricing-number">130</span>
-                <span class="pricing-period">/day</span>
+    <section id="pricing" class="section bg-raised">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="section-eyebrow section-eyebrow--center">Rates</p>
+                <h2>Your Adventure <span class="gold">Awaits</span></h2>
             </div>
-            <ul class="pricing-includes">
-                <li><i class="fa-solid fa-check"></i> Comprehensive Insurance</li>
-                <li><i class="fa-solid fa-check"></i> 24/7 Breakdown Cover</li>
-                <li><i class="fa-solid fa-check"></i> Unlimited Mileage</li>
-                <li><i class="fa-solid fa-check"></i> Camping Furniture Included</li>
-            </ul>
-            <a href="booking.html" class="btn-primary btn-lg btn-full">Check Availability</a>
-            <p class="pricing-deposit"><i class="fa-solid fa-shield-halved"></i> £750 refundable security deposit</p>
+            <div class="pricing-card reveal">
+                <div class="pricing-card__badge">Vincent · VW T6.1</div>
+                <div class="pricing-card__amount">
+                    <span class="pricing-card__currency">£</span><span class="pricing-card__number">130</span><span class="pricing-card__period">/day</span>
+                </div>
+                <ul class="pricing-card__includes">
+                    <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Comprehensive Insurance</li>
+                    <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> 24/7 Breakdown Cover</li>
+                    <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Unlimited Mileage</li>
+                    <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Camping Furniture Included</li>
+                </ul>
+                <a href="booking.html" class="btn btn--gold btn--lg btn--full">Check Availability</a>
+                <p class="pricing-card__deposit">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    £750 refundable security deposit
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="faq">
-        <div class="faq-container">
-            <div class="faq-header reveal">
-                <p class="section-eyebrow">Questions</p>
-                <h2 class="section-title">Frequently <span class="gold">Asked</span></h2>
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-head section-head--center reveal">
+                <p class="section-eyebrow section-eyebrow--center">Questions</p>
+                <h2>Frequently <span class="gold">Asked</span></h2>
             </div>
-
             <div class="faq-list">
                 <details class="faq-item reveal">
-                    <summary><span>How much does it cost to hire Vincent?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>How much does it cost to hire Vincent?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>Hire is <strong>£130 per day</strong> with a refundable £750 security deposit. Comprehensive insurance, 24/7 breakdown cover, unlimited mileage and camping furniture are all included in the daily rate.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Where is Camper Van Gogh based?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>Where is Camper Van Gogh based?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>We are based in <strong>Hampshire, UK</strong>. Vincent is collected from and returned to our Hampshire location.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Are pets allowed in the campervan?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>Are pets allowed in the campervan?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>Yes — pets are fully welcome. Adventure is better together, and that includes four-legged co-pilots. There are no extra fees or restrictions for bringing your dog.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>How many people can sleep in the campervan?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>How many people can sleep in the campervan?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>Vincent sleeps <strong>four adults</strong>. The pop-top roof opens to reveal a spacious upper bed, and the rock'n'roll lower bed converts from lounge seating to a second double bed.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Is there a mileage limit?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>Is there a mileage limit?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>No. <strong>Unlimited mileage</strong> is included, so you are free to take Vincent as far as you'd like — including Scotland, Wales, or anywhere in the UK.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>What kind of campervan is Vincent?</span><i class="fa-solid fa-plus"></i></summary>
+                    <summary><span>What kind of campervan is Vincent?</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
                     <p>Vincent is a <strong>2022 Volkswagen Transporter T6.1</strong> with an automatic DSG gearbox. The interior is a hand-crafted conversion featuring leather captain's seats, a two-burner stove, fridge, oven, sink, solar panels and a leisure battery for full off-grid capability.</p>
                 </details>
             </div>
@@ -1015,52 +533,60 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="reveal">
-                <div class="footer-brand">
-                    <img src="Logo/logo-320.png" alt="Camper Van Gogh logo" loading="lazy" width="320" height="324">
-                </div>
-                <p class="footer-tagline">The Art of Adventure</p>
-                <div class="footer-details">
-                    <p><i class="fa-solid fa-location-dot"></i> Hampshire, UK</p>
-                    <p><i class="fa-solid fa-envelope"></i> hello@campervangogh.co.uk</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/camper.van.gogh/?igsh=ZmthdWhucmFqYzR5&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="reveal">
+                    <a href="index.html" class="site-footer__brand" aria-label="Camper Van Gogh — Home">
+                        <img src="Logo/logo-240.png" alt="Camper Van Gogh logo" loading="lazy" width="240" height="243">
+                    </a>
+                    <p class="site-footer__tagline">The Art of Adventure</p>
+                    <p class="site-footer__detail">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Hampshire, UK
+                    </p>
+                    <p class="site-footer__detail">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        <a href="mailto:hello@campervangogh.co.uk">hello@campervangogh.co.uk</a>
+                    </p>
+                    <a class="site-footer__social" href="https://www.instagram.com/camper.van.gogh/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
                     </a>
                 </div>
+                <div class="reveal reveal-d1">
+                    <h3 class="site-footer__form-title">Get in Touch</h3>
+                    <form action="https://formspree.io/f/mkojwddd" method="POST">
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <div class="field">
+                            <label for="contact-name">Name</label>
+                            <input type="text" id="contact-name" name="name" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--gold btn--full">Send Message</button>
+                    </form>
+                </div>
             </div>
-
-            <div class="reveal">
-                <h3 class="footer-form-title">Get in Touch</h3>
-                <form action="https://formspree.io/f/mkojwddd" method="POST" class="footer-form">
-                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-                    <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
-                    <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
-                    <div class="form-group"><textarea name="message" rows="3" placeholder="Your Message" required></textarea></div>
-                    <button type="submit" class="btn-primary btn-full" style="margin-top:16px;">Send Message</button>
-                </form>
+            <div class="site-footer__bottom">
+                <p>&copy; 2026 Camper Van Gogh. All Rights Reserved.</p>
+                <p><a href="gallery.html">Gallery</a> · <a href="booking.html">Book Vincent</a></p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Camper Van Gogh. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- DOCK NAVIGATION -->
-    <nav class="dock" id="dock">
-        <div class="dock-inner">
-            <a href="#hero" class="dock-link dock-link--active"><i class="fa-solid fa-house"></i> <span>Home</span></a>
-            <a href="#features" class="dock-link"><i class="fa-solid fa-sliders"></i> <span>Specs</span></a>
-            <a href="gallery.html" class="dock-link"><i class="fa-solid fa-images"></i> <span>Photos</span></a>
-            <a href="#pricing" class="dock-link"><i class="fa-solid fa-tag"></i> <span>Rates</span></a>
-            <a href="booking.html" class="dock-cta"><span>Book Now</span></a>
-        </div>
-    </nav>
+    <!-- MOBILE STICKY CTA -->
+    <div class="cta-bar" aria-hidden="false">
+        <div class="cta-bar__price">From <strong>£130/day</strong></div>
+        <a href="booking.html" class="btn btn--gold">Book Now</a>
+    </div>
 
-    <script src="main.js"></script>
-    <script src="whatsapp-widget.js"></script>
+    <script src="main.js" defer></script>
+    <script src="whatsapp-widget.js" defer></script>
 </body>
 </html>

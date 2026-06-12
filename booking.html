@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0b">
 
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
@@ -22,15 +21,16 @@
     <meta property="og:url" content="https://campervangogh.com/booking.html">
     <meta property="og:title" content="Book Vincent — VW T6.1 Campervan Hire from £130/day">
     <meta property="og:description" content="Check availability and reserve Vincent online. £130/day, all inclusive.">
-    <meta property="og:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
+    <meta property="og:image" content="https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Book Vincent — VW T6.1 Campervan Hire">
     <meta name="twitter:description" content="Reserve our Hampshire-based luxury campervan online. From £130/day.">
-    <meta name="twitter:image" content="https://campervangogh.com/gallery/exterior/scotland-15.jpg">
+    <meta name="twitter:image" content="https://campervangogh.com/gallery/exterior/scotland-15-1920.jpg">
 
     <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Structured Data: Breadcrumb -->
     <script type="application/ld+json">
@@ -44,1236 +44,580 @@
     }
     </script>
 
-    <!-- Security Headers -->
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <!-- Resource Hints -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Flatpickr -->
+    <!-- Flatpickr (deferred — date pickers init after load) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <!-- Stripe.js -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
 
     <style>
-        /* ========================================
-           FLATPICKR DARK THEME OVERRIDES
-           ======================================== */
-
+        /* ── Flatpickr dark theme ── */
         .flatpickr-calendar {
-            background: #1a1a1a !important;
-            border: 1px solid rgba(212, 175, 55, 0.25) !important;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6),
-                        0 0 40px rgba(212, 175, 55, 0.08) !important;
-            border-radius: 16px !important;
-            font-family: 'Inter', sans-serif !important;
-            backdrop-filter: blur(20px) !important;
+            background: var(--bg-2) !important;
+            border: 1px solid var(--gold-30) !important;
+            box-shadow: var(--shadow-2) !important;
+            border-radius: var(--r-md) !important;
+            font-family: var(--font-body) !important;
             overflow: hidden;
         }
-
-        .flatpickr-calendar::before,
-        .flatpickr-calendar::after {
-            border-bottom-color: #1a1a1a !important;
-        }
-
-        .flatpickr-calendar.arrowTop::before {
-            border-bottom-color: rgba(212, 175, 55, 0.25) !important;
-        }
-
-        .flatpickr-calendar.arrowTop::after {
-            border-bottom-color: #1a1a1a !important;
-        }
-
+        .flatpickr-calendar::before, .flatpickr-calendar::after { border-bottom-color: var(--bg-2) !important; }
         .flatpickr-months {
-            background: rgba(212, 175, 55, 0.08) !important;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+            background: var(--gold-08) !important;
+            border-bottom: 1px solid var(--line-gold) !important;
             padding: 8px 0 !important;
         }
-
-        .flatpickr-months .flatpickr-month {
-            color: #f0e6d3 !important;
-            fill: #f0e6d3 !important;
-        }
-
-        .flatpickr-current-month .flatpickr-monthDropdown-months {
-            background: transparent !important;
-            color: #f0e6d3 !important;
-            font-family: 'Playfair Display', serif !important;
-            font-weight: 600 !important;
-        }
-
-        .flatpickr-current-month .flatpickr-monthDropdown-months option {
-            background: #1a1a1a !important;
-            color: #f0e6d3 !important;
-        }
-
+        .flatpickr-months .flatpickr-month { color: var(--ink) !important; fill: var(--ink) !important; }
+        .flatpickr-current-month .flatpickr-monthDropdown-months,
         .flatpickr-current-month input.cur-year {
-            color: #f0e6d3 !important;
-            font-family: 'Playfair Display', serif !important;
+            background: transparent !important;
+            color: var(--ink) !important;
+            font-family: var(--font-display) !important;
             font-weight: 600 !important;
         }
-
-        .flatpickr-months .flatpickr-prev-month,
-        .flatpickr-months .flatpickr-next-month {
-            fill: #d4af37 !important;
-            color: #d4af37 !important;
-            padding: 8px 12px !important;
-        }
-
-        .flatpickr-months .flatpickr-prev-month:hover,
-        .flatpickr-months .flatpickr-next-month:hover {
-            fill: #f0d060 !important;
-            color: #f0d060 !important;
-        }
-
-        .flatpickr-months .flatpickr-prev-month svg,
-        .flatpickr-months .flatpickr-next-month svg {
-            fill: inherit !important;
-        }
-
+        .flatpickr-current-month .flatpickr-monthDropdown-months option { background: var(--bg-2) !important; color: var(--ink) !important; }
+        .flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month { fill: var(--gold) !important; color: var(--gold) !important; padding: 8px 12px !important; }
+        .flatpickr-months .flatpickr-prev-month:hover, .flatpickr-months .flatpickr-next-month:hover { fill: var(--gold-light) !important; }
+        .flatpickr-months .flatpickr-prev-month svg, .flatpickr-months .flatpickr-next-month svg { fill: inherit !important; }
         span.flatpickr-weekday {
-            color: rgba(212, 175, 55, 0.6) !important;
+            color: var(--gold) !important;
             font-weight: 600 !important;
             font-size: 11px !important;
             text-transform: uppercase !important;
             letter-spacing: 0.05em !important;
         }
-
         .flatpickr-day {
-            color: #c9c0b0 !important;
+            color: var(--ink-2) !important;
             border-radius: 8px !important;
             margin: 2px !important;
             height: 38px !important;
             line-height: 38px !important;
             transition: all 0.2s ease !important;
         }
-
-        .flatpickr-day:hover:not(.disabled):not(.flatpickr-disabled) {
-            background: rgba(212, 175, 55, 0.15) !important;
-            border-color: rgba(212, 175, 55, 0.3) !important;
-            color: #d4af37 !important;
+        .flatpickr-day:hover:not(.flatpickr-disabled) {
+            background: var(--gold-15) !important;
+            border-color: var(--gold-30) !important;
+            color: var(--gold) !important;
         }
-
-        /* Selected days — gold */
-        .flatpickr-day.selected,
-        .flatpickr-day.startRange,
-        .flatpickr-day.endRange,
-        .flatpickr-day.selected.inRange,
-        .flatpickr-day.startRange.inRange,
-        .flatpickr-day.endRange.inRange,
-        .flatpickr-day.selected:focus,
-        .flatpickr-day.startRange:focus,
-        .flatpickr-day.endRange:focus,
-        .flatpickr-day.selected:hover,
-        .flatpickr-day.startRange:hover,
-        .flatpickr-day.endRange:hover,
-        .flatpickr-day.selected.prevMonthDay,
-        .flatpickr-day.startRange.prevMonthDay,
-        .flatpickr-day.endRange.prevMonthDay,
-        .flatpickr-day.selected.nextMonthDay,
-        .flatpickr-day.startRange.nextMonthDay,
-        .flatpickr-day.endRange.nextMonthDay {
-            background: linear-gradient(135deg, #d4af37, #b8962e) !important;
-            border-color: #d4af37 !important;
-            color: #0a0a0a !important;
+        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange,
+        .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover {
+            background: var(--gold) !important;
+            border-color: var(--gold) !important;
+            color: var(--bg-0) !important;
             font-weight: 600 !important;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35) !important;
         }
-
-        /* Today — gold border */
-        .flatpickr-day.today {
-            border: 2px solid #d4af37 !important;
-            color: #d4af37 !important;
+        .flatpickr-day.inRange {
+            background: var(--gold-15) !important;
+            border-color: transparent !important;
+            box-shadow: -5px 0 0 var(--gold-15), 5px 0 0 var(--gold-15) !important;
         }
-
-        .flatpickr-day.today:hover {
-            background: rgba(212, 175, 55, 0.15) !important;
-            color: #d4af37 !important;
-        }
-
-        /* Disabled / Booked days — red tint with strikethrough */
-        .flatpickr-day.disabled,
-        .flatpickr-day.disabled:hover,
-        .flatpickr-day.flatpickr-disabled,
-        .flatpickr-day.flatpickr-disabled:hover {
-            background: rgba(220, 53, 53, 0.15) !important;
-            color: rgba(220, 80, 80, 0.7) !important;
+        .flatpickr-day.today { border: 1.5px solid var(--gold) !important; color: var(--gold) !important; }
+        .flatpickr-day.disabled, .flatpickr-day.disabled:hover,
+        .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+            background: rgba(229, 72, 77, 0.12) !important;
+            color: rgba(229, 72, 77, 0.65) !important;
             text-decoration: line-through !important;
             cursor: not-allowed !important;
-            border-color: rgba(220, 53, 53, 0.2) !important;
         }
+        .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { color: var(--ink-3) !important; opacity: 0.4; }
+        .flatpickr-innerContainer { padding: 8px !important; }
 
-        /* Available days — subtle green tint */
-        .flatpickr-day:not(.disabled):not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):not(.selected):not(.today) {
-            background: rgba(34, 197, 94, 0.06) !important;
-            color: rgba(180, 220, 180, 0.9) !important;
-        }
-
-        .flatpickr-day.prevMonthDay,
-        .flatpickr-day.nextMonthDay {
-            color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        .flatpickr-innerContainer {
-            padding: 8px !important;
-        }
-
-        .numInputWrapper span {
-            border-color: rgba(212, 175, 55, 0.2) !important;
-        }
-
-        .numInputWrapper span:hover {
-            background: rgba(212, 175, 55, 0.15) !important;
-        }
-
-        .numInputWrapper span svg path {
-            fill: #d4af37 !important;
-        }
-
-        /* ========================================
-           BOOKING PAGE STYLES
-           ======================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f0d060;
-            --gold-dim: rgba(212, 175, 55, 0.15);
-            --bg-primary: #0a0a0a;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --text-primary: #f0e6d3;
-            --text-secondary: rgba(240, 230, 211, 0.5);
-            --text-muted: rgba(240, 230, 211, 0.3);
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --border-gold: rgba(212, 175, 55, 0.25);
-            --red-accent: #dc3545;
-            --green-accent: #22c55e;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* ---- HEADER ---- */
-        .booking-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .booking-header.scrolled {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(30px) saturate(1.5);
-            -webkit-backdrop-filter: blur(30px) saturate(1.5);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 1rem 3rem;
-        }
-
-        .header-logo {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-        .header-logo img {
-            height: 56px;
-            width: auto;
-            display: block;
-        }
-        .header-logo:hover { opacity: 0.85; }
-        @media (max-width: 640px) {
-            .header-logo img { height: 44px; }
-        }
-
-        .header-tag {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        /* ---- PAGE HERO ---- */
+        /* ── Booking page layout ── */
         .page-hero {
-            height: 30vh;
-            min-height: 260px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
+            padding: calc(var(--header-h) + clamp(40px, 8vw, 72px)) var(--inline-pad) clamp(28px, 4vw, 44px);
             text-align: center;
-            padding: 0 2rem 3rem;
-            position: relative;
-            background: linear-gradient(180deg, 
-                rgba(10, 10, 10, 0.0) 0%, 
-                rgba(10, 10, 10, 0.3) 50%,
-                rgba(10, 10, 10, 1) 100%),
-                radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+            background: radial-gradient(ellipse at top, var(--gold-08) 0%, transparent 60%);
         }
-
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--gold));
-            opacity: 0.4;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-title em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .hero-subtitle {
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
+        .page-hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); margin-bottom: var(--s-3); }
+        .page-hero h1 em { font-style: italic; color: var(--gold); }
+        .page-hero p {
+            font-size: 0.82rem;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--text-secondary);
-            font-weight: 300;
+            color: var(--ink-2);
+            margin-inline: auto;
         }
 
-        /* ---- MAIN LAYOUT ---- */
         .booking-main {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 3rem 2rem 10rem;
+            max-width: var(--content-w);
+            margin-inline: auto;
+            padding: var(--s-6) var(--inline-pad) calc(var(--s-10) + 56px);
         }
-
         .booking-grid {
             display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: var(--s-6);
             align-items: start;
         }
-
-        /* ---- STEP SECTIONS ---- */
-        .step-section {
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.7s ease forwards;
+        @media (min-width: 1024px) {
+            .booking-grid { grid-template-columns: 1fr 400px; gap: var(--s-7); }
         }
 
-        .step-section:nth-child(1) { animation-delay: 0.1s; }
-        .step-section:nth-child(2) { animation-delay: 0.25s; }
-        .step-section:nth-child(3) { animation-delay: 0.4s; }
-        .step-section:nth-child(4) { animation-delay: 0.55s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .step-header {
+        /* Steps */
+        .step { margin-bottom: var(--s-7); }
+        .step__head {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: var(--s-4);
+            margin-bottom: var(--s-5);
         }
-
-        .step-badge {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, #d4af37, #b8962e);
-            border-radius: 12px;
+        .step__num {
+            width: 42px; height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Playfair Display', serif;
+            background: var(--gold);
+            border-radius: 12px;
+            font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1rem;
-            color: #0a0a0a;
+            color: var(--bg-0);
             flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+        }
+        .step__title { font-size: 1.45rem; font-weight: 500; }
+
+        .panel {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: clamp(20px, 3vw, 32px);
         }
 
-        .step-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        /* ---- GLASS CARD ---- */
-        .glass-card {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: border-color 0.3s ease;
-        }
-
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        /* ---- DATE INPUTS ---- */
         .date-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: var(--s-5);
         }
+        @media (min-width: 640px) { .date-grid { grid-template-columns: 1fr 1fr; } }
+        .field input[readonly] { cursor: pointer; }
 
-        .input-group label {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-        }
-
-        .input-group input[type="text"],
-        .input-group input[type="email"],
-        .input-group textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .input-group input:focus,
-        .input-group textarea:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1),
-                        0 0 20px rgba(212, 175, 55, 0.05);
-            background: rgba(212, 175, 55, 0.03);
-        }
-
-        .input-group input::placeholder,
-        .input-group textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        /* ---- LEGEND ---- */
         .date-legend {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 1.5rem;
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--border-glass);
+            gap: var(--s-4) var(--s-5);
+            margin-top: var(--s-5);
+            padding-top: var(--s-5);
+            border-top: 1px solid var(--line);
         }
-
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.7rem;
+            gap: 8px;
+            font-size: 0.68rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            color: var(--ink-2);
         }
+        .legend-swatch { width: 14px; height: 14px; border-radius: 4px; }
+        .legend-swatch--available { background: rgba(52, 199, 123, 0.15); border: 1px solid rgba(52, 199, 123, 0.45); }
+        .legend-swatch--booked { background: rgba(229, 72, 77, 0.15); border: 1px solid rgba(229, 72, 77, 0.45); }
+        .date-note { margin-left: auto; font-size: 0.72rem; color: var(--ink-3); font-style: italic; }
+        @media (max-width: 640px) { .date-note { margin-left: 0; width: 100%; } }
 
-        .legend-swatch {
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
-        }
-
-        .legend-swatch.available {
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-        }
-
-        .legend-swatch.booked {
-            background: rgba(220, 53, 53, 0.15);
-            border: 1px solid rgba(220, 53, 53, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .legend-swatch.booked::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: rgba(220, 53, 53, 0.6);
-            transform: rotate(-45deg);
-        }
-
-        .date-note {
-            margin-left: auto;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        /* ---- GUEST COUNTERS ---- */
-        .guest-grid {
+        /* Party counters */
+        .party-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: var(--s-5);
         }
-
+        @media (max-width: 480px) { .party-grid { grid-template-columns: 1fr; } }
         .counter-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 1.5rem;
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: var(--s-5);
             text-align: center;
         }
-
-        .counter-label {
+        .counter-card__label {
             font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+            color: var(--ink-2);
+            margin-bottom: var(--s-4);
         }
-
         .counter-controls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.5rem;
+            gap: var(--s-5);
         }
-
         .counter-btn {
-            width: 44px;
-            height: 44px;
-            border: 1px solid var(--border-glass);
+            width: 46px; height: 46px;
+            border: 1px solid var(--line);
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.04);
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            font-weight: 300;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all var(--t-fast);
         }
-
         .counter-btn:hover:not(:disabled) {
             border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
+            background: var(--gold-08);
             color: var(--gold);
         }
-
-        .counter-btn:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
-        }
-
+        .counter-btn:disabled { opacity: 0.25; cursor: not-allowed; }
         .counter-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-family: var(--font-display);
+            font-size: 2.3rem;
             font-weight: 600;
-            min-width: 50px;
-            color: var(--text-primary);
+            min-width: 48px;
         }
+        .party-note { margin-top: var(--s-4); font-size: 0.72rem; color: var(--ink-3); }
 
-        .guest-note {
-            margin-top: 1rem;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        /* ---- EXTRAS ---- */
-        .extras-grid {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .extra-toggle {
-            position: relative;
-            cursor: pointer;
-            display: block;
-        }
-
-        .extra-toggle input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .extra-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
+        /* Extras */
+        .extras-grid { display: grid; gap: var(--s-3); }
+        .extra { position: relative; display: block; cursor: pointer; }
+        .extra input { position: absolute; opacity: 0; pointer-events: none; }
+        .extra__card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: 18px 22px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: var(--s-4);
+            transition: all var(--t-base);
         }
-
-        .extra-toggle input:checked ~ .extra-card {
+        .extra input:focus-visible ~ .extra__card { outline: 2px solid var(--gold); outline-offset: 2px; }
+        .extra input:checked ~ .extra__card {
             border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.06);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
+            background: var(--gold-08);
         }
-
-        .extra-left {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .extra-icon {
-            width: 48px;
-            height: 48px;
+        .extra__left { display: flex; align-items: center; gap: var(--s-4); }
+        .extra__icon {
+            width: 46px; height: 46px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
+            border: 1px solid var(--line);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
+            color: var(--ink-2);
+            transition: all var(--t-base);
             flex-shrink: 0;
         }
-
-        .extra-toggle input:checked ~ .extra-card .extra-icon {
-            background: linear-gradient(135deg, #d4af37, #b8962e);
+        .extra__icon svg.icon { width: 22px; height: 22px; }
+        .extra input:checked ~ .extra__card .extra__icon {
+            background: var(--gold);
             border-color: var(--gold);
-            color: #0a0a0a;
+            color: var(--bg-0);
         }
-
-        .extra-name {
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .extra-desc {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .extra-price {
-            font-family: 'Playfair Display', serif;
+        .extra__name { font-weight: 500; font-size: 0.95rem; }
+        .extra__desc { font-size: 0.76rem; color: var(--ink-3); }
+        .extra__price {
+            font-family: var(--font-display);
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--ink-2);
             white-space: nowrap;
-            transition: color 0.3s ease;
+            transition: color var(--t-base);
+        }
+        .extra input:checked ~ .extra__card .extra__price { color: var(--gold); }
+
+        .details-grid { display: grid; grid-template-columns: 1fr; gap: 0 var(--s-5); }
+        @media (min-width: 640px) {
+            .details-grid { grid-template-columns: 1fr 1fr; }
+            .details-grid .field--full { grid-column: 1 / -1; }
         }
 
-        .extra-toggle input:checked ~ .extra-card .extra-price {
-            color: var(--gold);
-        }
-
-        /* ---- DETAILS FORM ---- */
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .details-grid .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .input-group textarea {
-            resize: vertical;
-            min-height: 90px;
-            border-radius: 12px;
-        }
-
-        /* ---- RECEIPT (RIGHT COL) ---- */
-        .receipt-wrapper {
-            position: sticky;
-            top: 100px;
-        }
-
-        .receipt-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
+        /* Receipt */
+        .receipt-wrap { position: static; }
+        @media (min-width: 1024px) { .receipt-wrap { position: sticky; top: 84px; } }
+        .receipt {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
             border-top: 3px solid var(--gold);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.7s 0.3s ease forwards;
+            border-radius: var(--r-md);
+            padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 30px);
         }
-
-        .receipt-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 600;
+        .receipt__title {
+            font-size: 1.5rem;
             text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: -0.01em;
+            margin-bottom: var(--s-6);
         }
-
-        .receipt-lines {
-            border-top: 1px solid var(--border-glass);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 1.5rem 0;
-            margin-bottom: 1.5rem;
+        .receipt__lines {
+            border-block: 1px solid var(--line);
+            padding-block: var(--s-4);
+            margin-bottom: var(--s-4);
         }
-
-        .receipt-line {
+        .receipt__line {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.6rem 0;
-            font-size: 0.85rem;
+            gap: var(--s-4);
+            padding: 9px 0;
+            font-size: 0.88rem;
         }
-
-        .receipt-line .label {
-            color: var(--text-secondary);
-        }
-
-        .receipt-line .value {
-            font-weight: 500;
-        }
-
-        .receipt-line.bold .label,
-        .receipt-line.bold .value {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .receipt-divider {
-            border: none;
-            border-top: 1px solid var(--border-glass);
-            margin: 0.75rem 0;
-        }
-
-        .deposit-note {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 0.2rem;
-        }
-
-        .receipt-total {
+        .receipt__line .label { color: var(--ink-2); }
+        .receipt__line .value { font-weight: 500; }
+        .receipt__line--bold .label, .receipt__line--bold .value { font-weight: 600; color: var(--ink); }
+        .receipt hr { border: none; border-top: 1px solid var(--line); margin: 10px 0; }
+        .deposit-note { font-size: 0.66rem; color: var(--ink-3); margin-top: 2px; }
+        .receipt__total {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-glass);
         }
-
-        .receipt-total .label {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .receipt-total .value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        /* ---- SUBMIT BUTTON ---- */
-        .submit-btn {
-            width: 100%;
-            padding: 1.15rem 2rem;
-            margin-top: 1.5rem;
-            background: linear-gradient(135deg, #d4af37, #b8962e);
-            border: none;
-            border-radius: 14px;
-            color: #0a0a0a;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.35);
-            background: linear-gradient(135deg, #f0d060, #d4af37);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-btn i {
-            font-size: 0.9rem;
-        }
-
+        .receipt__total .label { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+        .receipt__total .value { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+        .receipt .btn { margin-top: var(--s-5); }
         .submit-note {
             text-align: center;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 1rem;
+            font-size: 0.72rem;
+            color: var(--ink-3);
+            margin-top: var(--s-4);
             line-height: 1.6;
-            padding: 0 0.5rem;
+            max-width: none;
         }
 
-        /* ---- HOW IT WORKS ---- */
-        .how-it-works {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        .error-box {
+            display: none;
+            background: rgba(229, 72, 77, 0.1);
+            border: 1px solid rgba(229, 72, 77, 0.35);
+            border-radius: var(--r-md);
+            padding: 14px 18px;
+            margin-top: var(--s-4);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #f08a8d;
+            line-height: 1.5;
         }
+        .error-box.visible { display: block; }
 
-        .how-it-works-title {
-            font-size: 0.65rem;
+        .how {
+            margin-top: var(--s-6);
+            padding-top: var(--s-5);
+            border-top: 1px dashed var(--line);
+        }
+        .how__title {
+            font-size: 0.64rem;
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
+            color: var(--ink-3);
+            margin-bottom: var(--s-4);
         }
-
-        .how-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .how-step-num {
-            font-family: 'Playfair Display', serif;
+        .how__step { display: flex; gap: var(--s-3); margin-bottom: var(--s-3); }
+        .how__num {
+            font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1rem;
             color: var(--gold);
-            flex-shrink: 0;
             min-width: 28px;
         }
-
-        .how-step-text {
-            font-size: 0.72rem;
+        .how__text {
+            font-size: 0.74rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* ---- ERROR BOX ---- */
-        .error-box {
-            display: none;
-            background: rgba(220, 53, 53, 0.1);
-            border: 1px solid rgba(220, 53, 53, 0.3);
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #f87171;
-            line-height: 1.5;
-        }
-
-        .error-box.visible {
-            display: block;
-            animation: shakeIn 0.4s ease;
-        }
-
-        @keyframes shakeIn {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-6px); }
-            40% { transform: translateX(6px); }
-            60% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
-        }
-
-        /* ---- BOTTOM DOCK NAV ---- */
-        .bottom-dock {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 0.75rem 1rem 0.75rem;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .dock-bar {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(30px) saturate(1.4);
-            -webkit-backdrop-filter: blur(30px) saturate(1.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 22px;
-            padding: 0.6rem 1rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            pointer-events: auto;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .dock-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.3rem;
-            text-decoration: none;
-            color: rgba(240, 230, 211, 0.4);
-            padding: 0.4rem 0.8rem;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .dock-item:hover,
-        .dock-item.active {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.08);
-        }
-
-        .dock-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-        }
-
-        .dock-item i {
-            font-size: 1.15rem;
-        }
-
-        .dock-item span {
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 1024px) {
-            .booking-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .receipt-wrapper {
-                position: relative;
-                top: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .booking-header {
-                padding: 1rem 1.5rem;
-            }
-
-            .booking-header.scrolled {
-                padding: 0.75rem 1.5rem;
-            }
-
-            .page-hero {
-                min-height: 220px;
-                padding-bottom: 2rem;
-            }
-
-            .booking-main {
-                padding: 2rem 1rem 10rem;
-            }
-
-            .date-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .guest-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header-tag {
-                display: none;
-            }
-
-            .date-note {
-                margin-left: 0;
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-
-            .guest-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .extra-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .extra-price {
-                align-self: flex-end;
-            }
+            color: var(--ink-2);
+            line-height: 1.55;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- ======================== HEADER ======================== -->
-    <header class="booking-header" id="main-header">
-        <a href="index.html" class="header-logo" aria-label="Camper Van Gogh — Home">
-            <img src="Logo/logo-480.png" alt="Camper Van Gogh logo" loading="eager" width="160" height="162">
-        </a>
-        <div class="header-tag">Secure Booking</div>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="brand" aria-label="Camper Van Gogh — Home">
+                <img src="Logo/logo-96.png" alt="" width="96" height="97">
+                <span class="brand__name">Camper Van Gogh</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+                <svg class="icon icon-burger" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                <svg class="icon icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a class="site-nav__link" href="index.html">Home</a>
+                <a class="site-nav__link" href="index.html#features">The Van</a>
+                <a class="site-nav__link" href="gallery.html">Gallery</a>
+                <a class="site-nav__link" href="index.html#pricing">Rates</a>
+                <a class="site-nav__link" href="index.html#contact">Contact</a>
+                <a class="btn btn--gold" href="booking.html" aria-current="page">Book Now</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- ======================== PAGE HERO ======================== -->
+    <!-- PAGE HERO -->
     <section class="page-hero">
-        <h1 class="hero-title">Reserve <em>Vincent</em></h1>
-        <p class="hero-subtitle">Your adventure begins here</p>
+        <h1>Reserve <em>Vincent</em></h1>
+        <p>Your adventure begins here</p>
     </section>
 
-    <!-- ======================== BOOKING FORM ======================== -->
+    <!-- BOOKING FORM -->
     <main class="booking-main">
         <form action="https://formspree.io/f/mkojwddd" method="POST" id="booking-form">
-
             <div class="booking-grid">
 
-                <!-- ======== LEFT COLUMN: FORM STEPS ======== -->
-                <div class="form-column">
-
+                <!-- LEFT: STEPS -->
+                <div>
                     <!-- STEP 1 — DATES -->
-                    <section class="step-section">
-                        <div class="step-header">
-                            <div class="step-badge">01</div>
-                            <h2 class="step-title">Select Your Dates</h2>
+                    <section class="step" aria-labelledby="step1-title">
+                        <div class="step__head">
+                            <div class="step__num" aria-hidden="true">01</div>
+                            <h2 class="step__title" id="step1-title">Select Your Dates</h2>
                         </div>
-                        <div class="glass-card">
+                        <div class="panel">
                             <div class="date-grid">
-                                <div class="input-group">
+                                <div class="field" style="margin-bottom:0;">
                                     <label for="start-date">Pick Up</label>
                                     <input type="text" id="start-date" name="Pick Up Date" required placeholder="Select date…" readonly>
                                 </div>
-                                <div class="input-group">
+                                <div class="field" style="margin-bottom:0;">
                                     <label for="end-date">Drop Off</label>
                                     <input type="text" id="end-date" name="Drop Off Date" required placeholder="Select date…" readonly>
                                 </div>
                             </div>
                             <div class="date-legend">
-                                <div class="legend-item">
-                                    <span class="legend-swatch available"></span> Available
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-swatch booked"></span> Booked
-                                </div>
+                                <div class="legend-item"><span class="legend-swatch legend-swatch--available"></span> Available</div>
+                                <div class="legend-item"><span class="legend-swatch legend-swatch--booked"></span> Booked</div>
                                 <span class="date-note" id="date-message">* Min 3 days. Hampshire, UK.</span>
                             </div>
                         </div>
                     </section>
 
-                    <!-- STEP 2 — PASSENGERS -->
-                    <section class="step-section">
-                        <div class="step-header">
-                            <div class="step-badge">02</div>
-                            <h2 class="step-title">Your Party</h2>
+                    <!-- STEP 2 — PARTY -->
+                    <section class="step" aria-labelledby="step2-title">
+                        <div class="step__head">
+                            <div class="step__num" aria-hidden="true">02</div>
+                            <h2 class="step__title" id="step2-title">Your Party</h2>
                         </div>
-                        <div class="glass-card">
-                            <div class="guest-grid">
+                        <div class="panel">
+                            <div class="party-grid">
                                 <div class="counter-card">
-                                    <div class="counter-label">Adults</div>
+                                    <div class="counter-card__label" id="adults-label">Adults</div>
                                     <div class="counter-controls">
-                                        <button type="button" class="counter-btn" id="adults-minus" onclick="adjustCount('adults', -1)">−</button>
-                                        <span class="counter-value" id="adults-count">4</span>
+                                        <button type="button" class="counter-btn" id="adults-minus" aria-label="Fewer adults">−</button>
+                                        <span class="counter-value" id="adults-count" aria-live="polite">4</span>
                                         <input type="hidden" id="adults-input" name="Adults" value="4">
-                                        <button type="button" class="counter-btn" id="adults-plus" onclick="adjustCount('adults', 1)">+</button>
+                                        <button type="button" class="counter-btn" id="adults-plus" aria-label="More adults">+</button>
                                     </div>
                                 </div>
                                 <div class="counter-card">
-                                    <div class="counter-label">Children</div>
+                                    <div class="counter-card__label" id="children-label">Children</div>
                                     <div class="counter-controls">
-                                        <button type="button" class="counter-btn" id="children-minus" onclick="adjustCount('children', -1)">−</button>
-                                        <span class="counter-value" id="children-count">0</span>
+                                        <button type="button" class="counter-btn" id="children-minus" aria-label="Fewer children">−</button>
+                                        <span class="counter-value" id="children-count" aria-live="polite">0</span>
                                         <input type="hidden" id="children-input" name="Children" value="0">
-                                        <button type="button" class="counter-btn" id="children-plus" onclick="adjustCount('children', 1)">+</button>
+                                        <button type="button" class="counter-btn" id="children-plus" aria-label="More children">+</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="guest-note">* Maximum capacity: 4 passengers total (at least 1 adult).</div>
+                            <div class="party-note">* Maximum capacity: 4 passengers total (at least 1 adult).</div>
                         </div>
                     </section>
 
                     <!-- STEP 3 — EXTRAS -->
-                    <section class="step-section">
-                        <div class="step-header">
-                            <div class="step-badge">03</div>
-                            <h2 class="step-title">Enhance Your Trip</h2>
+                    <section class="step" aria-labelledby="step3-title">
+                        <div class="step__head">
+                            <div class="step__num" aria-hidden="true">03</div>
+                            <h2 class="step__title" id="step3-title">Enhance Your Trip</h2>
                         </div>
                         <div class="extras-grid">
-                            <label class="extra-toggle">
-                                <input type="checkbox" id="extra-pet" name="Extras" value="Pet Fee" onchange="calculateTotal()">
-                                <div class="extra-card">
-                                    <div class="extra-left">
-                                        <div class="extra-icon"><i class="fa-solid fa-dog"></i></div>
+                            <label class="extra">
+                                <input type="checkbox" id="extra-pet" name="Extras" value="Pet Fee">
+                                <div class="extra__card">
+                                    <div class="extra__left">
+                                        <div class="extra__icon" aria-hidden="true">
+                                            <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="4.5" r="2"/><circle cx="18" cy="8.5" r="2"/><circle cx="4" cy="8.5" r="2"/><path d="M11 18.5c-3 0-4.5-2-4.5-4a4.5 4.5 0 0 1 9 0c0 2-1.5 4-4.5 4z"/></svg>
+                                        </div>
                                         <div>
-                                            <div class="extra-name">Pet Cleansing Fee</div>
-                                            <div class="extra-desc">Deep clean for furry friends</div>
+                                            <div class="extra__name">Pet Cleansing Fee</div>
+                                            <div class="extra__desc">Deep clean for furry friends</div>
                                         </div>
                                     </div>
-                                    <div class="extra-price">+£25</div>
+                                    <div class="extra__price">+£25</div>
                                 </div>
                             </label>
-                            <label class="extra-toggle">
-                                <input type="checkbox" id="extra-bike" name="Extras" value="Bike Rack" onchange="calculateTotal()">
-                                <div class="extra-card">
-                                    <div class="extra-left">
-                                        <div class="extra-icon"><i class="fa-solid fa-bicycle"></i></div>
+                            <label class="extra">
+                                <input type="checkbox" id="extra-bike" name="Extras" value="Bike Rack">
+                                <div class="extra__card">
+                                    <div class="extra__left">
+                                        <div class="extra__icon" aria-hidden="true">
+                                            <svg class="icon" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+                                        </div>
                                         <div>
-                                            <div class="extra-name">Bike Rack</div>
-                                            <div class="extra-desc">Holds 4 bikes securely</div>
+                                            <div class="extra__name">Bike Rack</div>
+                                            <div class="extra__desc">Holds 4 bikes securely</div>
                                         </div>
                                     </div>
-                                    <div class="extra-price">+£20</div>
+                                    <div class="extra__price">+£20</div>
                                 </div>
                             </label>
-                            <label class="extra-toggle">
-                                <input type="checkbox" id="extra-late" name="Extras" value="Late Checkout" onchange="calculateTotal()">
-                                <div class="extra-card">
-                                    <div class="extra-left">
-                                        <div class="extra-icon"><i class="fa-solid fa-clock"></i></div>
+                            <label class="extra">
+                                <input type="checkbox" id="extra-late" name="Extras" value="Late Checkout">
+                                <div class="extra__card">
+                                    <div class="extra__left">
+                                        <div class="extra__icon" aria-hidden="true">
+                                            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                                        </div>
                                         <div>
-                                            <div class="extra-name">Late Checkout</div>
-                                            <div class="extra-desc">Drop off 6pm instead of 11am</div>
+                                            <div class="extra__name">Late Checkout</div>
+                                            <div class="extra__desc">Drop off 6pm instead of 11am</div>
                                         </div>
                                     </div>
-                                    <div class="extra-price">+£40</div>
+                                    <div class="extra__price">+£40</div>
                                 </div>
                             </label>
                         </div>
                     </section>
 
                     <!-- STEP 4 — DETAILS -->
-                    <section class="step-section">
-                        <div class="step-header">
-                            <div class="step-badge">04</div>
-                            <h2 class="step-title">Your Details</h2>
+                    <section class="step" aria-labelledby="step4-title" style="margin-bottom:0;">
+                        <div class="step__head">
+                            <div class="step__num" aria-hidden="true">04</div>
+                            <h2 class="step__title" id="step4-title">Your Details</h2>
                         </div>
-                        <div class="glass-card">
+                        <div class="panel">
                             <div class="details-grid">
-                                <div class="input-group">
+                                <div class="field">
                                     <label for="user-name">Full Name</label>
-                                    <input type="text" id="user-name" name="Name" required placeholder="Your full name">
+                                    <input type="text" id="user-name" name="Name" autocomplete="name" required placeholder="Your full name">
                                 </div>
-                                <div class="input-group">
+                                <div class="field">
                                     <label for="user-email">Email</label>
-                                    <input type="email" id="user-email" name="Email" required placeholder="your@email.com">
+                                    <input type="email" id="user-email" name="Email" autocomplete="email" required placeholder="your@email.com">
                                 </div>
-                                <div class="input-group full-width">
+                                <div class="field field--full" style="margin-bottom:0;">
                                     <label for="user-msg">Message / Requests</label>
                                     <textarea id="user-msg" name="Message" rows="3" placeholder="Any special requests or questions?"></textarea>
                                 </div>
                             </div>
-
-                            <!-- Honeypot -->
-                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
                         </div>
                     </section>
 
-                    <!-- Hidden calculated fields -->
                     <input type="hidden" id="total-days-input" name="Total Days">
                     <input type="hidden" id="grand-total-input" name="Estimated Cost">
-
                 </div>
 
-                <!-- ======== RIGHT COLUMN: RECEIPT ======== -->
-                <div class="receipt-wrapper">
-                    <div class="receipt-card">
-                        <h3 class="receipt-title">Booking Summary</h3>
-
-                        <div class="receipt-lines">
-                            <div class="receipt-line">
+                <!-- RIGHT: RECEIPT -->
+                <div class="receipt-wrap">
+                    <div class="receipt">
+                        <h2 class="receipt__title">Booking Summary</h2>
+                        <div class="receipt__lines">
+                            <div class="receipt__line">
                                 <span class="label">Rate</span>
                                 <span class="value">£130 × <span id="days-count">0</span> nights</span>
                             </div>
-                            <div class="receipt-line" id="receipt-extras" style="display:none">
+                            <div class="receipt__line" id="receipt-extras" style="display:none">
                                 <span class="label">Extras</span>
                                 <span class="value">+£<span id="extras-total">0</span></span>
                             </div>
-                            <hr class="receipt-divider">
-                            <div class="receipt-line bold">
+                            <hr>
+                            <div class="receipt__line receipt__line--bold">
                                 <span class="label">Rental Cost</span>
                                 <span class="value">£<span id="rental-total">0</span></span>
                             </div>
-                            <hr class="receipt-divider">
-                            <div class="receipt-line">
+                            <hr>
+                            <div class="receipt__line">
                                 <div>
                                     <span class="label">Security Deposit</span>
                                     <div class="deposit-note">Held in escrow, returned after rental</div>
@@ -1281,41 +625,22 @@
                                 <span class="value">£750</span>
                             </div>
                         </div>
-
-                        <div class="receipt-total">
+                        <div class="receipt__total">
                             <span class="label">Total Due</span>
                             <span class="value">£<span id="grand-total">0</span></span>
                         </div>
 
-                        <button type="button" class="submit-btn" onclick="validateAndSubmit()">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Request to Book
-                        </button>
+                        <button type="button" class="btn btn--gold btn--lg btn--full" id="submit-btn">Request to Book</button>
 
-                        <p class="submit-note">
-                            No payment is taken at this stage. We will review your request and send a verification link.
-                        </p>
+                        <p class="submit-note">No payment is taken at this stage. We will review your request and send a verification link.</p>
 
-                        <!-- Error Box -->
-                        <div class="error-box" id="error-box">
-                            Please select valid dates (min 3 days).
-                        </div>
+                        <div class="error-box" id="error-box" role="alert">Please select valid dates (min 3 days).</div>
 
-                        <!-- How it Works -->
-                        <div class="how-it-works">
-                            <div class="how-it-works-title">How it Works</div>
-                            <div class="how-step">
-                                <div class="how-step-num">01.</div>
-                                <div class="how-step-text">Submit Booking Request</div>
-                            </div>
-                            <div class="how-step">
-                                <div class="how-step-num">02.</div>
-                                <div class="how-step-text">Driver License, Two Proofs of Address &amp; DVLA check</div>
-                            </div>
-                            <div class="how-step">
-                                <div class="how-step-num">03.</div>
-                                <div class="how-step-text">Secure Payment (Post-Approval)</div>
-                            </div>
+                        <div class="how">
+                            <div class="how__title">How it Works</div>
+                            <div class="how__step"><div class="how__num">01.</div><div class="how__text">Submit Booking Request</div></div>
+                            <div class="how__step"><div class="how__num">02.</div><div class="how__text">Driver License, Two Proofs of Address &amp; DVLA check</div></div>
+                            <div class="how__step"><div class="how__num">03.</div><div class="how__text">Secure Payment (Post-Approval)</div></div>
                         </div>
                     </div>
                 </div>
@@ -1324,180 +649,126 @@
         </form>
     </main>
 
-    <!-- ======================== BOTTOM DOCK NAV ======================== -->
-    <nav class="bottom-dock">
-        <div class="dock-bar">
-            <a href="index.html" class="dock-item">
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
-            </a>
-            <a href="gallery.html" class="dock-item">
-                <i class="fa-solid fa-images"></i>
-                <span>Gallery</span>
-            </a>
-            <a href="booking.html" class="dock-item active">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>Book</span>
-            </a>
-            <a href="index.html#contact" class="dock-item">
-                <i class="fa-solid fa-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- ======================== JAVASCRIPT ======================== -->
     <script>
-        // ==================== CONSTANTS ====================
-        const DAILY_RATE = 130;
-        const SECURITY_DEPOSIT = 750;
-        let guestCounts = { adults: 4, children: 0 };
+    (function () {
+        'use strict';
 
-        // ==================== HEADER SCROLL ====================
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 40);
-        });
+        var DAILY_RATE = 130;
+        var SECURITY_DEPOSIT = 750;
+        var guestCounts = { adults: 4, children: 0 };
 
-        // ==================== CALENDAR BLOCKING SYSTEM ====================
-        let blockedDates = [];
-
-        async function loadBlockedDates() {
-            try {
-                const response = await fetch('blocked-dates.json');
-                const data = await response.json();
-                blockedDates = data.blockedDates || [];
-                initializeDatePickers();
-            } catch (error) {
-                console.error("Error loading blocked dates:", error);
-                blockedDates = [];
-                initializeDatePickers();
-            }
-        }
+        /* ── Blocked dates + Flatpickr (waits for deferred script) ── */
+        var blockedDates = [];
 
         function formatDate(date) {
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
+            var y = date.getFullYear();
+            var m = String(date.getMonth() + 1).padStart(2, '0');
+            var d = String(date.getDate()).padStart(2, '0');
+            return y + '-' + m + '-' + d;
         }
-
-        function isDateBlocked(dateString) {
-            return blockedDates.includes(dateString);
-        }
-
+        function isDateBlocked(s) { return blockedDates.indexOf(s) !== -1; }
         function isRangeBlocked(startDate, endDate) {
             if (!startDate || !endDate) return { blocked: false };
-
-            const start = new Date(startDate);
-            const end = new Date(endDate);
-
-            for (let dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
-                const dateStr = formatDate(dt);
-                if (isDateBlocked(dateStr)) {
-                    return { blocked: true, date: dateStr };
-                }
+            var start = new Date(startDate), end = new Date(endDate);
+            for (var dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+                var s = formatDate(dt);
+                if (isDateBlocked(s)) return { blocked: true, date: s };
             }
             return { blocked: false };
         }
 
-        // ==================== FLATPICKR INITIALIZATION ====================
+        function markBooked(dayElem) {
+            var s = formatDate(dayElem.dateObj);
+            if (isDateBlocked(s)) {
+                dayElem.classList.add('disabled');
+                dayElem.innerHTML += '<br><small style="font-size:7px;line-height:1;display:block;margin-top:1px;opacity:.7;">Booked</small>';
+            }
+        }
+
         function initializeDatePickers() {
-            const today = new Date();
+            var today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            const startPicker = flatpickr("#start-date", {
-                minDate: today,
-                dateFormat: "Y-m-d",
+            var endPicker = flatpickr('#end-date', {
+                minDate: new Date(today.getTime() + 3 * 86400000),
+                dateFormat: 'Y-m-d',
                 disable: blockedDates,
-                onChange: function (selectedDates, dateStr) {
-                    if (selectedDates.length > 0) {
-                        const minEndDate = new Date(selectedDates[0]);
-                        minEndDate.setDate(minEndDate.getDate() + 3);
-                        endPicker.set('minDate', minEndDate);
-                    }
-                    calculateTotal();
-                },
-                onDayCreate: function (dObj, dStr, fp, dayElem) {
-                    const dateStr = formatDate(dayElem.dateObj);
-                    if (isDateBlocked(dateStr)) {
-                        dayElem.classList.add('disabled');
-                        dayElem.innerHTML += '<br><small style="font-size:7px; line-height:1; display:block; margin-top:1px; opacity:0.7;">Booked</small>';
-                    }
-                }
+                onChange: calculateTotal,
+                onDayCreate: function (a, b, c, dayElem) { markBooked(dayElem); }
             });
 
-            const endPicker = flatpickr("#end-date", {
-                minDate: new Date(today.getTime() + (3 * 24 * 60 * 60 * 1000)),
-                dateFormat: "Y-m-d",
+            flatpickr('#start-date', {
+                minDate: today,
+                dateFormat: 'Y-m-d',
                 disable: blockedDates,
-                onChange: function () {
+                onChange: function (selectedDates) {
+                    if (selectedDates.length > 0) {
+                        var minEnd = new Date(selectedDates[0]);
+                        minEnd.setDate(minEnd.getDate() + 3);
+                        endPicker.set('minDate', minEnd);
+                    }
                     calculateTotal();
                 },
-                onDayCreate: function (dObj, dStr, fp, dayElem) {
-                    const dateStr = formatDate(dayElem.dateObj);
-                    if (isDateBlocked(dateStr)) {
-                        dayElem.classList.add('disabled');
-                        dayElem.innerHTML += '<br><small style="font-size:7px; line-height:1; display:block; margin-top:1px; opacity:0.7;">Booked</small>';
-                    }
-                }
+                onDayCreate: function (a, b, c, dayElem) { markBooked(dayElem); }
             });
         }
 
-        loadBlockedDates();
+        function whenFlatpickrReady(cb) {
+            if (window.flatpickr) return cb();
+            window.addEventListener('load', function () {
+                if (window.flatpickr) cb();
+            });
+        }
 
-        // ==================== GUEST COUNTERS ====================
+        fetch('blocked-dates.json')
+            .then(function (r) { return r.json(); })
+            .then(function (data) { blockedDates = data.blockedDates || []; })
+            .catch(function () { blockedDates = []; })
+            .then(function () { whenFlatpickrReady(initializeDatePickers); });
+
+        /* ── Guest counters ── */
         function adjustCount(type, delta) {
-            const current = guestCounts[type];
-            const total = guestCounts.adults + guestCounts.children;
-
+            var current = guestCounts[type];
+            var total = guestCounts.adults + guestCounts.children;
             if (type === 'children' && current + delta < 0) return;
             if (type === 'adults' && current + delta < 1) return;
             if (delta > 0 && total + delta > 4) return;
-
             guestCounts[type] = current + delta;
-
-            document.getElementById(`${type}-count`).innerText = guestCounts[type];
-            document.getElementById(`${type}-input`).value = guestCounts[type];
-
+            document.getElementById(type + '-count').textContent = guestCounts[type];
+            document.getElementById(type + '-input').value = guestCounts[type];
             calculateTotal();
             updateButtonStates();
         }
-
         function updateButtonStates() {
-            const total = guestCounts.adults + guestCounts.children;
-
-            document.getElementById('adults-plus').disabled = (total >= 4);
-            document.getElementById('children-plus').disabled = (total >= 4);
-            document.getElementById('adults-minus').disabled = (guestCounts.adults <= 1);
-            document.getElementById('children-minus').disabled = (guestCounts.children <= 0);
+            var total = guestCounts.adults + guestCounts.children;
+            document.getElementById('adults-plus').disabled = total >= 4;
+            document.getElementById('children-plus').disabled = total >= 4;
+            document.getElementById('adults-minus').disabled = guestCounts.adults <= 1;
+            document.getElementById('children-minus').disabled = guestCounts.children <= 0;
         }
+        document.getElementById('adults-minus').addEventListener('click', function () { adjustCount('adults', -1); });
+        document.getElementById('adults-plus').addEventListener('click', function () { adjustCount('adults', 1); });
+        document.getElementById('children-minus').addEventListener('click', function () { adjustCount('children', -1); });
+        document.getElementById('children-plus').addEventListener('click', function () { adjustCount('children', 1); });
+        updateButtonStates();
 
-        setTimeout(updateButtonStates, 100);
-
-        // ==================== CALCULATE TOTAL ====================
+        /* ── Totals ── */
         function calculateTotal() {
-            const startInput = document.getElementById('start-date').value;
-            const endInput = document.getElementById('end-date').value;
-            const dateMessage = document.getElementById('date-message');
-            const errorBox = document.getElementById('error-box');
-
-            let days = 0;
-            let extrasCost = 0;
+            var startInput = document.getElementById('start-date').value;
+            var endInput = document.getElementById('end-date').value;
+            var dateMessage = document.getElementById('date-message');
+            var days = 0, extrasCost = 0;
 
             if (startInput && endInput) {
-                const start = new Date(startInput);
-                const end = new Date(endInput);
-                const diffTime = Math.abs(end - start);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
+                var start = new Date(startInput), end = new Date(endInput);
+                var diffDays = Math.ceil(Math.abs(end - start) / 86400000);
                 if (start < end) {
                     days = diffDays;
-                    dateMessage.innerText = `${days} nights selected.`;
-                    dateMessage.style.color = 'rgba(240, 230, 211, 0.5)';
+                    dateMessage.textContent = days + ' nights selected.';
+                    dateMessage.style.color = '';
                 } else {
-                    dateMessage.innerText = "Drop-off must be after pick-up.";
-                    dateMessage.style.color = '#f87171';
+                    dateMessage.textContent = 'Drop-off must be after pick-up.';
+                    dateMessage.style.color = '#f08a8d';
                 }
             }
 
@@ -1505,150 +776,56 @@
             if (document.getElementById('extra-bike').checked) extrasCost += 20;
             if (document.getElementById('extra-late').checked) extrasCost += 40;
 
-            const rentalCost = (days * DAILY_RATE) + extrasCost;
-            const grandTotal = rentalCost + SECURITY_DEPOSIT;
+            var rentalCost = days * DAILY_RATE + extrasCost;
+            var grandTotal = rentalCost + SECURITY_DEPOSIT;
 
-            document.getElementById('days-count').innerText = days;
-            document.getElementById('extras-total').innerText = extrasCost;
-            document.getElementById('rental-total').innerText = rentalCost;
-            document.getElementById('grand-total').innerText = grandTotal;
-
+            document.getElementById('days-count').textContent = days;
+            document.getElementById('extras-total').textContent = extrasCost;
+            document.getElementById('rental-total').textContent = rentalCost;
+            document.getElementById('grand-total').textContent = grandTotal;
             document.getElementById('total-days-input').value = days;
-            document.getElementById('grand-total-input').value = "£" + grandTotal;
+            document.getElementById('grand-total-input').value = '£' + grandTotal;
+            document.getElementById('receipt-extras').style.display = extrasCost > 0 ? 'flex' : 'none';
 
-            if (extrasCost > 0) {
-                document.getElementById('receipt-extras').style.display = 'flex';
-            } else {
-                document.getElementById('receipt-extras').style.display = 'none';
-            }
-
-            return { days, extrasCost, rentalCost, grandTotal, deposit: SECURITY_DEPOSIT };
+            return { days: days };
         }
 
+        ['extra-pet', 'extra-bike', 'extra-late'].forEach(function (id) {
+            document.getElementById(id).addEventListener('change', calculateTotal);
+        });
         document.getElementById('start-date').addEventListener('change', calculateTotal);
         document.getElementById('end-date').addEventListener('change', calculateTotal);
 
-        // ==================== VALIDATE & SUBMIT ====================
-        function validateAndSubmit() {
-            const { days } = calculateTotal();
-            const form = document.getElementById('booking-form');
-            const errorBox = document.getElementById('error-box');
-            const startDate = document.getElementById('start-date').value;
-            const endDate = document.getElementById('end-date').value;
+        /* ── Validate & submit ── */
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            var days = calculateTotal().days;
+            var form = document.getElementById('booking-form');
+            var errorBox = document.getElementById('error-box');
+            var startDate = document.getElementById('start-date').value;
+            var endDate = document.getElementById('end-date').value;
 
             if (days < 3) {
-                errorBox.innerText = "Minimum rental period is 3 days.";
+                errorBox.textContent = 'Minimum rental period is 3 days.';
                 errorBox.classList.add('visible');
-                errorBox.style.display = 'block';
                 return;
             }
-
-            const rangeCheck = isRangeBlocked(startDate, endDate);
+            var rangeCheck = isRangeBlocked(startDate, endDate);
             if (rangeCheck.blocked) {
-                errorBox.innerText = `Sorry, ${rangeCheck.date} is already booked. Please select different dates.`;
+                errorBox.textContent = 'Sorry, ' + rangeCheck.date + ' is already booked. Please select different dates.';
                 errorBox.classList.add('visible');
-                errorBox.style.display = 'block';
                 return;
             }
-
             if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
             }
-
             errorBox.classList.remove('visible');
-            errorBox.style.display = 'none';
             form.submit();
-        }
-
-        // ==================== STRIPE PAYMENT INTEGRATION ====================
-        // 
-        // SETUP INSTRUCTIONS:
-        // 1. Create account at https://stripe.com (FREE)
-        // 2. Get your Publishable Key from Dashboard > Developers > API Keys
-        // 3. Replace 'YOUR_PUBLISHABLE_KEY_HERE' below with your actual key
-        // 4. Create a Product in Stripe Dashboard:
-        //    - Name: "Campervan Rental - Daily Rate"
-        //    - Price: £130 (or use dynamic pricing)
-        // 5. Test with test mode first, then switch to live mode
-        //
-        // OPTION 1: Simple Payment Link (Easiest)
-        // - Create a Payment Link in Stripe Dashboard
-        // - Replace validateAndProceedToPayment to redirect:
-        //   window.location.href = 'https://buy.stripe.com/YOUR_LINK';
-        //
-        // OPTION 2: Dynamic Stripe Checkout (Recommended)
-        // - Uses Stripe.js for dynamic checkout sessions
-        // =====================================================================
-
-        // const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE');
-
-        /*
-        async function validateAndProceedToPayment() {
-            const { days, rentalCost, grandTotal, deposit, extrasCost } = calculateTotal();
-            const form = document.getElementById('booking-form');
-            const errorBox = document.getElementById('error-box');
-
-            if (days < 3) {
-                errorBox.innerText = "Minimum rental period is 3 days.";
-                errorBox.classList.add('visible');
-                errorBox.style.display = 'block';
-                return;
-            }
-
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-
-            errorBox.classList.remove('visible');
-            errorBox.style.display = 'none';
-
-            const totalCost = grandTotal;
-            const totalInPence = Math.round(totalCost * 100);
-
-            const bookingData = {
-                startDate: document.getElementById('start-date').value,
-                endDate: document.getElementById('end-date').value,
-                adults: guestCounts.adults,
-                children: guestCounts.children,
-                name: document.getElementById('user-name').value,
-                email: document.getElementById('user-email').value,
-                message: document.getElementById('user-msg').value,
-                days: days,
-                extrasCost: extrasCost,
-                totalCost: totalCost
-            };
-
-            // SIMPLE METHOD: Redirect to Stripe Payment Link
-            // window.location.href = 'https://buy.stripe.com/YOUR_PAYMENT_LINK?prefilled_email=' + bookingData.email;
-            // return;
-
-            // ADVANCED METHOD: Use Stripe Checkout API
-            // try {
-            //     const response = await fetch('YOUR_BACKEND_URL/create-checkout-session', {
-            //         method: 'POST',
-            //         headers: { 'Content-Type': 'application/json' },
-            //         body: JSON.stringify(bookingData)
-            //     });
-            //     const session = await response.json();
-            //     const result = await stripe.redirectToCheckout({ sessionId: session.id });
-            //     if (result.error) {
-            //         errorBox.innerText = result.error.message;
-            //         errorBox.classList.add('visible');
-            //         errorBox.style.display = 'block';
-            //     }
-            // } catch (error) {
-            //     errorBox.innerText = "Payment system error. Please try inquiry option.";
-            //     errorBox.classList.add('visible');
-            //     errorBox.style.display = 'block';
-            // }
-        }
-        */
+        });
+    })();
     </script>
 
-    <!-- WhatsApp Widget -->
-    <script src="whatsapp-widget.js"></script>
+    <script src="main.js" defer></script>
+    <script src="whatsapp-widget.js" defer></script>
 </body>
-
 </html>
